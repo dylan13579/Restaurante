@@ -6,7 +6,7 @@ public class Producto {
     
     private int idProducto;
     private int codigoProducto;
-    private String nombre;
+    private String nombreProducto;
     private String descripcion;
     private int stock;
     private double precio;
@@ -15,19 +15,19 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto, int codigoProducto, String nombre, String descripcion, int stock, double precio, boolean estado) {
+    public Producto(int idProducto, int codigoProducto, String nombreProducto, String descripcion, int stock, double precio, boolean estado) {
         this.idProducto = idProducto;
         this.codigoProducto = codigoProducto;
-        this.nombre = nombre;
+        this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.stock = stock;
         this.precio = precio;
         this.estado = estado;
     }
 
-    public Producto(int codigoProducto, String nombre, String descripcion, int stock, double precio, boolean estado) {
+    public Producto(int codigoProducto, String nombreProducto, String descripcion, int stock, double precio, boolean estado) {
         this.codigoProducto = codigoProducto;
-        this.nombre = nombre;
+        this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.stock = stock;
         this.precio = precio;
@@ -50,12 +50,12 @@ public class Producto {
         this.codigoProducto = codigoProducto;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public String getDescripcion() {
@@ -92,10 +92,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "codigoProducto=" + codigoProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", stock=" + stock + ", precio=" + precio + '}';
+        return "Producto{" + "codigoProducto=" + codigoProducto + ", nombreProducto=" + nombreProducto + ", descripcion=" + descripcion + ", stock=" + stock + ", precio=" + precio + ", estado=" + estado + '}';
     }
 
-   
     
+   
     
 }

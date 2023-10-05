@@ -13,7 +13,7 @@ public class Restaurante {
         
          MesaData me=new MesaData();
         
-        Mesa m=new Mesa(1,"Mesa para 5 personas",true);
+        Mesa m=new Mesa(4,"Mesa para 4 personas",true);
              //me.guardarMesa(m);
              me.modificarMesa(m);
              

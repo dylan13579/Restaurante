@@ -1,33 +1,34 @@
 
 package restaurante.Entidades;
 
+import java.time.LocalDateTime;
+
+
+
 
 public class Pedido {
     
     private int idPedido;
     private Mesa numeroMesa;
-    private Mesero numeroMesero;
-    private Producto codigoProducto;
-    private int cantidadProducto;
+    private String nombreMesero;
+    private LocalDateTime Fecha_Hora;
+    private double importe;
     private boolean cobrado;
 
-    public Pedido() {
-    }
-
-    public Pedido(int idPedido, Mesa numeroMesa, Mesero numeroMesero, Producto codigoProducto, int cantidadProducto, boolean cobrado) {
+    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDateTime Fecha_Hora, double importe, boolean cobrado) {
         this.idPedido = idPedido;
         this.numeroMesa = numeroMesa;
-        this.numeroMesero = numeroMesero;
-        this.codigoProducto = codigoProducto;
-        this.cantidadProducto = cantidadProducto;
+        this.nombreMesero = nombreMesero;
+        this.Fecha_Hora = Fecha_Hora;
+        this.importe = importe;
         this.cobrado = cobrado;
     }
 
-    public Pedido(Mesa numeroMesa, Mesero numeroMesero, Producto codigoProducto, int cantidadProducto, boolean cobrado) {
+    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDateTime Fecha_Hora, double importe, boolean cobrado) {
         this.numeroMesa = numeroMesa;
-        this.numeroMesero = numeroMesero;
-        this.codigoProducto = codigoProducto;
-        this.cantidadProducto = cantidadProducto;
+        this.nombreMesero = nombreMesero;
+        this.Fecha_Hora = Fecha_Hora;
+        this.importe = importe;
         this.cobrado = cobrado;
     }
 
@@ -47,28 +48,28 @@ public class Pedido {
         this.numeroMesa = numeroMesa;
     }
 
-    public Mesero getNumeroMesero() {
-        return numeroMesero;
+    public String getNombreMesero() {
+        return nombreMesero;
     }
 
-    public void setNumeroMesero(Mesero numeroMesero) {
-        this.numeroMesero = numeroMesero;
+    public void setNombreMesero(String nombreMesero) {
+        this.nombreMesero = nombreMesero;
     }
 
-    public Producto getCodigoProducto() {
-        return codigoProducto;
+    public LocalDateTime getFecha_Hora() {
+        return Fecha_Hora;
     }
 
-    public void setCodigoProducto(Producto codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setFecha_Hora(LocalDateTime Fecha_Hora) {
+        this.Fecha_Hora = Fecha_Hora;
     }
 
-    public int getCantidadProducto() {
-        return cantidadProducto;
+    public double getImporte() {
+        return importe;
     }
 
-    public void setCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
+    public void setImporte(double importe) {
+        this.importe = importe;
     }
 
     public boolean isCobrado() {
@@ -81,9 +82,12 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "numeroMesa=" + numeroMesa + ", numeroMesero=" + numeroMesero + ", codigoProducto=" + codigoProducto + ", cantidadProducto=" + cantidadProducto + ", cobrado=" + cobrado + '}';
+        return "Pedido{" + "numeroMesa=" + numeroMesa + ", nombreMesero=" + nombreMesero + ", Fecha_Hora=" + Fecha_Hora + ", importe=" + importe + ", cobrado=" + cobrado + '}';
     }
-
+    
+    
+    
+   
     
     
 }
