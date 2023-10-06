@@ -1,7 +1,10 @@
 
 package restaurante.Entidades;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+
+import java.time.LocalTime;
 
 
 
@@ -9,29 +12,36 @@ import java.time.LocalDateTime;
 public class Pedido {
     
     private int idPedido;
-    private Mesa numeroMesa;
+    private Mesa mesa;
     private String nombreMesero;
-    private LocalDateTime Fecha_Hora;
+    private LocalDate fecha;
+    private LocalTime hora;
     private double importe;
     private boolean cobrado;
 
-    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDateTime Fecha_Hora, double importe, boolean cobrado) {
+    public Pedido() {
+    }
+
+    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
         this.idPedido = idPedido;
-        this.numeroMesa = numeroMesa;
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
-        this.Fecha_Hora = Fecha_Hora;
+        this.fecha = fecha;
+        this.hora = hora;
         this.importe = importe;
         this.cobrado = cobrado;
     }
 
-    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDateTime Fecha_Hora, double importe, boolean cobrado) {
-        this.numeroMesa = numeroMesa;
+    public Pedido(Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
-        this.Fecha_Hora = Fecha_Hora;
+        this.fecha = fecha;
+        this.hora = hora;
         this.importe = importe;
         this.cobrado = cobrado;
     }
 
+   
     public int getIdPedido() {
         return idPedido;
     }
@@ -40,12 +50,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Mesa getNumeroMesa() {
-        return numeroMesa;
+    public Mesa getMesa() {
+        return mesa;
     }
 
-    public void setNumeroMesa(Mesa numeroMesa) {
-        this.numeroMesa = numeroMesa;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public String getNombreMesero() {
@@ -56,12 +66,20 @@ public class Pedido {
         this.nombreMesero = nombreMesero;
     }
 
-    public LocalDateTime getFecha_Hora() {
-        return Fecha_Hora;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setFecha_Hora(LocalDateTime Fecha_Hora) {
-        this.Fecha_Hora = Fecha_Hora;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     public double getImporte() {
@@ -82,12 +100,10 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "numeroMesa=" + numeroMesa + ", nombreMesero=" + nombreMesero + ", Fecha_Hora=" + Fecha_Hora + ", importe=" + importe + ", cobrado=" + cobrado + '}';
+        return "Pedido{" + "idPedido=" + idPedido + ", mesa=" + mesa + ", nombreMesero=" + nombreMesero + ", fecha=" + fecha + ", hora=" + hora + ", importe=" + importe + ", cobrado=" + cobrado + '}';
     }
-    
-    
-    
+
    
-    
+   
     
 }
