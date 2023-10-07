@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import restaurante.Entidades.Mesa;
@@ -60,9 +62,39 @@ public class PedidoData {
 
         ps.close();
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido: ");
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
     }
   }
+  
+       public void modificarPedido(Pedido pedido){
+      
+          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? ,cobrada = ? WHERE idPedido = ?";
+          
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setString(1, pedido.getNombreMesero());
+            ps.setDate(2,Date.valueOf(pedido.getFecha()));
+            ps.setTime(3, Time.valueOf(pedido.getHora()));
+            ps.setDouble(4, pedido.getImporte());
+            ps.setBoolean(5, pedido.isCobrado());
+            ps.setInt(6, pedido.getIdPedido());
+            
+            int mejor = ps.executeUpdate();
+            
+            if(mejor == 1){
+                JOptionPane.showMessageDialog(null, "Pedido Modificado");
+            }
+          ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
+          
+         
+      }
+       
+       
+       
     
 }
 
