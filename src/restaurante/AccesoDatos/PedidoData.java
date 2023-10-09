@@ -17,14 +17,8 @@ import restaurante.Entidades.Mesa;
 import restaurante.Entidades.Pedido;
 
 
-
-
-
 public class PedidoData {
 
-
-       
-    
     private Connection wifi = null;
     
     private MesaData md = new MesaData();
@@ -35,38 +29,37 @@ public class PedidoData {
     
     }
     
-   
-  public void guardarPedido(Pedido pedido, Mesa mesa) {
-    String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
+    public void guardarPedido(Pedido pedido, Mesa mesa) {
+        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
 
-    try {
-        PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
-        ps.setInt(1, mesa.getNumeroMesa());
-        ps.setString(2, pedido.getNombreMesero());
-        ps.setDate(3, Date.valueOf(pedido.getFecha()));
-        ps.setTime(4, Time.valueOf(pedido.getHora()));
-        ps.setDouble(5, pedido.getImporte());
-        ps.setBoolean(6, pedido.isCobrado());
+            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setString(2, pedido.getNombreMesero());
+            ps.setDate(3, Date.valueOf(pedido.getFecha()));
+            ps.setTime(4, Time.valueOf(pedido.getHora()));
+            ps.setDouble(5, pedido.getImporte());
+            ps.setBoolean(6, pedido.isCobrado());
 
-        int modi = ps.executeUpdate();
+            int modi = ps.executeUpdate();
 
-        if (modi > 0) {
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                int genera = rs.getInt(1);
-                pedido.setIdPedido(genera);
-                JOptionPane.showMessageDialog(null, "Pedido agregado ");
+            if (modi > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    int genera = rs.getInt(1);
+                    pedido.setIdPedido(genera);
+                    JOptionPane.showMessageDialog(null, "Pedido agregado ");
+                }
             }
-        } 
 
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
     }
-  }
   
-       public void modificarPedido(Pedido pedido){
+    public void modificarPedido(Pedido pedido){
       
           String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? ,cobrada = ? WHERE idPedido = ?";
           
@@ -82,21 +75,63 @@ public class PedidoData {
             int mejor = ps.executeUpdate();
             
             if(mejor == 1){
-                JOptionPane.showMessageDialog(null, "Pedido Modificado");
+                JOptionPane.showMessageDialog(null, "Pedido Modificado con exito");
             }
           ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido");
         }
           
          
       }
        
+    public void cancelarPedidoId(int id) {
+
+        String sql = "UPDATE pedido SET cobrada = 0 WHERE idPedido = ? ";
+
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+
+                JOptionPane.showMessageDialog(null, "Pedido cancelado con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "El pedido no ha sido cancelado");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+        }
+    }
        
-       
+    public void cancelarPedidoNumeroMesa(int numeroMesa) {
+
+        String sql = "UPDATE pedido SET cobrada = 0 WHERE numeroMesa = ? ";
+
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ps.setInt(1, numeroMesa);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+
+                JOptionPane.showMessageDialog(null, "Pedido cancelado con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "El pedido no ha sido cancelado");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+        }
+    }
+
     
+
+
+
 }
-
-    
-

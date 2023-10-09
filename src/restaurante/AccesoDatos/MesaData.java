@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import javax.swing.JOptionPane;
@@ -35,12 +37,12 @@ public class MesaData {
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 mesa.setNumeroMesa(1);
-                 JOptionPane.showMessageDialog(null, "Mesa agregada");
+                 JOptionPane.showMessageDialog(null, "Mesa agregada con exito");
                  ps.close();
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mesa");
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
         }
         
     }
@@ -60,13 +62,148 @@ public class MesaData {
             int mejoras = ps.executeUpdate();
             
             if(mejoras == 1){
-                JOptionPane.showMessageDialog(null, "Mesa modificada");
+                JOptionPane.showMessageDialog(null, "Mesa modificada con exito");
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mesa");
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
         }
         
     }
+    
+    public void darBajaMesaId(int id) {
+
+        String sql = "UPDATE mesa SET estado = 0 WHERE idMesa = ? ";
+
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+
+                JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "La mesa no ha sido eliminada");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+    }
+    
+    public void darBajaMesaNum(int numeroMesa) {
+
+        String sql = "UPDATE mesa SET estado = 0 WHERE numeroMesa = ? ";
+
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ps.setInt(1, numeroMesa);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+
+                JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "La mesa no ha sido eliminada");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+    }
+
+    public Mesa buscarMesaPorNum(int numeroMesa) {
+
+        String sql = "SELECT idMesa, numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND estado = 1";
+
+        Mesa mesa = null;
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ps.setInt(1, numeroMesa);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
+                mesa.setDescripcion(rs.getString("descripcion"));
+                mesa.setEstado(true);
+
+                JOptionPane.showMessageDialog(null, "Mesa encontrada con exito.");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Mesa inexistente con ese numero");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+
+        return mesa;
+    }
+
+    public List<Mesa> listarMesasdisponibles() {
+
+        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 1";
+
+        ArrayList<Mesa> mesas = new ArrayList<>();
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(); // devuelve mas de una fila
+            while (rs.next()) {
+
+                Mesa mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
+                mesa.setDescripcion(rs.getString("descripcion"));
+                mesa.setEstado(true);
+
+                mesas.add(mesa); //agrego a la lista mesas en cada vuelta
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+
+        return mesas;
+    }
+
+    public List<Mesa> listarMesasNodisponibles() {
+
+        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
+
+        ArrayList<Mesa> mesas = new ArrayList<>();
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(); // devuelve mas de una fila
+            while (rs.next()) {
+
+                Mesa mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
+                mesa.setDescripcion(rs.getString("descripcion"));
+                mesa.setEstado(false);
+
+                mesas.add(mesa); //agrego a la lista mesas en cada vuelta
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+
+        return mesas;
+    }
+
+    
     
 }

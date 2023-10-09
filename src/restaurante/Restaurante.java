@@ -13,37 +13,77 @@ public class Restaurante {
     
     public static void main(String[] args) {
        
-        /*
         
-            //Mesa
-         MesaData me=new MesaData();
+        //Pruebas de Mesa
+        //MesaData me=new MesaData(); //creando instancia data
         
-        //Mesa m=new Mesa(1,"Mesa para 2 personas",false);
-             //me.guardarMesa(m);
-             //me.modificarMesa(m);
-             
-         */
-        
-        
-        //Pedido
-        
-    PedidoData pe = new PedidoData();
-//    
-//    Mesa mesa = new Mesa();
-//    mesa.setNumeroMesa(3);
-    
-    Pedido pedido = new Pedido();
-    pedido.setIdPedido(7);
-    pedido.setNombreMesero("Dylan Jofre Villegas");
-    pedido.setFecha(LocalDate.of(2023, 10, 5));
-    pedido.setHora(LocalTime.of(21, 30)); 
-    pedido.setImporte(2300.99); 
-    pedido.setCobrado(true);
+        /*Mesa m=new Mesa(1,"Mesa para 2 personas",false);
+            //me.guardarMesa(m);
+            //me.modificarMesa(m);
+        */
+            //metodo dar de baja
+            //me.darBajaMesaId(4);
+            //me.darBajaMesaNum(5);
+         
+            //metodo buscar
+//        Mesa meEncontrada = me.buscarMesaPorNum(4);
+//        if (meEncontrada != null) {
+//            System.out.println("------ Mesas ------");
+//            System.out.println("numeroMesa: " + meEncontrada.getNumeroMesa());
+//            System.out.println("descripcion: " + meEncontrada.getDescripcion());
+//            System.out.println("");
+//        }
+            
+            //metodos listar
+        //MesaData me = new MesaData();
+//        for (Mesa mesa : me.listarMesasdisponibles()) {
+//            System.out.println("-----mesa------");
+//            System.out.println("numero: "+mesa.getNumeroMesa());
+//            System.out.println("cantidad: "+mesa.getDescripcion());
+//            System.out.println("estado: "+mesa.isEstado());
+//            System.out.println("");
+//        }
+        //MesaData me = new MesaData();
+//        for (Mesa mesa : me.listarMesasNodisponibles()) {
+//            System.out.println("-----mesa------");
+//            System.out.println("numero: "+mesa.getNumeroMesa());
+//            System.out.println("cantidad: "+mesa.getDescripcion());
+//            System.out.println("estado: "+mesa.isEstado());
+//            System.out.println("");
+//        }
+         
 
-    //pe.guardarPedido(pedido, mesa);
-    pe.modificarPedido(pedido);
+
+
+        //Pruebas de Pedido
+        
+//        PedidoData pe = new PedidoData();
+//        //    
+//        //  Mesa mesa = new Mesa();
+//        //  mesa.setNumeroMesa(3);
+//    
+//            Pedido pedido = new Pedido();
+//            pedido.setIdPedido(7);
+//            pedido.setNombreMesero("Dylan Jofre Villegas");
+//            pedido.setFecha(LocalDate.of(2023, 10, 5));
+//            pedido.setHora(LocalTime.of(21, 30)); 
+//            pedido.setImporte(2300.99); 
+//            pedido.setCobrado(true);
+//
+//            //pe.guardarPedido(pedido, mesa);
+//            pe.modificarPedido(pedido);
         
      
+        //metodo cancelar
+//        PedidoData pe = new PedidoData();
+//        
+//        pe.cancelarPedidoId(8);
+//        pe.cancelarPedidoNumeroMesa(9);
+    
+    
+    
+    
+    
     }
              
     
