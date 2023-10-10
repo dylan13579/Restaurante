@@ -2,7 +2,9 @@
 package restaurante.Vistas;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import restaurante.AccesoDatos.PedidoData;
+import restaurante.Entidades.Pedido;
 
 
 public class FormularioProducto extends javax.swing.JInternalFrame {
@@ -18,6 +20,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         ad= new PedidoData();
         
         desactivarCampos();
+        jbEliminar.setEnabled(false);
+        jbModificar.setEnabled(false);
         
     }
 
@@ -33,7 +37,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtProducto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jtNombreProducto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -51,10 +55,10 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Codigo de Producto:");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbBuscarActionPerformed(evt);
             }
         });
 
@@ -116,7 +120,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))))
+                                .addComponent(jbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))))
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -137,7 +141,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbBuscar))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -174,9 +178,26 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        try{
+//            int codigoProducto=Integer.parseInt(jtProducto.getText());
+//            Pedido pedi=ad.buscarProductosPorcodigoProducto(codigoProducto);
+//            if(pedi !=null){
+//                
+//            }
+        
+        
+        
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Ingresar codigo de producto");
+            jtProducto.requestFocus();
+            limpiar();
+            desactivarCampos();           
+        
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jrbEstadoProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEstadoProdActionPerformed
         // TODO add your handling code here:
@@ -184,13 +205,13 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
