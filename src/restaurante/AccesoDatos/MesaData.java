@@ -37,7 +37,7 @@ public class MesaData {
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 mesa.setNumeroMesa(1);
-                 JOptionPane.showMessageDialog(null, "Mesa agregada con exito");
+                 JOptionPane.showMessageDialog(null, "Mesa agregada");
                  ps.close();
             }
             

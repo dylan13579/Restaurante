@@ -12,6 +12,7 @@ import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 import javax.swing.JOptionPane;
 import restaurante.Entidades.Mesa;
 import restaurante.Entidades.Pedido;
@@ -129,6 +130,56 @@ public class PedidoData {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
         }
     }
+    
+    public void sumarPedido(Mesa mesa){
+           
+           String sql = "SELECT SUM(importe) FROM pedido WHERE numeroMesa = ?";
+           
+        try {
+            
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setInt(1, mesa.getNumeroMesa());
+            
+              ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                double resultado = rs.getDouble(1);
+                JOptionPane.showMessageDialog(null, "Total de la cuenta es = " + resultado);
+               
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
+           
+           
+       }
+    
+    public void sumarPedidoPorMesero(Pedido pedido){
+        
+        String sql = "SELECT SUM(importe) FROM pedido WHERE nombreMesero = ?";
+          
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setString(1, pedido.getNombreMesero());
+            
+            ResultSet rs = ps.executeQuery();
+             if(rs.next()){
+                double resultado = rs.getDouble(1);
+                JOptionPane.showMessageDialog(null, "Total de la cuenta es = " + resultado);
+               
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
+        
+    }
+
+    
+    
+    
 
     
 
