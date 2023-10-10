@@ -2,8 +2,7 @@
 package restaurante;
 
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import restaurante.AccesoDatos.*;
 import restaurante.Entidades.*;
 
@@ -15,12 +14,12 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-        //MesaData me=new MesaData(); //creando instancia data
-        
-        /*Mesa m=new Mesa(1,"Mesa para 2 personas",false);
-            //me.guardarMesa(m);
+//        MesaData me=new MesaData(); //creando instancia data
+//        
+//        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
+//            me.guardarMesa(m);
             //me.modificarMesa(m);
-        */
+        
             //metodo dar de baja
             //me.darBajaMesaId(4);
             //me.darBajaMesaNum(5);
@@ -57,15 +56,10 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-//        PedidoData pe = new PedidoData();
+        //PedidoData pe = new PedidoData();
 //   
 //          //Mesa mesa = new Mesa();
-//          //mesa.setNumeroMesa(1);
-//          
-//          Pedido pedido = new Pedido();
-//          pedido.setNombreMesero("Dylan");
-          
-          
+//          //mesa.setNumeroMesa(1)
 //    
 //            Pedido pedido = new Pedido();
 //            pedido.setIdPedido(7);
@@ -78,7 +72,11 @@ public class Restaurante {
 //            //pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
-             //pe.sumarPedidoPorMesero(pedido);
+     
+             
+//               Pedido pedido = new Pedido();
+//               pedido.setNombreMesero("Dylan Jofre Villegas ");
+//                  pe.sumarPedidoPorMesero(pedido);
      
         //metodo cancelar
 //        PedidoData pe = new PedidoData();
@@ -94,21 +92,39 @@ public class Restaurante {
           //Producto pro = new Producto(6,"Empanadas","jamon y queso",100,2600,true); //modiifcar producto
 //        produc.guardarProducto(pro);
           //produc.modificarProducto(pro);
+//          
+//         ProductoData pro = new ProductoData();
+//         Producto buscar = pro.buscarProductos(5);
+//         
+//         if(buscar != null){
+//             System.out.println("codigo = "+buscar.getCodigoProducto());
+//             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
+//             System.out.println("Descripcion = "+buscar.getDescripcion());
+//             System.out.println("Stock = "+buscar.getStock());
+//             System.out.println("Precio = "+buscar.getPrecio());
+//         }
+
+
+          //Pruebas de PedidoProducto
           
-         ProductoData pro = new ProductoData();
-         Producto buscar = pro.buscarProductos(5);
-         
-         if(buscar != null){
-             System.out.println("codigo = "+buscar.getCodigoProducto());
-             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
-             System.out.println("Descripcion = "+buscar.getDescripcion());
-             System.out.println("Stock = "+buscar.getStock());
-             System.out.println("Precio = "+buscar.getPrecio());
-             
-             
-             
-         }
+       PedidoProductoData pp = new PedidoProductoData();
+       Pedido pedido = new Pedido();
+       pedido.setIdPedido(7);
+       Producto producto = new Producto();
+       producto.setCodigoProducto(2);
+       PedidoProducto pedidoproducto = new PedidoProducto();
+       pedidoproducto.setCantidad(3);
+       
+          pp.guardarPedidoProducto(pedidoproducto, pedido, producto);
         
+    
+  
+    
+
+       
+          
+          
+          
     }
            
 }

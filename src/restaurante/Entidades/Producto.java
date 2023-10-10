@@ -34,6 +34,7 @@ public class Producto {
         this.estado = estado;
     }
 
+   
     public int getIdProducto() {
         return idProducto;
     }
@@ -94,7 +95,6 @@ public class Producto {
     public String toString() {
         return "Producto{" + "codigoProducto=" + codigoProducto + ", nombreProducto=" + nombreProducto + ", descripcion=" + descripcion + ", stock=" + stock + ", precio=" + precio + ", estado=" + estado + '}';
     }
-
     
    
     
