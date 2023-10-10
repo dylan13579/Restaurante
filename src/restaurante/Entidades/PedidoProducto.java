@@ -5,23 +5,23 @@ package restaurante.Entidades;
 public class PedidoProducto {
     
     private int idPedido_Producto;
-    private Pedido idPedido;
-    private Producto idProducto;
+    private Pedido pedido;
+    private Producto producto;
     private int cantidad;
 
     public PedidoProducto() {
     }
 
-    public PedidoProducto(int idPedido_Producto, Pedido idPedido, Producto idProducto, int cantidad) {
+    public PedidoProducto(int idPedido_Producto, Pedido pedido, Producto producto, int cantidad) {
         this.idPedido_Producto = idPedido_Producto;
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidad = cantidad;
     }
 
-    public PedidoProducto(Pedido idPedido, Producto idProducto, int cantidad) {
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+    public PedidoProducto(Pedido pedido, Producto producto, int cantidad) {
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidad = cantidad;
     }
 
@@ -33,20 +33,20 @@ public class PedidoProducto {
         this.idPedido_Producto = idPedido_Producto;
     }
 
-    public Pedido getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(Pedido idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {
@@ -59,8 +59,9 @@ public class PedidoProducto {
 
     @Override
     public String toString() {
-        return "PedidoProducto{" + "idPedido=" + idPedido + ", idProducto=" + idProducto + ", cantidad=" + cantidad + '}';
+        return "PedidoProducto{" + "idPedido_Producto=" + idPedido_Producto + ", pedido=" + pedido + ", producto=" + producto + ", cantidad=" + cantidad + '}';
     }
-    
+
+   
     
 }
