@@ -25,7 +25,7 @@ public class PedidoProductoData {
         
 
     }
-     
+   
      
     public void guardarPedidoProducto(PedidoProducto pedidoproducto, Pedido pedido, Producto codigoProducto){
         
@@ -37,7 +37,7 @@ public class PedidoProductoData {
          
            ps.setInt(1, pedido.getIdPedido());
            ps.setInt(2, codigoProducto.getCodigoProducto());
-           ps.setInt(3,pedidoproducto.getCantidad());
+           ps.setInt(3, pedidoproducto.getCantidad());
   
             ps.executeUpdate();
 
@@ -56,6 +56,6 @@ public class PedidoProductoData {
           
     }
     
-
+ 
     
 }

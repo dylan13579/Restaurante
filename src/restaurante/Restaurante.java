@@ -93,29 +93,29 @@ public class Restaurante {
 //        produc.guardarProducto(pro);
           //produc.modificarProducto(pro);
 //          
-//         ProductoData pro = new ProductoData();
-//         Producto buscar = pro.buscarProductos(5);
-//         
-//         if(buscar != null){
-//             System.out.println("codigo = "+buscar.getCodigoProducto());
-//             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
-//             System.out.println("Descripcion = "+buscar.getDescripcion());
-//             System.out.println("Stock = "+buscar.getStock());
-//             System.out.println("Precio = "+buscar.getPrecio());
-//         }
+         ProductoData pro = new ProductoData();
+         Producto buscar = pro.buscarProductos(7);
+         
+         if(buscar != null){
+             System.out.println("codigo = "+buscar.getCodigoProducto());
+             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
+             System.out.println("Descripcion = "+buscar.getDescripcion());
+             System.out.println("Stock = "+buscar.getStock());
+             System.out.println("Precio = "+buscar.getPrecio());
+         }
 
 
           //Pruebas de PedidoProducto
           
-       PedidoProductoData pp = new PedidoProductoData();
-       Pedido pedido = new Pedido();
-       pedido.setIdPedido(7);
-       Producto producto = new Producto();
-       producto.setCodigoProducto(2);
-       PedidoProducto pedidoproducto = new PedidoProducto();
-       pedidoproducto.setCantidad(3);
-       
-          pp.guardarPedidoProducto(pedidoproducto, pedido, producto);
+//       PedidoProductoData pp = new PedidoProductoData();
+//       Pedido pedido = new Pedido();
+//       pedido.setIdPedido(8);
+//       Producto producto = new Producto();
+//       producto.setCodigoProducto(3);
+//       PedidoProducto pedidoproducto = new PedidoProducto();
+//       pedidoproducto.setCantidad(4);
+//       
+//          pp.guardarPedidoProducto(pedidoproducto, pedido, producto);
         
     
   

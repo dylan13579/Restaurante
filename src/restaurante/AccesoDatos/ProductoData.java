@@ -86,7 +86,7 @@ public class ProductoData {
     
     public Producto buscarProductos(int codigoProducto){
      
-        String sql = "SELECT idProducto, codigoProducto, nombreProducto, descripcion, stock, precio FROM producto WHERE codigoProducto = ? AND estado = 1";
+        String sql = "SELECT codigoProducto, nombreProducto, descripcion, stock, precio FROM producto WHERE codigoProducto = ? AND estado = 1";
         
         Producto producto = null;
         
@@ -98,18 +98,19 @@ public class ProductoData {
             
             if(rs.next()){
                 producto = new Producto();
-                producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setCodigoProducto(rs.getInt("codigoProducto"));
-                producto.setDescripcion(rs.getString("nombreProducto"));
-                producto.setNombreProducto(rs.getString("descripcion"));
+                producto.setNombreProducto(rs.getString("nombreProducto"));
+                producto.setDescripcion(rs.getString("descripcion"));
                 producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setEstado(true);
                 
                 
             }else{
-                 JOptionPane.showMessageDialog(null, "El codigo de ese producto no existe");
+            
+            JOptionPane.showMessageDialog(null, "El codigo de ese producto no existe");
             }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Producto");
         }
