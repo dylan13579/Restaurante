@@ -4,21 +4,20 @@ package restaurante.Vistas;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import restaurante.AccesoDatos.PedidoData;
+import restaurante.AccesoDatos.ProductoData;
 import restaurante.Entidades.Pedido;
+import restaurante.Entidades.Producto;
 
 
 public class FormularioProducto extends javax.swing.JInternalFrame {
     
-    private PedidoData ad;
+    private ProductoData ad;
 
 
     public FormularioProducto() {
         initComponents();
         
-        ad=new PedidoData();
-        
-        ad= new PedidoData();
-        
+        ad=new ProductoData();
         desactivarCampos();
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
@@ -50,6 +49,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jtPrecio = new javax.swing.JTextField();
 
         jLabel1.setText("Productos - Menu");
 
@@ -90,6 +91,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setText("Precio:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,33 +107,46 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel4)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtNombreProducto)
-                            .addComponent(jtDescProducto)
-                            .addComponent(jtStock)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jrbEstadoProd)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))))
+                                .addComponent(jbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                            .addComponent(jtDescProducto))))
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbNuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbEliminar)
-                .addGap(62, 62, 62)
-                .addComponent(jbModificar)
-                .addGap(71, 71, 71)
-                .addComponent(jbSalir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEliminar)
+                        .addGap(62, 62, 62)
+                        .addComponent(jbModificar)
+                        .addGap(71, 71, 71)
+                        .addComponent(jbSalir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtStock)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jrbEstadoProd)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(11, 11, 11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,9 +163,15 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jtDescProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -158,13 +180,13 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jrbEstadoProd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
                     .addComponent(jbModificar)
                     .addComponent(jbSalir))
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         jrbEstadoProd.getAccessibleContext().setAccessibleName("");
@@ -182,14 +204,24 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try{
-//            int codigoProducto=Integer.parseInt(jtProducto.getText());
-//            Pedido pedi=ad.buscarProductosPorcodigoProducto(codigoProducto);
-//            if(pedi !=null){
-//                
-//            }
+            int codigoProducto=Integer.parseInt(jtProducto.getText());
+            Producto pedi=ad.buscarProductos(codigoProducto);
+            if(pedi !=null){
+                String nombre=pedi.getNombreProducto();
+                String descripcion=pedi.getDescripcion();
+                double precio=pedi.getPrecio();
+                int stock=pedi.getStock();
+                boolean estado=pedi.isEstado();
+                
+                jtNombreProducto.setText(nombre);
+                jtDescProducto.setText(descripcion);
+                jtPrecio.setText(String.valueOf(precio));
+                jtStock.setText(String.valueOf(stock));
+                jrbEstadoProd.setSelected(pedi.isEstado());
+                   
+            }
         
-        
-        
+   
         } catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Ingresar codigo de producto");
             jtProducto.requestFocus();
@@ -211,6 +243,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbModificar;
@@ -219,6 +252,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrbEstadoProd;
     private javax.swing.JTextField jtDescProducto;
     private javax.swing.JTextField jtNombreProducto;
+    private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextField jtProducto;
     private javax.swing.JTextField jtStock;
     // End of variables declaration//GEN-END:variables
@@ -226,6 +260,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 private void desactivarCampos(){
         jtNombreProducto.setEnabled(false);
         jtDescProducto.setEnabled(false);
+        jtPrecio.setEnabled(false);
         jtStock.setEnabled(false);
         jrbEstadoProd.setEnabled(false);
 }
@@ -233,6 +268,7 @@ private void desactivarCampos(){
 private void activarCampos (){
         jtNombreProducto.setEnabled(true);
         jtDescProducto.setEnabled(true);
+        jtPrecio.setEnabled(true);
         jtStock.setEnabled(true);
         jrbEstadoProd.setEnabled(true);
     }
@@ -240,6 +276,7 @@ private void activarCampos (){
 public void limpiar(){
         jtNombreProducto.setText("");
         jtDescProducto.setText("");
+        jtPrecio.setText("");
         jtStock.setText("");
         jrbEstadoProd.setSelected(false);
                        
