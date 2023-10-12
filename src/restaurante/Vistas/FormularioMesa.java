@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package restaurante.Vistas;
 
-/**
- *
- * @author Gustavo
- */
-public class FormularioMesa extends javax.swing.JInternalFrame {
+import restaurante.AccesoDatos.MesaData;
 
-    /**
-     * Creates new form FormularioMesa
-     */
+
+public class FormularioMesa extends javax.swing.JInternalFrame {
+    
+    private MesaData md;
+    
+
+  
     public FormularioMesa() {
         initComponents();
+        
+        md=new MesaData();
+        
+        desactivarCampos();
+        jbGuardarMesa.setEnabled(false);
+        jbBorrarMesa.setEnabled(false);
+        jbModificarMesa.setEnabled(false);        
+        
     }
 
     /**
@@ -33,12 +37,13 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jbBuscarMesa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jrbActivaMesa = new javax.swing.JRadioButton();
+        jbNuevaMesa = new javax.swing.JButton();
+        jbBorrarMesa = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jbModificarMesa = new javax.swing.JButton();
+        jtDescripMesa = new javax.swing.JTextField();
+        jbGuardarMesa = new javax.swing.JButton();
 
         jLabel1.setText("Formulario Mesa");
 
@@ -50,11 +55,11 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Estado:");
 
-        jRadioButton1.setText("Activa");
+        jrbActivaMesa.setText("Activa");
 
-        jButton2.setText("Nueva");
+        jbNuevaMesa.setText("Nueva");
 
-        jButton3.setText("Borrar");
+        jbBorrarMesa.setText("Borrar");
 
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -63,9 +68,9 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setText("Modificar");
+        jbModificarMesa.setText("Modificar");
 
-        jTextField1.setText("jTextField1");
+        jbGuardarMesa.setText("Guardar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,29 +83,30 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jButton2)
-                                    .addGap(60, 60, 60)
-                                    .addComponent(jButton3)
-                                    .addGap(52, 52, 52)
-                                    .addComponent(jButton5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jtNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jbBuscarMesa))
-                                        .addComponent(jRadioButton1)))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbNuevaMesa)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbGuardarMesa)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbModificarMesa)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbBorrarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jtNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jbBuscarMesa))
+                                    .addComponent(jrbActivaMesa))))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,19 +120,20 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                     .addComponent(jbBuscarMesa))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jrbActivaMesa))
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(jbNuevaMesa)
+                    .addComponent(jbBorrarMesa)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(0, 52, Short.MAX_VALUE))
+                    .addComponent(jbModificarMesa)
+                    .addComponent(jbGuardarMesa))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,17 +147,37 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbBorrarMesa;
     private javax.swing.JButton jbBuscarMesa;
+    private javax.swing.JButton jbGuardarMesa;
+    private javax.swing.JButton jbModificarMesa;
+    private javax.swing.JButton jbNuevaMesa;
+    private javax.swing.JRadioButton jrbActivaMesa;
+    private javax.swing.JTextField jtDescripMesa;
     private javax.swing.JTextField jtNroMesa;
     // End of variables declaration//GEN-END:variables
+
+
+    private void desactivarCampos(){
+        jtDescripMesa.setEnabled(false);
+        jrbActivaMesa.setEnabled(false);                    
+    } 
+    
+    private void activarCampos(){
+        jtNroMesa.setEnabled(true);
+        jtDescripMesa.setEnabled(true);
+        jrbActivaMesa.setEnabled(true);
+    }
+    
+    private void limpiar(){
+        jtNroMesa.setText("");
+        jtDescripMesa.setText("");
+        jrbActivaMesa.setSelected(false);
+    }
+    
 }
