@@ -44,7 +44,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jtStock = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jbNuevo = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
@@ -52,6 +51,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jtPrecio = new javax.swing.JTextField();
         jtNombreProducto = new javax.swing.JTextField();
         jrbEstadoProd = new javax.swing.JRadioButton();
+        jbNuevo = new javax.swing.JButton();
 
         jLabel1.setText("Productos - Menu");
 
@@ -71,13 +71,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jLabel5.setText("Stock:");
 
         jLabel6.setText("Estado:");
-
-        jbNuevo.setText("Nuevo");
-        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNuevoActionPerformed(evt);
-            }
-        });
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,20 +97,14 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
         jrbEstadoProd.setText("Activo");
 
+        jbNuevo.setText("Nuevo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbEliminar)
-                        .addGap(62, 62, 62)
-                        .addComponent(jbModificar)
-                        .addGap(71, 71, 71)
-                        .addComponent(jbSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -144,14 +131,23 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                                             .addComponent(jtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(86, 86, 86)))))
-                        .addGap(0, 41, Short.MAX_VALUE))
+                        .addGap(0, 56, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jbNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEliminar)
+                        .addGap(62, 62, 62)
+                        .addComponent(jbModificar)
+                        .addGap(71, 71, 71)
+                        .addComponent(jbSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,11 +184,11 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                         .addComponent(jrbEstadoProd)))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
                     .addComponent(jbModificar)
-                    .addComponent(jbSalir))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(jbSalir)
+                    .addComponent(jbNuevo))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,11 +222,12 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                    
                 
                 activarCampos();
+                jbNuevo.setEnabled(false);
                 jbEliminar.setEnabled(true);
                 jbModificar.setEnabled(true);
                 
             }else{
-                
+                jbNuevo.setEnabled(true);
                  limpiar();
             }
         
@@ -243,19 +240,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
-
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        // TODO add your handling code here:
-
-        activarCampos();
-        limpiar();
-        jtProducto.requestFocus();
-        jbEliminar.setEnabled(false);
-        jbNuevo.setEnabled(false);
-        jbModificar.setEnabled(true);
-        jtProducto.setText("");
-
-    }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
@@ -294,50 +278,53 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
         
-        try{
-            int codigoProducto = Integer.parseInt(jtProducto.getText());
-            Producto prod=ad.buscarProductos(codigoProducto);
-            
-            if(prod != null){
-           
-                String nombreProducto=jtProducto.getText();
-                String descripcion=jtDescProducto.getText();
-                String precioP=jtPrecio.getText();
-                String stockP=jtStock.getText();
-                boolean estado=jrbEstadoProd.isSelected();
-            
-              if(nombreProducto.matches("^[a-zA-Z]+$")&&descripcion.matches("^[a-zA-Z]+$")){
-                  
-                 try{
-                      double precio = Double.parseDouble(precioP);
-                      int stock = Integer.parseInt(stockP);
-                    prod.setNombreProducto(nombreProducto);
-                    prod.setDescripcion(descripcion);
-                    prod.setPrecio(precio);
-                    prod.setStock(stock);
-                    prod.setEstado(estado);
+     try {
+        int codigoProducto = Integer.parseInt(jtProducto.getText());
+        Producto producto = ad.buscarProductos(codigoProducto);
 
-                    ad.modificarProducto(prod);
+        if (producto != null) {
+            String nombreP = jtNombreProducto.getText(); 
+            String descripcion = jtDescProducto.getText();
+            String precioStr = jtPrecio.getText();
+            String stockStr = jtStock.getText();
+            boolean estado = jrbEstadoProd.isSelected();
 
-                    limpiar();
-                    desactivarCampos();
-                    jbModificar.setEnabled(false);
-                    jbEliminar.setEnabled(false);
+          
+            if (!nombreP.isEmpty() && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")) {
+                try {
+                    double precio = Double.parseDouble(precioStr);
+                    int stock = Integer.parseInt(stockStr);
+                    
+                    if (precio >= 0 && stock >= 0) {
+                        producto.setNombreProducto(nombreP);
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                        producto.setStock(stock);
+                        producto.setEstado(estado);
+
+                        ad.modificarProducto(producto);
+
+                        limpiar();
+                        desactivarCampos();
                        
-               
-                   }catch(NumberFormatException n){
-                        JOptionPane.showMessageDialog(this, "No pude ingresar caracteres en stock y precio");
-                    }
-                 
-                }else{
-                   JOptionPane.showMessageDialog(this, "No puede ingresar numero solo caracteres");
+                        jbModificar.setEnabled(false);
+                        jbEliminar.setEnabled(false);
+                        
+                    } 
+                     
+                    
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Error precio y stock deben solo peuden ingresar numeros");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en nombre y descripcion solo puede ingresar caracteres o no puede dejar campos vacios");
             }
-            
-        }catch(NumberFormatException a){
-            JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
-        
         }
+         
+    } catch (NumberFormatException a) {
+        JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+    }
+        
     }//GEN-LAST:event_jbModificarActionPerformed
 
 
