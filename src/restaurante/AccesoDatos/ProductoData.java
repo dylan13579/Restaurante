@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import restaurante.Entidades.Producto;
 
@@ -82,6 +84,26 @@ public class ProductoData {
              JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Producto");
         }
 
+    }
+    
+    public void darDebajaProducto(int producto){
+        
+        
+        String sql = "UPDATE producto SET estado = 0 WHERE codigoProducto = ?";
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setInt(1, producto);
+            
+            int exito = ps.executeUpdate();
+            
+            if(exito == 1){
+                 JOptionPane.showMessageDialog(null, "Producto ha eliminada con exito");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Producto");
+        }
+        
     }
     
     public Producto buscarProductos(int codigoProducto){

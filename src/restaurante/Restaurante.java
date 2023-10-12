@@ -72,6 +72,8 @@ public class Restaurante {
 //            //pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
+              
+              
      
              
 //               Pedido pedido = new Pedido();
@@ -92,17 +94,21 @@ public class Restaurante {
           //Producto pro = new Producto(6,"Empanadas","jamon y queso",100,2600,true); //modiifcar producto
 //        produc.guardarProducto(pro);
           //produc.modificarProducto(pro);
+          
+          //produc.darDebajaProducto(6);
+          
 //          
-         ProductoData pro = new ProductoData();
-         Producto buscar = pro.buscarProductos(7);
-         
-         if(buscar != null){
-             System.out.println("codigo = "+buscar.getCodigoProducto());
-             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
-             System.out.println("Descripcion = "+buscar.getDescripcion());
-             System.out.println("Stock = "+buscar.getStock());
-             System.out.println("Precio = "+buscar.getPrecio());
-         }
+//         ProductoData pro = new ProductoData();
+//         Producto buscar = pro.buscarProductos(7);
+//         
+//         if(buscar != null){
+//             System.out.println("codigo = "+buscar.getCodigoProducto());
+//             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
+//             System.out.println("Descripcion = "+buscar.getDescripcion());
+//             System.out.println("Stock = "+buscar.getStock());
+//             System.out.println("Precio = "+buscar.getPrecio());
+//         }
+
 
 
           //Pruebas de PedidoProducto
