@@ -89,13 +89,13 @@ public class Restaurante {
     
         //Pruebas de Producto
         
-        //ProductoData produc = new ProductoData();
-//       Producto pro = new Producto(6,"Pizza","Calabresa",46,3645.55,true); //guardar un producto
-          //Producto pro = new Producto(6,"Empanadas","jamon y queso",100,2600,true); //modiifcar producto
-//        produc.guardarProducto(pro);
-          //produc.modificarProducto(pro);
+        ProductoData produc = new ProductoData();
+        //Producto pro = new Producto(2,"Lomo","Completo",4000,true); //guardar un producto
+          Producto pro = new Producto(2,"Empanadas","jamon y queso",2600,true); //modiifcar producto
+        //produc.guardarProducto(pro);
+          produc.modificarProducto(pro);
           
-          //produc.darDebajaProducto(6);
+          //produc.darDebajaProducto(2);
           
 //          
 //         ProductoData pro = new ProductoData();
@@ -105,7 +105,6 @@ public class Restaurante {
 //             System.out.println("codigo = "+buscar.getCodigoProducto());
 //             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
 //             System.out.println("Descripcion = "+buscar.getDescripcion());
-//             System.out.println("Stock = "+buscar.getStock());
 //             System.out.println("Precio = "+buscar.getPrecio());
 //         }
 
