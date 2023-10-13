@@ -27,7 +27,7 @@ public class ProductoData {
     
     public void guardarProducto(Producto producto){
         
-        String sql = "INSERT INTO producto(codigoProducto, nombreProducto, descripcion, stock, precio, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(codigoProducto, nombreProducto, descripcion, precio, estado) VALUES (?, ?, ?, ?, ?)";
         
         
         try {
@@ -36,9 +36,8 @@ public class ProductoData {
             ps.setInt(1, producto.getCodigoProducto());
             ps.setString(2, producto.getNombreProducto());
             ps.setString(3, producto.getDescripcion());
-            ps.setInt(4, producto.getStock());
-            ps.setDouble(5, producto.getPrecio());
-            ps.setBoolean(6, producto.isEstado());
+            ps.setDouble(4, producto.getPrecio());
+            ps.setBoolean(5, producto.isEstado());
             
             int mercaderia = ps.executeUpdate();
             
@@ -62,16 +61,15 @@ public class ProductoData {
     
     public void modificarProducto(Producto producto){
         
-        String sql = "UPDATE producto SET nombreProducto = ?,descripcion = ?,stock = ?,precio = ?,estado = ? WHERE codigoProducto = ?";
+        String sql = "UPDATE producto SET nombreProducto = ?,descripcion = ?,precio = ?,estado = ? WHERE codigoProducto = ?";
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
             ps.setString(1, producto.getNombreProducto());
             ps.setString(2, producto.getDescripcion());
-            ps.setInt(3, producto.getStock());
-            ps.setDouble(4, producto.getPrecio());
-            ps.setBoolean(5, producto.isEstado());
-            ps.setInt(6, producto.getCodigoProducto());
+            ps.setDouble(3, producto.getPrecio());
+            ps.setBoolean(4, producto.isEstado());
+            ps.setInt(5, producto.getCodigoProducto());
             
             int exito = ps.executeUpdate();
             
@@ -108,7 +106,7 @@ public class ProductoData {
     
     public Producto buscarProductos(int codigoProducto){
      
-        String sql = "SELECT codigoProducto, nombreProducto, descripcion, stock, precio FROM producto WHERE codigoProducto = ? AND estado = 1";
+        String sql = "SELECT codigoProducto, nombreProducto, descripcion, precio FROM producto WHERE codigoProducto = ? AND estado = 1";
         
         Producto producto = null;
         
@@ -123,7 +121,6 @@ public class ProductoData {
                 producto.setCodigoProducto(rs.getInt("codigoProducto"));
                 producto.setNombreProducto(rs.getString("nombreProducto"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setEstado(true);
                 
