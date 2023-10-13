@@ -84,9 +84,7 @@ public class MesaData {
             if (exito == 1) {
 
                 JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
-            } else {
-                JOptionPane.showMessageDialog(null, "La mesa no ha sido eliminada");
-            }
+            } 
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
@@ -106,10 +104,9 @@ public class MesaData {
             if (exito == 1) {
 
                 JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
-            } else {
-                JOptionPane.showMessageDialog(null, "La mesa no ha sido eliminada");
+             
             }
-
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
         }
@@ -132,11 +129,8 @@ public class MesaData {
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(true);
 
-                JOptionPane.showMessageDialog(null, "Mesa encontrada con exito.");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Mesa inexistente con ese numero");
-            }
+                JOptionPane.showMessageDialog(null, "Mesa encontrada");
+            } 
             ps.close();
 
         } catch (SQLException ex) {
