@@ -1,15 +1,15 @@
 
 package restaurante.Vistas;
 
+import javax.swing.JOptionPane;
 import restaurante.AccesoDatos.MesaData;
-
+import restaurante.Entidades.Mesa;
 
 public class FormularioMesa extends javax.swing.JInternalFrame {
     
     private MesaData md;
     
 
-  
     public FormularioMesa() {
         initComponents();
         
@@ -19,7 +19,6 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jbGuardarMesa.setEnabled(false);
         jbBorrarMesa.setEnabled(false);
         jbModificarMesa.setEnabled(false);        
-        
     }
 
     /**
@@ -49,7 +48,18 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Numero de Mesa:");
 
+        jtNroMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNroMesaActionPerformed(evt);
+            }
+        });
+
         jbBuscarMesa.setText("Buscar");
+        jbBuscarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarMesaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descripcion:");
 
@@ -58,8 +68,18 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jrbActivaMesa.setText("Activa");
 
         jbNuevaMesa.setText("Nueva");
+        jbNuevaMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevaMesaActionPerformed(evt);
+            }
+        });
 
         jbBorrarMesa.setText("Borrar");
+        jbBorrarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarMesaActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +89,18 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         });
 
         jbModificarMesa.setText("Modificar");
+        jbModificarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarMesaActionPerformed(evt);
+            }
+        });
 
         jbGuardarMesa.setText("Guardar");
+        jbGuardarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarMesaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,6 +175,134 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jbBuscarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMesaActionPerformed
+        // TODO add your handling code here:
+        try{
+                int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+                Mesa mesa=md.buscarMesaPorNum(numeroMesa);
+                if(mesa != null){
+                    jtDescripMesa.setText(mesa.getDescripcion());
+                    jrbActivaMesa.setSelected(mesa.isEstado());
+                    
+                activarCampos();
+                jbNuevaMesa.setEnabled(false);
+                jbGuardarMesa.setEnabled(false);
+                jbModificarMesa.setEnabled(true);
+                jbBorrarMesa.setEnabled(true);
+                }else{
+                    limpiar();
+                    activarCampos();
+                    desactivarCampos();                             
+                }
+                            
+        }catch(NumberFormatException m){
+            JOptionPane.showMessageDialog(this, "Debe Ingresar un Numero de Mesa Valido");
+            jtNroMesa.requestFocus();
+            limpiar();
+            desactivarCampos();        
+        }
+    }//GEN-LAST:event_jbBuscarMesaActionPerformed
+
+    private void jtNroMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNroMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNroMesaActionPerformed
+
+    private void jbNuevaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaMesaActionPerformed
+        // TODO add your handling code here:
+
+        activarCampos();
+        limpiar();
+        jtNroMesa.requestFocus();
+        jbNuevaMesa.setEnabled(false);
+        jbGuardarMesa.setEnabled(false);
+        jbModificarMesa.setEnabled(false);
+        jbBorrarMesa.setEnabled(false);
+        jtNroMesa.setText("");
+        
+    }//GEN-LAST:event_jbNuevaMesaActionPerformed
+
+    private void jbGuardarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarMesaActionPerformed
+        // TODO add your handling code here:
+
+        Mesa mesa=new Mesa();
+        
+        try{
+            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            String descripcion=jtDescripMesa.getText();
+            boolean estado=jrbActivaMesa.isSelected();
+            
+            mesa.setNumeroMesa(numeroMesa);
+            mesa.setDescripcion(descripcion);
+            mesa.setEstado(estado);
+            
+            md.guardarMesa(mesa);
+            
+            limpiar();
+            desactivarCampos();
+            jbNuevaMesa.setEnabled(true);
+            jbGuardarMesa.setEnabled(false);        
+        
+        }catch(NumberFormatException m){
+            JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");            
+        }
+    }//GEN-LAST:event_jbGuardarMesaActionPerformed
+
+    private void jbModificarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarMesaActionPerformed
+        // TODO add your handling code here:
+
+        try{
+            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            String descripcion=jtDescripMesa.getText();
+            boolean estado=jrbActivaMesa.isSelected();
+            
+            Mesa mesa=md.buscarMesaPorNum(numeroMesa);
+            
+            if(mesa == null){
+                
+                mesa=new Mesa(numeroMesa, descripcion, estado);
+                md.guardarMesa(mesa);
+            }else{
+                mesa.setDescripcion(descripcion);
+                mesa.setEstado(estado);
+                md.modificarMesa(mesa);
+                
+                limpiar();
+                desactivarCampos();
+                jbModificarMesa.setEnabled(false);
+                jbBorrarMesa.setEnabled(false);            
+            }
+            jbNuevaMesa.setEnabled(true);
+            jbGuardarMesa.setEnabled(false);
+        
+        }catch(NumberFormatException m){
+            JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
+        }
+    }//GEN-LAST:event_jbModificarMesaActionPerformed
+
+    private void jbBorrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarMesaActionPerformed
+        // TODO add your handling code here:
+
+        try{
+            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            Mesa mesa=md.buscarMesaPorNum(numeroMesa);
+            if(mesa !=null){
+                jtNroMesa.setText(String.valueOf(mesa.getNumeroMesa()));
+                jtDescripMesa.setText(mesa.getDescripcion());
+                jrbActivaMesa.setSelected(mesa.isEstado());
+                
+                md.darBajaMesaId(numeroMesa);
+            }
+            limpiar();
+            desactivarCampos();
+            jbModificarMesa.setEnabled(false);
+            jbBorrarMesa.setEnabled(false);            
+        
+        }catch(NumberFormatException m){
+            JOptionPane.showMessageDialog(this, "Numero de mesa invalido");       
+        }
+
+    }//GEN-LAST:event_jbBorrarMesaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
@@ -163,7 +321,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    private void desactivarCampos(){
+    private void desactivarCampos(){        
         jtDescripMesa.setEnabled(false);
         jrbActivaMesa.setEnabled(false);                    
     } 

@@ -90,11 +90,11 @@ public class Restaurante {
     
         //Pruebas de Producto
         
-        ProductoData produc = new ProductoData();
+        //ProductoData produc = new ProductoData();
         //Producto pro = new Producto(2,"Lomo","Completo",4000,true); //guardar un producto
-          Producto pro = new Producto(2,"Empanadas","jamon y queso",2600,true); //modiifcar producto
+          //Producto pro = new Producto(2,"Empanadas","jamon y queso",2600,true); //modiifcar producto
         //produc.guardarProducto(pro);
-          produc.modificarProducto(pro);
+          //produc.modificarProducto(pro);
           
           //produc.darDebajaProducto(2);
           
@@ -113,12 +113,12 @@ public class Restaurante {
 
           //Pruebas de PedidoProducto
           
-       PedidoProductoData pp = new PedidoProductoData();
+       //PedidoProductoData pp = new PedidoProductoData();
 //      
 
          //pp.guardarPedidoProducto(10, 1, 3);
          //pp.modificarProducto(2, 5, 10);
-         pp.elimanrpedido(10);
+         //pp.elimanrpedido(10);
        
          
           
