@@ -98,6 +98,11 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jrbEstadoProd.setText("Activo");
 
         jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -326,6 +331,23 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     }
         
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // TODO add your handling code here:
+        activarCampos();
+         jtProducto.requestFocus();
+        jtNombreProducto.setText("");
+        jtDescProducto.setText("");
+        jtPrecio.setText("");
+        jtStock.setText("");
+        jrbEstadoProd.setSelected(false);
+        jbEliminar.setEnabled(false);
+        jbModificar.setEnabled(false);
+        jbNuevo.setEnabled(false);
+         
+         
+        
+    }//GEN-LAST:event_jbNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

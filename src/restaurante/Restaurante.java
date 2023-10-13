@@ -3,6 +3,8 @@ package restaurante;
 
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import restaurante.AccesoDatos.*;
 import restaurante.Entidades.*;
 
@@ -56,11 +58,10 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-        //PedidoData pe = new PedidoData();
+//        PedidoData pe = new PedidoData();
 //   
-//          //Mesa mesa = new Mesa();
-//          //mesa.setNumeroMesa(1)
-//    
+//          Mesa mesa = new Mesa();
+//          mesa.setNumeroMesa(1);
 //            Pedido pedido = new Pedido();
 //            pedido.setIdPedido(7);
 //            pedido.setNombreMesero("Dylan Jofre Villegas");
@@ -68,8 +69,8 @@ public class Restaurante {
 //            pedido.setHora(LocalTime.of(21, 30)); 
 //            pedido.setImporte(2300.99); 
 //            pedido.setCobrado(true);
-//
-//            //pe.guardarPedido(pedido, mesa);
+
+           // pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
               
@@ -113,15 +114,17 @@ public class Restaurante {
 
           //Pruebas de PedidoProducto
           
-//       PedidoProductoData pp = new PedidoProductoData();
-//       Pedido pedido = new Pedido();
-//       pedido.setIdPedido(8);
-//       Producto producto = new Producto();
-//       producto.setCodigoProducto(3);
-//       PedidoProducto pedidoproducto = new PedidoProducto();
-//       pedidoproducto.setCantidad(4);
-//       
-//          pp.guardarPedidoProducto(pedidoproducto, pedido, producto);
+       PedidoProductoData pp = new PedidoProductoData();
+//      
+
+         //pp.guardarPedidoProducto(10, 1, 3);
+         //pp.modificarProducto(2, 5, 10);
+         pp.elimanrpedido(10);
+       
+         
+          
+
+
         
     
   
