@@ -323,7 +323,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jtNombreProducto.setText("");
         jtDescProducto.setText("");
         jtPrecio.setText("");
-        jtStock.setText("");
         jrbEstadoProd.setSelected(false);
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
