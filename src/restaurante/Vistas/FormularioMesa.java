@@ -167,8 +167,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-
-        dispose();
+        int eleccion = JOptionPane.showConfirmDialog(this, "Realmente desea salir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+            if (eleccion== JOptionPane.YES_OPTION){
+                dispose();
+            }else if (eleccion== JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "Desea seguir trabajando?", "Confirmacion", JOptionPane.CLOSED_OPTION);
+            }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jbBuscarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMesaActionPerformed
