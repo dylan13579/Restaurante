@@ -16,7 +16,7 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-//        MesaData me=new MesaData(); //creando instancia data
+        MesaData me=new MesaData(); //creando instancia data
 //        
 //        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
 //            me.guardarMesa(m);
@@ -24,7 +24,7 @@ public class Restaurante {
         
             //metodo dar de baja
             //me.darBajaMesaId(4);
-            //me.darBajaMesaNum(5);
+            me.darBajaMesaNumero(1);
          
             //metodo buscar
 //        Mesa meEncontrada = me.buscarMesaPorNum(4);

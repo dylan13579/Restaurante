@@ -83,7 +83,7 @@ public class MesaData {
 
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
+                JOptionPane.showMessageDialog(null, "Se ha elimnado la Mesa");
             } 
 
         } catch (SQLException ex) {
@@ -91,7 +91,7 @@ public class MesaData {
         }
     }
     
-    public void darBajaMesaNum(int numeroMesa) {
+    public void darBajaMesaNumero(int numeroMesa) {
 
         String sql = "UPDATE mesa SET estado = 0 WHERE numeroMesa = ? ";
 
@@ -99,14 +99,15 @@ public class MesaData {
             PreparedStatement ps = wifi.prepareStatement(sql);
 
             ps.setInt(1, numeroMesa);
+            
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Mesa eliminada con exito");
-             
+                JOptionPane.showMessageDialog(null, "Se ha elimnado la Mesa");
+                
             }
-            ps.close();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
         }
@@ -114,7 +115,7 @@ public class MesaData {
 
     public Mesa buscarMesaPorNum(int numeroMesa) {
 
-        String sql = "SELECT idMesa, numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND estado = 1";
+        String sql = "SELECT numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND estado = 1";
 
         Mesa mesa = null;
         try {
@@ -124,16 +125,19 @@ public class MesaData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 mesa = new Mesa();
-                mesa.setIdMesa(rs.getInt("idMesa"));
+                
                 mesa.setNumeroMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(true);
-
-                JOptionPane.showMessageDialog(null, "Mesa encontrada");
-            } 
-            ps.close();
-
+         
+               
+            }else{
+                 JOptionPane.showMessageDialog(null, "No se encuentra ese numero de Mesa");
+            
+            }
+            
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
         }
 

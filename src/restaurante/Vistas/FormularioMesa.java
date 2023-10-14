@@ -180,11 +180,14 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                     jtDescripMesa.setText(mesa.getDescripcion());
                     jrbActivaMesa.setSelected(mesa.isEstado());
                     
+                            
                 activarCampos();
                 jbNuevaMesa.setEnabled(false);
                 jbGuardarMesa.setEnabled(false);
                 jbModificarMesa.setEnabled(true);
                 jbBorrarMesa.setEnabled(true);
+                
+                JOptionPane.showMessageDialog(null, "Mesa encontrada");
                 }else{
                     limpiar();
                     activarCampos();
@@ -228,6 +231,8 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             mesa.setEstado(estado);
             
             md.guardarMesa(mesa);
+            
+         
             
             limpiar();
             desactivarCampos();
@@ -282,7 +287,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 jtDescripMesa.setText(mesa.getDescripcion());
                 jrbActivaMesa.setSelected(mesa.isEstado());
                 
-                md.darBajaMesaNum(numeroMesa);
+                md.darBajaMesaNumero(numeroMesa);
                 
             
             }
