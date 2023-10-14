@@ -252,6 +252,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             String descripcion=jtDescripMesa.getText();
             boolean estado=jrbActivaMesa.isSelected();
             
+            if(!descripcion.isEmpty() && descripcion.matches("^[a-zA-Z ]+$")){
             Mesa mesa=md.buscarMesaPorNum(numeroMesa);
             
             if(mesa == null){
@@ -270,6 +271,10 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             }
             jbNuevaMesa.setEnabled(true);
             jbGuardarMesa.setEnabled(false);
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "No puede ingresar numeros");
+            }
         
         }catch(NumberFormatException m){
             JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
