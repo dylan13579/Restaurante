@@ -5,6 +5,8 @@
  */
 package restaurante.Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gustavo
@@ -41,6 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +129,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Salir");
+
+        jMenuItem8.setText("Abandonar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -230,6 +242,16 @@ public class Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        int eleccion = JOptionPane.showConfirmDialog(this, "Desea dejar de usar la APP?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+            if (eleccion== JOptionPane.YES_OPTION){
+                dispose();
+            }else if (eleccion== JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "Desea seguir utilizando la APP?", "Confirmacion", JOptionPane.CLOSED_OPTION);
+            }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,5 +302,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

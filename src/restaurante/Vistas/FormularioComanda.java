@@ -5,6 +5,8 @@
  */
 package restaurante.Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gustavo
@@ -200,8 +202,12 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-
-        dispose();
+        int eleccion = JOptionPane.showConfirmDialog(this, "Realmente desea salir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+            if (eleccion== JOptionPane.YES_OPTION){
+                dispose();
+            }else if (eleccion== JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "Desea seguir trabajando?", "Confirmacion", JOptionPane.CLOSED_OPTION);
+            }
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
