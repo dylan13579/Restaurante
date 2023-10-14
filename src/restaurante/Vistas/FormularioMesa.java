@@ -343,4 +343,5 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jrbActivaMesa.setSelected(false);
     }
     
+    
 }
