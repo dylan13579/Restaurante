@@ -49,9 +49,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jtDescripMesa" min="-2" pref="320" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="jtNroMesa" min="-2" pref="201" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jtNroMesa" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="jbBuscarMesa" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jrbActivaMesa" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -68,10 +69,12 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtNroMesa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbBuscarMesa" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jtNroMesa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbBuscarMesa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -107,12 +110,13 @@
         <Property name="text" type="java.lang.String" value="Numero de Mesa:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtNroMesa">
-    </Component>
     <Component class="javax.swing.JButton" name="jbBuscarMesa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarMesaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -133,11 +137,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Nueva"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNuevaMesaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbBorrarMesa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBorrarMesaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
@@ -151,6 +161,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarMesaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtDescripMesa">
     </Component>
@@ -158,6 +171,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarMesaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtNroMesa">
     </Component>
   </SubComponents>
 </Form>
