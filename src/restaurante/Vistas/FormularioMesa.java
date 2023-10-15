@@ -18,7 +18,11 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         desactivarCampos();
         jbGuardarMesa.setEnabled(false);
         jbBorrarMesa.setEnabled(false);
-        jbModificarMesa.setEnabled(false);        
+        jbModificarMesa.setEnabled(false);   
+        jbNuevaMesa.setEnabled(false);
+        jbBuscarMesa.setEnabled(true);
+        
+        
     }
 
     /**
@@ -167,11 +171,11 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        int eleccion = JOptionPane.showConfirmDialog(this, "Realmente desea salir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        int eleccion = JOptionPane.showConfirmDialog(this, "¿Desea salir del Formulario?", "Confirmacion", JOptionPane.YES_NO_OPTION);
             if (eleccion== JOptionPane.YES_OPTION){
                 dispose();
             }else if (eleccion== JOptionPane.NO_OPTION){
-                JOptionPane.showConfirmDialog(null, "Desea seguir trabajando?", "Confirmacion", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showConfirmDialog(null, "¿Desea seguir en el Formulario?", "Confirmacion", JOptionPane.CLOSED_OPTION);
             }
     }//GEN-LAST:event_jbSalirActionPerformed
 
@@ -186,13 +190,15 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                     
                             
                 activarCampos();
-                jbNuevaMesa.setEnabled(false);
+                
+                 jbNuevaMesa.setEnabled(false);
                 jbGuardarMesa.setEnabled(false);
                 jbModificarMesa.setEnabled(true);
                 jbBorrarMesa.setEnabled(true);
                 
                 JOptionPane.showMessageDialog(null, "Mesa encontrada");
                 }else{
+                    jbNuevaMesa.setEnabled(true);
                     limpiar();
                     activarCampos();
                     desactivarCampos();                             
@@ -213,9 +219,10 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         limpiar();
         jtNroMesa.requestFocus();
         jbNuevaMesa.setEnabled(false);
-        jbGuardarMesa.setEnabled(false);
         jbModificarMesa.setEnabled(false);
         jbBorrarMesa.setEnabled(false);
+        jbBuscarMesa.setEnabled(false);
+        jbGuardarMesa.setEnabled(true);
         jtNroMesa.setText("");
         
     }//GEN-LAST:event_jbNuevaMesaActionPerformed
@@ -228,6 +235,10 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         try{
             int numeroMesa=Integer.parseInt(jtNroMesa.getText());
             String descripcion=jtDescripMesa.getText();
+            
+            
+         if(!descripcion.isEmpty() && descripcion.matches("^[a-zA-Z ]+$")){
+            
             boolean estado=jrbActivaMesa.isSelected();
             
             mesa.setNumeroMesa(numeroMesa);
@@ -235,15 +246,18 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             mesa.setEstado(estado);
             
             md.guardarMesa(mesa);
-            
-         
-            
+               
             limpiar();
             desactivarCampos();
-            jbNuevaMesa.setEnabled(true);
-            jbGuardarMesa.setEnabled(false);        
+            jbBuscarMesa.setEnabled(true);
+            jbNuevaMesa.setEnabled(false);
+            jbGuardarMesa.setEnabled(false);
+            
+          }else{
+             JOptionPane.showMessageDialog(null, "ERROR: No puede ingresar numeros o simbolos en descripcion ");
+         }
         
-        }catch(NumberFormatException m){
+        }catch(NumberFormatException a){
             JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");            
         }
     }//GEN-LAST:event_jbGuardarMesaActionPerformed
@@ -273,7 +287,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 jbModificarMesa.setEnabled(false);
                 jbBorrarMesa.setEnabled(false);            
             }
-            jbNuevaMesa.setEnabled(true);
+            jbNuevaMesa.setEnabled(false);
             jbGuardarMesa.setEnabled(false);
             
             }else{
