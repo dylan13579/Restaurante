@@ -182,7 +182,7 @@ public class PedidoData {
 
     public List<Pedido> listarPedidos(){
         
-        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
+        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, stock, cobrada FROM pedido WHERE cobrada = 1";
         
         ArrayList<Pedido> encargos = new ArrayList<>();
         
@@ -196,6 +196,7 @@ public class PedidoData {
                 pedidos.setNombreMesero(rs.getString("nombreMesero"));
                 pedidos.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedidos.setImporte(rs.getDouble("importe"));
+                
                 pedidos.setCobrado(true);
                 
                 encargos.add(pedidos);
@@ -209,5 +210,44 @@ public class PedidoData {
         }
         return encargos;
     }
+    public List<Pedido> listarPedidoPendiente(){
+    
+        
+            String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
+            
+            ArrayList<Pedido> encargos = new ArrayList<>();
+        try {    
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Pedido pedidos = new Pedido();
+               // pedidos.setIdPedido(rs.getString(idPedido));
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return encargos;
+}
+    
+    public void borrarCobrada(int idPedido){
+    
+        String sql = "UPDATE pedido SET cobrada = 1 WHERE  idPedido = ?";
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ps.setInt(2, idPedido);
+            
+            int filas=ps.executeUpdate();
+            if(filas>0){
+                JOptionPane.showMessageDialog(null, "Cobrada borrada con exito");            
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
 
 }
+

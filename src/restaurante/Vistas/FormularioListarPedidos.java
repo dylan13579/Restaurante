@@ -55,7 +55,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
 
         bgListarPedido = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPedidoMesero = new javax.swing.JTable();
@@ -63,13 +63,16 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         jrbCobrado = new javax.swing.JRadioButton();
         jrbNoCobrado = new javax.swing.JRadioButton();
         jcbMesero = new javax.swing.JComboBox<>();
+        jbLimpiar = new javax.swing.JButton();
+        jbCobrar = new javax.swing.JButton();
+        jbAnular = new javax.swing.JButton();
 
         jLabel1.setText("Consulta de Pedidos por Mesero");
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -106,6 +109,12 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbLimpiar.setText("Limpiar");
+
+        jbCobrar.setText("Cobrar");
+
+        jbAnular.setText("Anular Cobro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,13 +140,20 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbCobrar)
+                                .addGap(116, 116, 116)
+                                .addComponent(jbAnular)
+                                .addGap(121, 121, 121)
+                                .addComponent(jbLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,17 +170,21 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbCobrado)
                     .addComponent(jrbNoCobrado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalir)
+                    .addComponent(jbLimpiar)
+                    .addComponent(jbCobrar)
+                    .addComponent(jbAnular))
                 .addGap(51, 51, 51))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
         int eleccion = JOptionPane.showConfirmDialog(this, "Realmente desea salir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
             if (eleccion== JOptionPane.YES_OPTION){
@@ -173,24 +193,42 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
                 JOptionPane.showConfirmDialog(null, "Desea seguir trabajando?", "Confirmacion", JOptionPane.CLOSED_OPTION);
             }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jrbCobradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCobradoActionPerformed
         // TODO add your handling code here:
+
+        borrarFilasTabla();
+        jrbNoCobrado.setSelected(false);
+        cargarDatosCobradas();
+        jbAnular.setSelected(true);
+        jbCobrar.setSelected(false);
+        jbLimpiar.setSelected(true);
+        
     }//GEN-LAST:event_jrbCobradoActionPerformed
 
     private void jrbNoCobradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNoCobradoActionPerformed
         // TODO add your handling code here:
+
+        borrarFilasTabla();
+        jrbCobrado.setSelected(false);
+        cargarDatosNoCobradas();
+        jbAnular.setSelected(false);
+        jbCobrar.setSelected(true);
+        jbLimpiar.setSelected(true);
     }//GEN-LAST:event_jrbNoCobradoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgListarPedido;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAnular;
+    private javax.swing.JButton jbCobrar;
+    private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Pedido> jcbMesero;
     private javax.swing.JRadioButton jrbCobrado;
     private javax.swing.JRadioButton jrbNoCobrado;

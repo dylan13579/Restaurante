@@ -74,23 +74,23 @@ public class Restaurante {
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
               
-              PedidoData Me = new PedidoData();
-              
-              for (Pedido pedi : Me.listarPedidos()) {
-                  System.out.println(pedi.getIdPedido());
-                  System.out.println(pedi.getNombreMesero());
-                  System.out.println(pedi.getFecha());
-                  System.out.println(pedi.getHora());
-                  System.out.println(pedi.getImporte());
-                  System.out.println(pedi.isCobrado());
-                  System.out.println("------");
-                  
-                  
-                  
-
-            
-        }
-              
+//              PedidoData Me = new PedidoData();
+//              
+//              for (Pedido pedi : Me.listarPedidos()) {
+//                  System.out.println(pedi.getIdPedido());
+//                  System.out.println(pedi.getNombreMesero());
+//                  System.out.println(pedi.getFecha());
+//                  System.out.println(pedi.getHora());
+//                  System.out.println(pedi.getImporte());
+//                  System.out.println(pedi.isCobrado());
+//                  System.out.println("------");
+//                  
+//                  
+//                  
+//
+//            
+//        }
+//              
      
              
 //               Pedido pedido = new Pedido();
@@ -107,8 +107,8 @@ public class Restaurante {
         //Pruebas de Producto
         
         //ProductoData produc = new ProductoData();
-        //Producto pro = new Producto(2,"Lomo","Completo",4000,true); //guardar un producto
-          //Producto pro = new Producto(2,"Empanadas","jamon y queso",2600,true); //modiifcar producto
+        //Producto pro = new Producto(3,"Coca Cola","Gaseosa",900, 50,true); //guardar un producto
+          //Producto pro = new Producto(2,"Empanadas","jamon y queso",2600,70,true); //modiifcar producto
         //produc.guardarProducto(pro);
           //produc.modificarProducto(pro);
           
@@ -116,24 +116,26 @@ public class Restaurante {
           
 //          
 //         ProductoData pro = new ProductoData();
-//         Producto buscar = pro.buscarProductos(7);
+//         Producto buscar = pro.buscarProductos(3);
 //         
 //         if(buscar != null){
 //             System.out.println("codigo = "+buscar.getCodigoProducto());
 //             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
 //             System.out.println("Descripcion = "+buscar.getDescripcion());
 //             System.out.println("Precio = "+buscar.getPrecio());
+//             System.out.println("stock = "+buscar.getStock());
+//             
 //         }
 
 
 
           //Pruebas de PedidoProducto
           
-       //PedidoProductoData pp = new PedidoProductoData();
+       PedidoProductoData pp = new PedidoProductoData();
 //      
 
-         //pp.guardarPedidoProducto(10, 1, 3);
-         //pp.modificarProducto(2, 5, 10);
+         //pp.guardarPedidoProducto(1, 3, 4);
+         pp.modificarProducto(3, 4, 1);
          //pp.elimanrpedido(10);
        
          
