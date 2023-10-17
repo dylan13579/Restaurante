@@ -16,7 +16,7 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-        MesaData me=new MesaData(); //creando instancia data
+        //MesaData me=new MesaData(); //creando instancia data
 //        
 //        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
 //            me.guardarMesa(m);
@@ -24,7 +24,7 @@ public class Restaurante {
         
             //metodo dar de baja
             //me.darBajaMesaId(4);
-            me.darBajaMesaNumero(1);
+            //me.darBajaMesaNumero(1);
          
             //metodo buscar
 //        Mesa meEncontrada = me.buscarMesaPorNum(4);
@@ -58,7 +58,7 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-//        PedidoData pe = new PedidoData();
+        //PedidoData pe = new PedidoData();
 //   
 //          Mesa mesa = new Mesa();
 //          mesa.setNumeroMesa(1);
@@ -74,6 +74,22 @@ public class Restaurante {
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
               
+              PedidoData Me = new PedidoData();
+              
+              for (Pedido pedi : Me.listarPedidos()) {
+                  System.out.println(pedi.getIdPedido());
+                  System.out.println(pedi.getNombreMesero());
+                  System.out.println(pedi.getFecha());
+                  System.out.println(pedi.getHora());
+                  System.out.println(pedi.getImporte());
+                  System.out.println(pedi.isCobrado());
+                  System.out.println("------");
+                  
+                  
+                  
+
+            
+        }
               
      
              

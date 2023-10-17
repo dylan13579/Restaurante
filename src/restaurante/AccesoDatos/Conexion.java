@@ -28,12 +28,12 @@ public class Conexion {
             
                   conectar = DriverManager.getConnection(URL+BD,USUARIO,PASSWORD);
             
-                  JOptionPane.showMessageDialog(null, "SE HA CONECTADO A LA BASE DE DATOS");
+                  JOptionPane.showMessageDialog(null, "Se conecto a la base de datos");
             
                } catch (ClassNotFoundException ex) {
-                   JOptionPane.showMessageDialog(null, "ERROR AL CARGAR DRIVER");
+                   JOptionPane.showMessageDialog(null, "Error: Al cargar Drivers");
                } catch (SQLException ex) {
-                   JOptionPane.showMessageDialog(null, "NO SE PUDO CONECTAR AL DRIVER");
+                   JOptionPane.showMessageDialog(null, "No se pudo cargar Drivers");
                }
                 
             }

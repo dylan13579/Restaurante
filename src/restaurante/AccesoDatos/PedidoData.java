@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +25,7 @@ public class PedidoData {
     private Connection wifi = null;
     
     private MesaData md = new MesaData();
+    private int idPedido;
     
     public PedidoData () {
     
@@ -177,12 +180,34 @@ public class PedidoData {
         
     }
 
-    
-    
-    
+    public List<Pedido> listarPedidos(){
+        
+        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
+        
+        ArrayList<Pedido> encargos = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                Pedido pedidos= new Pedido();
+                pedidos.setIdPedido(rs.getInt("idPedido"));
+                pedidos.setNombreMesero(rs.getString("nombreMesero"));
+                pedidos.setFecha(rs.getDate("Fecha").toLocalDate());
+                pedidos.setImporte(rs.getDouble("importe"));
+                pedidos.setCobrado(true);
+                
+                encargos.add(pedidos);
 
-    
-
-
+        }
+        
+        ps.close();
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
+        return encargos;
+    }
 
 }
