@@ -182,7 +182,7 @@ public class PedidoData {
 
     public List<Pedido> listarPedidos(){
         
-        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
+        String sql = "SELECT idPedido, nombreMesero,numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
         
         ArrayList<Pedido> encargos = new ArrayList<>();
         

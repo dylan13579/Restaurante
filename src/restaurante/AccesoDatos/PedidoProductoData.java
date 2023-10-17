@@ -27,28 +27,26 @@ public class PedidoProductoData {
     }
    
      
-    public void guardarPedidoProducto(int pedido, int codigoProducto, int cantidad){
+    public void guardarPedidoProducto(int numeroPedido, int pedido, int codigoProducto, int cantidad){
         
-        String sql = "INSERT INTO pedidoproducto(idPedido, codigoProducto, cantidad) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO pedidoproducto(numeroPedido, idPedido, codigoProducto, cantidad) VALUES (?, ?, ?, ?)";
         
-        try {
+       try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-         
-           ps.setInt(1, pedido);
-           ps.setInt(2, codigoProducto);
-           ps.setInt(3, cantidad);
-  
+
+            ps.setInt(1, numeroPedido);
+            ps.setInt(2, pedido);
+            ps.setInt(3, codigoProducto);
+            ps.setInt(4, cantidad);
+
             ps.executeUpdate();
 
-                ResultSet rs = ps.getGeneratedKeys();
-                
-                if(rs.next()){
-                   
-                    JOptionPane.showMessageDialog(null, "Pedido encargado");
-                }
-           
-            
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Pedido encargado");
+            }
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido Producto");
@@ -56,19 +54,22 @@ public class PedidoProductoData {
           
     }
     
-   public void modificarProducto(int codigoProducto, int cantidad, int pedido) {
-    String sql = "UPDATE pedidoproducto SET codigoProducto = ?, cantidad = ? WHERE idPedido = ?";
+   public void modificarProducto( int numeroPedido, int codigoProducto, int cantidad) {
+   
+       String sql = "UPDATE pedidoproducto SET codigoProducto = ?, cantidad = ? WHERE numeroPedido = ?";
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
         ps.setInt(1, codigoProducto);
         ps.setInt(2, cantidad);
-        ps.setInt(3, pedido);
+        ps.setInt(3, numeroPedido); // Specify the 'numeroPedido' for the WHERE clause
 
         int rowsAffected = ps.executeUpdate();
         if (rowsAffected > 0) {
             JOptionPane.showMessageDialog(null, "El pedido se ha cambiado");
-        } 
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un pedido con el número proporcionado.");
+        }
 
         ps.close();
     } catch (SQLException ex) {
@@ -77,14 +78,14 @@ public class PedidoProductoData {
    }
     
    
-   public void elimanrpedido(int idPedido){
+   public void elimanrpedido(int numeroPedido){
        
-       String sql = "DELETE FROM pedidoproducto WHERE idPedido = ?";
+       String sql = "DELETE FROM pedidoproducto WHERE numeroPedido = ?";
        
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
             
-            ps.setInt(1, idPedido);
+            ps.setInt(1, numeroPedido);
             
             int exito = ps.executeUpdate();
             if(exito == 1){

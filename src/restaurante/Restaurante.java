@@ -73,23 +73,19 @@ public class Restaurante {
            // pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
-              
-              PedidoData Me = new PedidoData();
-              
-              for (Pedido pedi : Me.listarPedidos()) {
-                  System.out.println(pedi.getIdPedido());
-                  System.out.println(pedi.getNombreMesero());
-                  System.out.println(pedi.getFecha());
-                  System.out.println(pedi.getHora());
-                  System.out.println(pedi.getImporte());
-                  System.out.println(pedi.isCobrado());
-                  System.out.println("------");
-                  
-                  
-                  
-
-            
-        }
+//              
+//              PedidoData Me = new PedidoData();
+//              
+//              for (Pedido pedi : Me.listarPedidos()) {
+//                  System.out.println(pedi.getIdPedido());
+//                  System.out.println(pedi.getNombreMesero());
+//                  System.out.println(pedi.getFecha());
+//                  System.out.println(pedi.getHora());
+//                  System.out.println(pedi.getImporte());
+//                  System.out.println(pedi.isCobrado());
+//                  System.out.println("------");
+//                   
+//        }
               
      
              
@@ -129,11 +125,11 @@ public class Restaurante {
 
           //Pruebas de PedidoProducto
           
-       //PedidoProductoData pp = new PedidoProductoData();
+       PedidoProductoData pp = new PedidoProductoData();
 //      
 
-         //pp.guardarPedidoProducto(10, 1, 3);
-         //pp.modificarProducto(2, 5, 10);
+         //pp.guardarPedidoProducto(3,2, 5, 3);
+         pp.modificarProducto(3,4,2);
          //pp.elimanrpedido(10);
        
          
