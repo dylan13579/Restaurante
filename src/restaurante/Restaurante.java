@@ -134,8 +134,8 @@ public class Restaurante {
        PedidoProductoData pp = new PedidoProductoData();
 //      
 
-         //pp.guardarPedidoProducto(1, 3, 4);
-         pp.modificarProducto(3, 4, 1);
+         //pp.guardarPedidoProducto(3, 2, 5, 3);
+         pp.modificarProducto(3, 4, 1, 5);
          //pp.elimanrpedido(10);
        
          
