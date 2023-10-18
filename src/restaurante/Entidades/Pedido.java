@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class Pedido {
     
     private int idPedido;
-    private Mesa mesa;
+    private Mesa numeroMesa;
     private String nombreMesero;
     private LocalDate fecha;
     private LocalTime hora;
@@ -22,9 +22,9 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
+    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
         this.idPedido = idPedido;
-        this.mesa = mesa;
+        this.numeroMesa = numeroMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -32,8 +32,8 @@ public class Pedido {
         this.cobrado = cobrado;
     }
 
-    public Pedido(Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
-        this.mesa = mesa;
+    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
+        this.numeroMesa = numeroMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -41,8 +41,6 @@ public class Pedido {
         this.cobrado = cobrado;
     }
 
-  
-   
     public int getIdPedido() {
         return idPedido;
     }
@@ -51,12 +49,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Mesa getMesa() {
-        return mesa;
+    public Mesa getNumeroMesa() {
+        return numeroMesa;
     }
 
-    public void setMesa(Mesa mesa) {
-        this.mesa = mesa;
+    public void setNumeroMesa(Mesa numeroMesa) {
+        this.numeroMesa = numeroMesa;
     }
 
     public String getNombreMesero() {
@@ -101,10 +99,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return  nombreMesero ;
+        return "Pedido{" + "idPedido=" + idPedido + ", numeroMesa=" + numeroMesa + ", nombreMesero=" + nombreMesero + ", fecha=" + fecha + ", hora=" + hora + ", importe=" + importe + ", cobrado=" + cobrado + '}';
     }
-
-   
-   
-    
+  
 }

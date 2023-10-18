@@ -274,7 +274,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         listaP = pData.listarPedidos();
         
         for(Pedido p : listaP){
-        modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa(),p.getNombreMesero(),p.getFecha(),p.getHora(),p.isCobrado()});        
+        modelo.addRow(new Object[]{p.getIdPedido(),p.getNumeroMesa(),p.getNombreMesero(),p.getFecha(),p.getHora(),p.isCobrado()});        
         }
     }
     private void cargarDatosCobradas(){
@@ -283,8 +283,9 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         List<Pedido> lista = pData.listarPedidos();
         
         for(Pedido p : lista){
-        modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa(),p.getNombreMesero(),p.getFecha(),p.getHora(),p.isCobrado()});
+        modelo.addRow(new Object[]{p.getIdPedido(),p.getNumeroMesa(),p.getNombreMesero(),p.getFecha(),p.getHora(),p.isCobrado()});
         }
     }
 
+    
 }
