@@ -84,11 +84,7 @@ public class Restaurante {
 //                  System.out.println(pedi.getImporte());
 //                  System.out.println(pedi.isCobrado());
 //                  System.out.println("------");
-//                  
-//                  
-//                  
-//
-//            
+//                    
 //        }
 //              
      

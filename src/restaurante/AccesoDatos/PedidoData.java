@@ -26,6 +26,7 @@ public class PedidoData {
     
     private MesaData md = new MesaData();
     private int idPedido;
+    private String nombreMesero;
     
     public PedidoData () {
     
@@ -182,7 +183,7 @@ public class PedidoData {
 
     public List<Pedido> listarPedidos(){
         
-        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, stock, cobrada FROM pedido WHERE cobrada = 1";
+        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
         
         ArrayList<Pedido> encargos = new ArrayList<>();
         
@@ -198,6 +199,7 @@ public class PedidoData {
                 pedidos.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedidos.setHora(rs.getTime("Hora").toLocalTime());
                 pedidos.setImporte(rs.getDouble("importe"));
+                
                 pedidos.setCobrado(true);                
                 encargos.add(pedidos);
 
@@ -281,7 +283,7 @@ public class PedidoData {
     public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
     
         List<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
+        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
         
     
         try {
@@ -292,6 +294,7 @@ public class PedidoData {
                     Pedido pedido = new Pedido();
                     pedido.setIdPedido(rs.getInt("idPedido"));
                     //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
+                    pedido.setNombreMesero(rs.getString("nombreMesero"));
                     pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                     pedido.setHora(rs.getTime("Hora").toLocalTime());
                     pedido.setImporte(rs.getInt("importe"));
@@ -304,7 +307,5 @@ public class PedidoData {
         }
         return encargo;
     }
-    
-    
-    
-}
+}    
+      
