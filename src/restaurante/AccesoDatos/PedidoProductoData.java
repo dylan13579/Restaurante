@@ -54,16 +54,16 @@ public class PedidoProductoData {
           
     }
     
-   public void modificarProducto(int numeroPedido, int codigoProducto, int cantidad, int pedido) {
+   public void modificarProducto(int numeroPedido, int codigoProducto, int cantidad) {
     
-      String sql = "UPDATE pedidoproducto SET idPedido = ?, codigoProducto = ?, cantidad = ? WHERE numeroPedido = ?";
+      String sql = "UPDATE pedidoproducto SET codigoProducto = ?, cantidad = ? WHERE numeroPedido = ?";
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setInt(1, pedido);
-        ps.setInt(2, codigoProducto);
-        ps.setInt(3, cantidad);
-        ps.setInt(4, numeroPedido); // Specify the 'numeroPedido' for the WHERE clause
+        
+        ps.setInt(1, codigoProducto);
+        ps.setInt(2, cantidad);
+        ps.setInt(3, numeroPedido); // Specify the 'numeroPedido' for the WHERE clause
 
         int rowsAffected = ps.executeUpdate();
         if (rowsAffected > 0) {

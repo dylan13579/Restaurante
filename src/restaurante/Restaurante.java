@@ -131,11 +131,11 @@ public class Restaurante {
 
           //Pruebas de PedidoProducto
           
-       PedidoProductoData pp = new PedidoProductoData();
+       //PedidoProductoData pp = new PedidoProductoData();
 //      
 
-         //pp.guardarPedidoProducto(3, 2, 5, 3);
-         pp.modificarProducto(3, 4, 1, 5);
+         //pp.guardarPedidoProducto(3, 1, 1, 4);
+         //pp.modificarProducto(3, 1, 2);
          //pp.elimanrpedido(10);
        
          
