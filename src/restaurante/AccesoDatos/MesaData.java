@@ -62,7 +62,7 @@ public class MesaData {
             int mejoras = ps.executeUpdate();
             
             if(mejoras == 1){
-                JOptionPane.showMessageDialog(null, "Mesa modificada con exito");
+                JOptionPane.showMessageDialog(null, "Mesa Reservada");
             }
             
         } catch (SQLException ex) {
@@ -104,7 +104,7 @@ public class MesaData {
 
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Se ha elimnado la Mesa");
+                JOptionPane.showMessageDialog(null, "Mesa Libre");
                 
             }
             
@@ -130,11 +130,11 @@ public class MesaData {
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(rs.getInt("estado") == 1);
          
-               
-            }else{
-                 JOptionPane.showMessageDialog(null, "No se encuentra ese numero de Mesa");
-            
             }
+//            }else{
+//                 JOptionPane.showMessageDialog(null, "Ese Numero de Mesa es invalido y no puede ingresar Caracteres ");
+//            
+//            }
             
         } catch (SQLException ex) {
             ex.printStackTrace();
