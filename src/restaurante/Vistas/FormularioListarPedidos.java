@@ -41,7 +41,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         
         modelo = new DefaultTableModel();
         pData = new PedidoData();
-        listaP = pData.listarPedidos();
+        listaP = listarPedidos();
         mData = new MesaData();
         
         

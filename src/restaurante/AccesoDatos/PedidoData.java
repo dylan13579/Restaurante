@@ -199,60 +199,97 @@ public class PedidoData {
         }
     }  
 
-//    public List<Pedido> obtenerPedidoCobrado(int idPedido, int mesa){
-//    
-//        ArrayList<Pedido> encargo = new ArrayList<>();
-//        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND idPedido = ?";
-//
-//    try{
-//        PreparedStatement ps = co
-//        ps.setInt(1, idPedido);
-//
-//        try (ResultSet rs = ps.executeQuery()) {
-//            while (rs.next()) {
-//                Pedido pedido = new Pedido();
-//                pedido.setIdPedido(rs.getInt("idPedido"));
-//                pedido.setNumeroMesa(rs.getInt("numeroMesa"));
-//                pedido.setFecha(rs.getDate("Fecha").toLocalDate());
-//                pedido.setHora(rs.getTime("Hora").toLocalTime());
-//                pedido.setImporte(rs.getDouble("importe"));
-//                pedido.setCobrado(rs.getBoolean("cobrada"));
-//                encargo.add(pedido);
-//            }
-//        }
-//    } catch (SQLException ex) {
-//        ex.printStackTrace(); // Log the exception for debugging
-//        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
-//    }
-//    return encargo;
-//   }
-//   
-//    public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
-//    
-//        List<Pedido> encargo = new ArrayList<>();
-//        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
-//        
-//    
-//        try {
-//            PreparedStatement ps = wifi.prepareStatement(sql);
-//            ps.setInt(1, idPedido);
-//            try(ResultSet rs = ps.executeQuery()){
-//                while(rs.next()){
-//                    Pedido pedido = new Pedido();
-//                    pedido.setIdPedido(rs.getInt("idPedido"));
-//                    //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
-//                    pedido.setNombreMesero(rs.getString("nombreMesero"));
-//                    pedido.setFecha(rs.getDate("Fecha").toLocalDate());
-//                    pedido.setHora(rs.getTime("Hora").toLocalTime());
-//                    pedido.setImporte(rs.getInt("importe"));
-//                    pedido.setCobrado(rs.getBoolean("Cobrada"));
-//                    encargo.add(pedido);                                
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
-//        }
-//        return encargo;
-//    }
+    public List<Pedido> obtenerPedidoCobrado(int idPedido, int mesa){
+    
+        ArrayList<Pedido> encargo = new ArrayList<>();
+        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND idPedido = ?";
+
+    try{
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        ps.setInt(1, idPedido);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                //pedido.setNumeroMesa(rs.getInt("numeroMesa"));
+                pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+                pedido.setHora(rs.getTime("Hora").toLocalTime());
+                pedido.setImporte(rs.getDouble("importe"));
+                pedido.setCobrado(rs.getBoolean("cobrada"));
+                encargo.add(pedido);
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Log the exception for debugging
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
+    }
+    return encargo;
+   }
+   
+    public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
+    
+        List<Pedido> encargo = new ArrayList<>();
+        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
+        
+    
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            try(ResultSet rs = ps.executeQuery()){
+                while(rs.next()){
+                    Pedido pedido = new Pedido();
+                    pedido.setIdPedido(rs.getInt("idPedido"));
+                    //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
+                    pedido.setNombreMesero(rs.getString("nombreMesero"));
+                    pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+                    pedido.setHora(rs.getTime("Hora").toLocalTime());
+                    pedido.setImporte(rs.getInt("importe"));
+                    pedido.setCobrado(rs.getBoolean("Cobrada"));
+                    encargo.add(pedido);                                
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
+        }
+        return encargo;
+    }
+    public List<Pedido> listarPedidos(int numeroMesa){
+    
+        String sql = "SELECT p.idPedido, p.numeroMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
+                + "FROM pedido p "
+                + "JOIN mesa m "
+                + "ON p.numeroMesa = m.numeroMesa "
+                + "WHERE p.cobrada = 1 "
+                + "AND m.numeroMesa = ?";
+        
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            
+            ps.setInt(1, numeroMesa);
+                        
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            
+                Pedido pedido= new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setNombreMesero(rs.getString("nombreMesero"));
+                pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+                pedido.setHora(rs.getTime("Hora").toLocalTime());
+                pedido.setImporte(rs.getDouble("importe"));
+                pedido.setCobrado(rs.getBoolean("cobrada"));
+                
+                pedidos.add(pedido);              
+            }
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
+            
+        }
+        return pedidos;
+    }    
 }    
       

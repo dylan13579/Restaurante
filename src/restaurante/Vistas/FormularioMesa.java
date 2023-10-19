@@ -218,6 +218,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
     private void jbGuardarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarMesaActionPerformed
         // TODO add your handling code here:
+
         
         //estoy tratndo de hacer que me guarde la mesa con el estado falso
         try{

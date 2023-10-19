@@ -16,7 +16,7 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-        MesaData me=new MesaData(); //creando instancia data
+//        MesaData me=new MesaData(); //creando instancia data
 //        
 //        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
 //            me.guardarMesa(m);
@@ -27,13 +27,13 @@ public class Restaurante {
             //me.darBajaMesaNumero(1);
          
             //metodo buscar
-        Mesa meEncontrada = me.buscarMesaPorNum(9);
-        if (meEncontrada != null) {
-            System.out.println("Mesas eoncotrada");
-            System.out.println("numeroMesa: " + meEncontrada.getNumeroMesa());
-            System.out.println("descripcion: " + meEncontrada.getDescripcion());
-            System.out.println("");
-        }
+//        Mesa meEncontrada = me.buscarMesaPorNum(9);
+//        if (meEncontrada != null) {
+//            System.out.println("Mesas eoncotrada");
+//            System.out.println("numeroMesa: " + meEncontrada.getNumeroMesa());
+//            System.out.println("descripcion: " + meEncontrada.getDescripcion());
+//            System.out.println("");
+//        }
             
             //metodos listar
 //        MesaData me = new MesaData();
@@ -85,7 +85,18 @@ public class Restaurante {
 //        pe.cancelarPedidoId(8);
 //        pe.cancelarPedidoNumeroMesa(9);
          
-    
+        
+        PedidoData pe=new PedidoData();
+        for(Pedido pedido : pe.listarPedidos(7)){
+            System.out.println("mesas pagadas= "+pedido);
+            System.out.println("pedido");
+        }
+
+            
+            
+        
+        
+        
         //Pruebas de Producto
         
         //ProductoData produc = new ProductoData();
@@ -108,6 +119,7 @@ public class Restaurante {
 //             System.out.println("stock = "+buscar.getStock());
 //             
 //         }
+        
 
 
 
