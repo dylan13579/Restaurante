@@ -25,8 +25,7 @@ public class PedidoData {
     private Connection wifi = null;
     
     private MesaData md = new MesaData();
-    private int idPedido;
-    private String nombreMesero;
+
     
     public PedidoData () {
     
@@ -181,60 +180,6 @@ public class PedidoData {
         
     }
 
-    public List<Pedido> listarPedidos(){
-        
-        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
-        
-        ArrayList<Pedido> encargos = new ArrayList<>();
-        
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                
-                Pedido pedidos= new Pedido();
-                pedidos.setIdPedido(rs.getInt("idPedido"));
-                //pedidos.setNumeroMesa(rs.getInt("Nro. Mesa"));
-                pedidos.setNombreMesero(rs.getString("nombreMesero"));
-                pedidos.setFecha(rs.getDate("Fecha").toLocalDate());
-                pedidos.setHora(rs.getTime("Hora").toLocalTime());
-                pedidos.setImporte(rs.getDouble("importe"));
-                
-                pedidos.setCobrado(true);                
-                encargos.add(pedidos);
-
-        }
-        
-        ps.close();
-        
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
-        }
-        return encargos;
-    }
-    public List<Pedido> listarPedidoPendiente(){
-    
-        
-            String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
-            
-            ArrayList<Pedido> encargos = new ArrayList<>();
-        try {    
-            PreparedStatement ps = wifi.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                Pedido pedidos = new Pedido();
-                pedidos.setIdPedido(rs.getInt("IdPedido"));
-                //pedidos.setNumeroMesa(rs.getInt("Nro. Mesa"));               
-                pedidos.setFecha(rs.getDate("Fecha").toLocalDate());
-                pedidos.setHora(rs.getTime("Hora").toLocalTime());
-            
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    return encargos;
-}
-    
     public void borrarCobrada(int idPedido){
     
         String sql = "UPDATE pedido SET cobrada = 1 WHERE  idPedido = ?";
@@ -254,58 +199,60 @@ public class PedidoData {
         }
     }  
 
-    public List<Pedido> obtenerPedidoCobrado(int idPedido){
-    
-        List<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1";
-        
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql);
-            ps.setInt(1, idPedido);
-            try(ResultSet rs = ps.executeQuery()){
-                while(rs.next()){
-                    Pedido pedido = new Pedido();
-                    pedido.setIdPedido(rs.getInt("IdPedido"));
-                    //pedido.setNumeroMesa(rs.getInt("Nro. Mesa")););
-                    pedido.setFecha(rs.getDate("Fecha").toLocalDate());
-                    pedido.setHora(rs.getTime("Hora").toLocalTime());
-                    pedido.setImporte(rs.getInt("importe"));
-                    pedido.setCobrado(rs.getBoolean("Cobrada"));
-                    encargo.add(pedido);     
-                }
-            }   
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
-        }
-        return encargo;
-   }
-   
-    public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
-    
-        List<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
-        
-    
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql);
-            ps.setInt(1, idPedido);
-            try(ResultSet rs = ps.executeQuery()){
-                while(rs.next()){
-                    Pedido pedido = new Pedido();
-                    pedido.setIdPedido(rs.getInt("idPedido"));
-                    //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
-                    pedido.setNombreMesero(rs.getString("nombreMesero"));
-                    pedido.setFecha(rs.getDate("Fecha").toLocalDate());
-                    pedido.setHora(rs.getTime("Hora").toLocalTime());
-                    pedido.setImporte(rs.getInt("importe"));
-                    pedido.setCobrado(rs.getBoolean("Cobrada"));
-                    encargo.add(pedido);                                
-                }
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
-        }
-        return encargo;
-    }
+//    public List<Pedido> obtenerPedidoCobrado(int idPedido, int mesa){
+//    
+//        ArrayList<Pedido> encargo = new ArrayList<>();
+//        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND idPedido = ?";
+//
+//    try{
+//        PreparedStatement ps = co
+//        ps.setInt(1, idPedido);
+//
+//        try (ResultSet rs = ps.executeQuery()) {
+//            while (rs.next()) {
+//                Pedido pedido = new Pedido();
+//                pedido.setIdPedido(rs.getInt("idPedido"));
+//                pedido.setNumeroMesa(rs.getInt("numeroMesa"));
+//                pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+//                pedido.setHora(rs.getTime("Hora").toLocalTime());
+//                pedido.setImporte(rs.getDouble("importe"));
+//                pedido.setCobrado(rs.getBoolean("cobrada"));
+//                encargo.add(pedido);
+//            }
+//        }
+//    } catch (SQLException ex) {
+//        ex.printStackTrace(); // Log the exception for debugging
+//        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
+//    }
+//    return encargo;
+//   }
+//   
+//    public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
+//    
+//        List<Pedido> encargo = new ArrayList<>();
+//        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
+//        
+//    
+//        try {
+//            PreparedStatement ps = wifi.prepareStatement(sql);
+//            ps.setInt(1, idPedido);
+//            try(ResultSet rs = ps.executeQuery()){
+//                while(rs.next()){
+//                    Pedido pedido = new Pedido();
+//                    pedido.setIdPedido(rs.getInt("idPedido"));
+//                    //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
+//                    pedido.setNombreMesero(rs.getString("nombreMesero"));
+//                    pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+//                    pedido.setHora(rs.getTime("Hora").toLocalTime());
+//                    pedido.setImporte(rs.getInt("importe"));
+//                    pedido.setCobrado(rs.getBoolean("Cobrada"));
+//                    encargo.add(pedido);                                
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
+//        }
+//        return encargo;
+//    }
 }    
       

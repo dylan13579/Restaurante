@@ -46,7 +46,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jbModificarMesa = new javax.swing.JButton();
         jtDescripMesa = new javax.swing.JTextField();
         jbGuardarMesa = new javax.swing.JButton();
-        jtNroMesa = new javax.swing.JTextField();
+        jsNroMesa = new javax.swing.JSpinner();
 
         jLabel1.setText("Formulario Mesa");
 
@@ -63,7 +63,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Estado:");
 
-        jrbActivaMesa.setText("Activa");
+        jrbActivaMesa.setText("Activada");
 
         jbNuevaMesa.setText("Nueva");
         jbNuevaMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -129,13 +129,16 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jtNroMesa)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jbBuscarMesa)
-                                        .addGap(58, 58, 58))
-                                    .addComponent(jrbActivaMesa))))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jbBuscarMesa))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jrbActivaMesa))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,12 +146,11 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbBuscarMesa)))
-                .addGap(18, 18, 18)
+                    .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscarMesa))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -163,7 +165,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir)
                     .addComponent(jbModificarMesa)
                     .addComponent(jbGuardarMesa))
-                .addGap(0, 56, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,7 +184,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
     private void jbBuscarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMesaActionPerformed
         // TODO add your handling code here:
         try{
-                int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+                int numeroMesa=(int) jsNroMesa.getValue();
                 Mesa mesa=md.buscarMesaPorNum(numeroMesa);
                 if(mesa != null){
                     jtDescripMesa.setText(mesa.getDescripcion());
@@ -206,7 +208,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                             
         }catch(NumberFormatException m){
             JOptionPane.showMessageDialog(this, "Debe Ingresar un Numero de Mesa Valido");
-            jtNroMesa.requestFocus();
+            
             limpiar();
             desactivarCampos();        
         }
@@ -217,13 +219,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
         activarCampos();
         limpiar();
-        jtNroMesa.requestFocus();
         jbNuevaMesa.setEnabled(false);
         jbModificarMesa.setEnabled(false);
         jbBorrarMesa.setEnabled(false);
         jbBuscarMesa.setEnabled(false);
         jbGuardarMesa.setEnabled(true);
-        jtNroMesa.setText("");
+      
         
     }//GEN-LAST:event_jbNuevaMesaActionPerformed
 
@@ -233,7 +234,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         Mesa mesa=new Mesa();
         
         try{
-            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            int numeroMesa=(int) jsNroMesa.getValue();
             String descripcion=jtDescripMesa.getText();
             
             
@@ -266,7 +267,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try{
-            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            int numeroMesa=(int) jsNroMesa.getValue();
             String descripcion=jtDescripMesa.getText();
             boolean estado=jrbActivaMesa.isSelected();
             
@@ -303,16 +304,14 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try{
-            int numeroMesa=Integer.parseInt(jtNroMesa.getText());
+            int numeroMesa=(int) jsNroMesa.getValue();
             Mesa mesa=md.buscarMesaPorNum(numeroMesa);
             if(mesa !=null){
-                jtNroMesa.setText(String.valueOf(mesa.getNumeroMesa()));
                 jtDescripMesa.setText(mesa.getDescripcion());
                 jrbActivaMesa.setSelected(mesa.isEstado());
                 
                 md.darBajaMesaNumero(numeroMesa);
                 
-            
             }
             
             limpiar();
@@ -339,8 +338,8 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbNuevaMesa;
     private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jrbActivaMesa;
+    private javax.swing.JSpinner jsNroMesa;
     private javax.swing.JTextField jtDescripMesa;
-    private javax.swing.JTextField jtNroMesa;
     // End of variables declaration//GEN-END:variables
 
 
@@ -350,13 +349,13 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
     } 
     
     private void activarCampos(){
-        jtNroMesa.setEnabled(true);
+        jsNroMesa.setEnabled(true);
         jtDescripMesa.setEnabled(true);
         jrbActivaMesa.setEnabled(true);
     }
     
     private void limpiar(){
-        jtNroMesa.setText("");
+        
         jtDescripMesa.setText("");
         jrbActivaMesa.setSelected(false);
     }

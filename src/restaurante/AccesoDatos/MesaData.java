@@ -115,7 +115,7 @@ public class MesaData {
 
     public Mesa buscarMesaPorNum(int numeroMesa) {
 
-        String sql = "SELECT numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND estado = 1";
+        String sql = "SELECT numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND (estado = 1 OR estado = 0)";
 
         Mesa mesa = null;
         try {
@@ -128,7 +128,7 @@ public class MesaData {
                 
                 mesa.setNumeroMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
-                mesa.setEstado(true);
+                mesa.setEstado(rs.getInt("estado") == 1);
          
                
             }else{

@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import restaurante.Entidades.Pedido;
+import restaurante.Entidades.PedidoProducto;
+import restaurante.Entidades.Producto;
 
 
 
@@ -26,7 +29,7 @@ public class PedidoProductoData {
 
     }
    
-     
+    
     public void guardarPedidoProducto(int numeroPedido, int pedido, int codigoProducto, int cantidad){
         
          String sql = "INSERT INTO pedidoproducto(numeroPedido, idPedido, codigoProducto, cantidad) VALUES (?, ?, ?, ?)";
