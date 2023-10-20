@@ -108,7 +108,7 @@ public class ProductoData {
     
     public Producto buscarProductos(int codigoProducto){
      
-        String sql = "SELECT codigoProducto, nombreProducto, descripcion, precio, stock FROM producto WHERE codigoProducto = ? AND estado = 1";
+        String sql = "SELECT codigoProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE codigoProducto = ? AND (estado = 1 OR estado = 0)";
         
         Producto producto = null;
         
@@ -125,7 +125,7 @@ public class ProductoData {
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setStock(rs.getInt("stock"));
-                producto.setEstado(true);
+                producto.setEstado(rs.getInt("estado") == 1);
                 
                 
             }else{

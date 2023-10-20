@@ -130,11 +130,11 @@ public class MesaData {
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(rs.getInt("estado") == 1);
          
+            
+            }else{
+                 JOptionPane.showMessageDialog(null, "Ese Numero de Mesa es invalido y no puede ingresar Caracteres ");
+            
             }
-//            }else{
-//                 JOptionPane.showMessageDialog(null, "Ese Numero de Mesa es invalido y no puede ingresar Caracteres ");
-//            
-//            }
             
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -16,7 +16,7 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-//        MesaData me=new MesaData(); //creando instancia data
+        //MesaData me=new MesaData(); //creando instancia data
 //        
 //        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
 //            me.guardarMesa(m);
@@ -27,9 +27,9 @@ public class Restaurante {
             //me.darBajaMesaNumero(1);
          
             //metodo buscar
-//        Mesa meEncontrada = me.buscarMesaPorNum(9);
+//        Mesa meEncontrada = me.buscarMesaPorNum(2);
 //        if (meEncontrada != null) {
-//            System.out.println("Mesas eoncotrada");
+//            System.out.println("Mesas encontrada");
 //            System.out.println("numeroMesa: " + meEncontrada.getNumeroMesa());
 //            System.out.println("descripcion: " + meEncontrada.getDescripcion());
 //            System.out.println("");
@@ -86,11 +86,11 @@ public class Restaurante {
 //        pe.cancelarPedidoNumeroMesa(9);
          
         
-        PedidoData pe=new PedidoData();
-        for(Pedido pedido : pe.listarPedidos(7)){
-            System.out.println("mesas pagadas= "+pedido);
-            System.out.println("pedido");
-        }
+//        PedidoData pe=new PedidoData();
+//        for(Pedido pedido : pe.listarPedidos(7)){
+//            System.out.println("mesas pagadas= "+pedido);
+//            System.out.println("pedido");
+//        }
 
             
             
@@ -108,17 +108,17 @@ public class Restaurante {
           //produc.darDebajaProducto(2);
           
 //          
-//         ProductoData pro = new ProductoData();
-//         Producto buscar = pro.buscarProductos(3);
-//         
-//         if(buscar != null){
-//             System.out.println("codigo = "+buscar.getCodigoProducto());
-//             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
-//             System.out.println("Descripcion = "+buscar.getDescripcion());
-//             System.out.println("Precio = "+buscar.getPrecio());
-//             System.out.println("stock = "+buscar.getStock());
-//             
-//         }
+         ProductoData pro = new ProductoData();
+         Producto buscar = pro.buscarProductos(4);
+         
+         if(buscar != null){
+             System.out.println("codigo = "+buscar.getCodigoProducto());
+             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
+             System.out.println("Descripcion = "+buscar.getDescripcion());
+             System.out.println("Precio = "+buscar.getPrecio());
+             System.out.println("stock = "+buscar.getStock());
+             
+         }
         
 
 

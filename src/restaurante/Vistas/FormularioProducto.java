@@ -11,13 +11,13 @@ import restaurante.Entidades.Producto;
 
 public class FormularioProducto extends javax.swing.JInternalFrame {
     
-    private ProductoData ad;
+    private ProductoData pd;
 
 
     public FormularioProducto() {
         initComponents();
         
-        ad=new ProductoData();
+        pd=new ProductoData();
         desactivarCampos();
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
@@ -35,9 +35,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtProducto = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,15 +45,18 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jtPrecio = new javax.swing.JTextField();
         jtNombreProducto = new javax.swing.JTextField();
         jrbEstadoProd = new javax.swing.JRadioButton();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
+        jsProducto = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jtPrecio = new javax.swing.JTextField();
+        jsStock = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("Productos - Menu");
-
-        jLabel2.setText("Codigo de Producto:");
+        jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel2.setText("Codigo de Producto");
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,11 +65,14 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Nombre: del Producto");
+        jLabel3.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel3.setText("Nombre del Producto");
 
-        jLabel4.setText("Descripcion del Producto:");
+        jLabel4.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel4.setText("Descripcion del Producto");
 
-        jLabel6.setText("Estado:");
+        jLabel6.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel6.setText("Estado");
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,9 +95,11 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel7.setText("Precio:");
+        jLabel7.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel7.setText("Precio");
 
-        jrbEstadoProd.setText("Activo");
+        jrbEstadoProd.setFont(new java.awt.Font("Eras Light ITC", 1, 12)); // NOI18N
+        jrbEstadoProd.setText("Disponible");
 
         jbNuevo.setText("Nuevo");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -109,87 +115,106 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel5.setText("$");
+
+        jLabel1.setText("Stock");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jbNuevo)
+                .addGap(18, 18, 18)
+                .addComponent(jbGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(jbModificar)
+                .addGap(18, 18, 18)
+                .addComponent(jbEliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jsProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jbBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(jrbEstadoProd))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jbBuscar))
-                                        .addComponent(jtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(88, 88, 88)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbEstadoProd)
-                                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbNuevo)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbGuardar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbModificar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbSalir)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 87, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jbBuscar)
-                    .addComponent(jtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jsProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jrbEstadoProd))
-                .addGap(41, 41, 41)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbModificar)
-                    .addComponent(jbSalir)
                     .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
                     .addComponent(jbGuardar))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jbSalir)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,36 +234,36 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try{
-            int codigoProducto=Integer.parseInt(jtProducto.getText());
-            Producto pedi=ad.buscarProductos(codigoProducto);
-            if(pedi !=null){
+            int codigoProducto=(int) jsProducto.getValue();
+            Producto pedi=pd.buscarProductos(codigoProducto);
+            if(pedi != null){
                 String nombre=pedi.getNombreProducto();
                 String descripcion=pedi.getDescripcion();
+                
                   jtNombreProducto.setText(nombre);
                   jtDescProducto.setText(descripcion);
-                
-                double precio=pedi.getPrecio();
-                   jtPrecio.setText(String.valueOf(precio));
+                  jrbEstadoProd.setSelected(pedi.isEstado());
+          
+                  double precio=pedi.getPrecio();
+                  int stock = pedi.getStock();
+                  jtPrecio.setText(String.valueOf(precio));
+                  jsStock.setValue(stock);
                 
                
-                jrbEstadoProd.setSelected(pedi.isEstado());
-                   
+                 activarCampos();
+                 jbNuevo.setEnabled(false);
+                 jbEliminar.setEnabled(true);
+                 jbGuardar.setEnabled(true);
                 
-                activarCampos();
-                jbNuevo.setEnabled(false);
-                jbEliminar.setEnabled(true);
-                jbModificar.setEnabled(true);
-                jbGuardar.setEnabled(false);
-                
+                JOptionPane.showMessageDialog(null, "Producto Encontrado");
             }else{
-                jbNuevo.setEnabled(true);
+               
                  limpiar();
             }
         
    
         } catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Ingresar codigo de producto");
-            jtProducto.requestFocus();
             limpiar();
             desactivarCampos();           
         
@@ -247,93 +272,89 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
-
-        try{
-            
-            int codigoProducto = Integer.parseInt(jtProducto.getText());
-            Producto producto=ad.buscarProductos(codigoProducto);
-            if (producto !=null){
-            
-                jtProducto.setText(String.valueOf(producto.getCodigoProducto()));
-                jtNombreProducto.setText(producto.getNombreProducto());
-                jtDescProducto.setText(producto.getDescripcion());
-                jtPrecio.setText(String.valueOf(producto.getPrecio()));
-                jrbEstadoProd.setText(String.valueOf(producto.isEstado()));
-                
-                ad.darDebajaProducto(codigoProducto);
-                
-                
-            }
-        limpiar();
-        desactivarCampos();
-        jbEliminar.setEnabled(false);
-        jbModificar.setEnabled(false);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Numero de producto invalido");
-            limpiar();
-            desactivarCampos();
-            jbNuevo.setEnabled(true);
-        
-        }
+//
+//        try{
+//            
+//            int codigoProducto = Integer.parseInt(jtProducto.getText());
+//            Producto producto=ad.buscarProductos(codigoProducto);
+//            if (producto !=null){
+//            
+//                jtProducto.setText(String.valueOf(producto.getCodigoProducto()));
+//                jtNombreProducto.setText(producto.getNombreProducto());
+//                jtDescProducto.setText(producto.getDescripcion());
+//                jtPrecio.setText(String.valueOf(producto.getPrecio()));
+//                jrbEstadoProd.setText(String.valueOf(producto.isEstado()));
+//                
+//                ad.darDebajaProducto(codigoProducto);
+//                
+//                
+//            }
+//        limpiar();
+//        desactivarCampos();
+//        jbEliminar.setEnabled(false);
+//        jbModificar.setEnabled(false);
+//        
+//        }catch(NumberFormatException e){
+//            JOptionPane.showMessageDialog(null,"Numero de producto invalido");
+//            limpiar();
+//            desactivarCampos();
+//            jbNuevo.setEnabled(true);
+//        
+//        }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
         
-     try {
-        int codigoProducto = Integer.parseInt(jtProducto.getText());
-        Producto producto = ad.buscarProductos(codigoProducto);
-
-        if (producto != null) {
-            String nombreP = jtNombreProducto.getText(); 
-            String descripcion = jtDescProducto.getText();
-            String precioStr = jtPrecio.getText();
-            boolean estado = jrbEstadoProd.isSelected();
-
-          
-            if (!nombreP.isEmpty() && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")) {
-                try {
-                    double precio = Double.parseDouble(precioStr);
-                    
-                    if (precio > 0){
-                        producto.setNombreProducto(nombreP);
-                        producto.setDescripcion(descripcion);
-                        producto.setPrecio(precio);
-                        producto.setEstado(estado);
-
-                        ad.modificarProducto(producto);
-
-                        limpiar();
-                        desactivarCampos();
-                       
-                        jbModificar.setEnabled(false);
-                        jbEliminar.setEnabled(false);
-                        
-                    } 
-                     
-                    
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Error precio y stock deben solo peuden ingresar numeros");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Error en nombre y descripcion solo puede ingresar caracteres o no puede dejar campos vacios");
-            }
-        }
-         
-    } catch (NumberFormatException a) {
-        JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
-    }
+//     try {
+//        int codigoProducto = Integer.parseInt(jtProducto.getText());
+//        Producto producto = ad.buscarProductos(codigoProducto);
+//
+//        if (producto != null) {
+//            String nombreP = jtNombreProducto.getText(); 
+//            String descripcion = jtDescProducto.getText();
+//            String precioStr = jtPrecio.getText();
+//            boolean estado = jrbEstadoProd.isSelected();
+//
+//          
+//            if (!nombreP.isEmpty() && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")) {
+//                try {
+//                    double precio = Double.parseDouble(precioStr);
+//                    
+//                    if (precio > 0){
+//                        producto.setNombreProducto(nombreP);
+//                        producto.setDescripcion(descripcion);
+//                        producto.setPrecio(precio);
+//                        producto.setEstado(estado);
+//
+//                        ad.modificarProducto(producto);
+//
+//                        limpiar();
+//                        desactivarCampos();
+//                       
+//                        jbModificar.setEnabled(false);
+//                        jbEliminar.setEnabled(false);
+//                        
+//                    } 
+//                     
+//                    
+//                } catch (NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(this, "Error precio y stock deben solo peuden ingresar numeros");
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error en nombre y descripcion solo puede ingresar caracteres o no puede dejar campos vacios");
+//            }
+//        }
+//         
+//    } catch (NumberFormatException a) {
+//        JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+//    }
         
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
         activarCampos();
-         jtProducto.requestFocus();
-        jtNombreProducto.setText("");
-        jtDescProducto.setText("");
-        jtPrecio.setText("");
         jrbEstadoProd.setSelected(false);
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
@@ -347,32 +368,58 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
         
-        Producto prod=new Producto();
-        
-        try{
-            int codigoProducto=Integer.parseInt(jtProducto.getText());
-            String nombreProducto=jtNombreProducto.getText();
-            String descripcionProducto=jtDescProducto.getText();
-            double precio=Double.parseDouble(jtPrecio.getText());
-            boolean estado=jrbEstadoProd.isSelected();
-            
-            prod.setCodigoProducto(codigoProducto);
-            prod.setNombreProducto(nombreProducto);
-            prod.setDescripcion(descripcionProducto);
-            prod.setPrecio(precio);
-            prod.setEstado(estado);
-            
-            ad.guardarProducto(prod);
-            
-            limpiar();
-            desactivarCampos();
-            jbNuevo.setEnabled(true);
-            jbGuardar.setEnabled(false);
-        
-        }catch(NumberFormatException a){
-            JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
-        
+     try {
+        int codigoProducto = (int) jsProducto.getValue();
+        Producto producto = pd.buscarProductos(codigoProducto);
+
+        String nombreP = jtNombreProducto.getText();
+        String descripcion = jtDescProducto.getText();
+        String precioP = jtPrecio.getText();
+        int srockP =(int) jsStock.getValue();
+        boolean estado = jrbEstadoProd.isSelected();
+
+        if (!nombreP.isEmpty() && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")) {
+            try {
+                double precio = Double.parseDouble(precioP);
+
+                if (precio > 0 ) {
+                    if (producto == null) {
+                        Producto prod = new Producto();
+                        prod.setCodigoProducto(codigoProducto);
+                        prod.setNombreProducto(nombreP);
+                        prod.setDescripcion(descripcion);
+                        prod.setPrecio(precio);
+                        prod.setStock(srockP);
+                        prod.setEstado(estado);
+                        pd.guardarProducto(prod);
+                    } else {
+                        producto.setNombreProducto(nombreP);
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                        producto.setStock(srockP);
+                        producto.setEstado(estado);
+                        pd.modificarProducto(producto);
+                    }
+
+                    limpiar();
+                    desactivarCampos();
+                    jbNuevo.setEnabled(true);
+                    jbGuardar.setEnabled(true);
+                    jbModificar.setEnabled(false);
+                    jbEliminar.setEnabled(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error en el nombre y descripción. Solo se permiten caracteres o no puede dejar campos vacíos.");
         }
+    } catch (NumberFormatException a) {
+        JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+    }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
 
@@ -381,6 +428,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton jbBuscar;
@@ -390,16 +438,18 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jrbEstadoProd;
+    private javax.swing.JSpinner jsProducto;
+    private javax.swing.JSpinner jsStock;
     private javax.swing.JTextField jtDescProducto;
     private javax.swing.JTextField jtNombreProducto;
     private javax.swing.JTextField jtPrecio;
-    private javax.swing.JTextField jtProducto;
     // End of variables declaration//GEN-END:variables
 
 private void desactivarCampos(){
         jtNombreProducto.setEnabled(false);
         jtDescProducto.setEnabled(false);
         jtPrecio.setEnabled(false);
+        jsStock.setEnabled(false);
         jrbEstadoProd.setEnabled(false);
 }
 
@@ -407,14 +457,16 @@ private void activarCampos (){
         jtNombreProducto.setEnabled(true);
         jtDescProducto.setEnabled(true);
         jtPrecio.setEnabled(true);
+        jsStock.setEnabled(true);
         jrbEstadoProd.setEnabled(true);
     }
 
 public void limpiar(){
-        jtProducto.setText("");
+        
         jtNombreProducto.setText("");
         jtDescProducto.setText("");
         jtPrecio.setText("");
+        jsStock.setEnabled(false);
         jrbEstadoProd.setSelected(false);
                        
 }    
