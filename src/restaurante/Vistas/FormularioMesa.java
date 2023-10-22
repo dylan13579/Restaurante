@@ -180,14 +180,13 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                     jrbActivaMesa.setSelected(mesa.isEstado());
                     
                             
-                activarCampos();
+                   activarCampos();
                 
-                 jbNuevaMesa.setEnabled(false);
-                jbGuardarMesa.setEnabled(true);
-              
-                jbLimpiar.setEnabled(true);
+                  jbNuevaMesa.setEnabled(false);
+                  jbGuardarMesa.setEnabled(true);
+                  jbLimpiar.setEnabled(true);
                 
-                JOptionPane.showMessageDialog(null, "Mesa Encontrada");
+                  JOptionPane.showMessageDialog(null, "Mesa Encontrada");
                 }else{
                     jbNuevaMesa.setEnabled(true);
                     limpiar();
@@ -219,8 +218,6 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
     private void jbGuardarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarMesaActionPerformed
         // TODO add your handling code here:
 
-        
-        //estoy tratndo de hacer que me guarde la mesa con el estado falso
         try{
             int numeroMesa=(int) jsNroMesa.getValue();
             String descripcion=jtDescripMesa.getText();
@@ -230,24 +227,24 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 estado = false;
             }
             if(!descripcion.isEmpty() && descripcion.matches("^[a-zA-Z ]+$")){
-            Mesa mesa=md.buscarMesaPorNum(numeroMesa);
+               Mesa mesa=md.buscarMesaPorNum(numeroMesa);
             
-            if(mesa == null){
+               if(mesa == null){
                 
-                mesa=new Mesa(numeroMesa, descripcion, estado);
-                md.guardarMesa(mesa);
-            }else{
-                mesa.setDescripcion(descripcion);
-                mesa.setEstado(estado);
-                md.modificarMesa(mesa);
+                    mesa=new Mesa(numeroMesa, descripcion, estado);
+                    md.guardarMesa(mesa);
+                  }else{
+                   mesa.setDescripcion(descripcion);
+                   mesa.setEstado(estado);
+                   md.modificarMesa(mesa);
                 
-                limpiar();
-                desactivarCampos();
+                    limpiar();
+                    desactivarCampos();
                 
-                jbLimpiar.setEnabled(false);            
-            }
-            jbNuevaMesa.setEnabled(false);
-            jbGuardarMesa.setEnabled(false);
+                    jbLimpiar.setEnabled(false);            
+                  }
+                  jbNuevaMesa.setEnabled(false);
+                  jbGuardarMesa.setEnabled(false);
             
             }else{
                 JOptionPane.showMessageDialog(null, "No puede ingresar numeros");
@@ -269,13 +266,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 jtDescripMesa.setText(mesa.getDescripcion());
                 jrbActivaMesa.setSelected(mesa.isEstado());
                 
-                md.darBajaMesaNumero(numeroMesa);
-                
+                md.darBajaMesaNumero(numeroMesa);  
             }
             
             limpiar();
             desactivarCampos();
-             jbGuardarMesa.setEnabled(false);
+            jbGuardarMesa.setEnabled(false);
             jbLimpiar.setEnabled(false);            
         
         }catch(NumberFormatException m){

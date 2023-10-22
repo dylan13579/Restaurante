@@ -5,6 +5,7 @@ package restaurante;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import restaurante.AccesoDatos.*;
 import restaurante.Entidades.*;
 
@@ -92,8 +93,11 @@ public class Restaurante {
 //            System.out.println("pedido");
 //        }
 
-            
-            
+//        PedidoData pedidonuevo = new PedidoData();
+//        for(Pedido obetener : pedidonuevo.obtenerPedidoCobrado(1)){
+//            System.out.println("Mesero"+obetener.getNombreMesero());
+//        }
+        
         
         
         
@@ -105,21 +109,33 @@ public class Restaurante {
         //produc.guardarProducto(pro);
           //produc.modificarProducto(pro);
           
-          //produc.darDebajaProducto(2);
+          //produc.darDebajaProducto(1);
           
 //          
-         ProductoData pro = new ProductoData();
-         Producto buscar = pro.buscarProductos(4);
-         
-         if(buscar != null){
-             System.out.println("codigo = "+buscar.getCodigoProducto());
-             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
-             System.out.println("Descripcion = "+buscar.getDescripcion());
-             System.out.println("Precio = "+buscar.getPrecio());
-             System.out.println("stock = "+buscar.getStock());
-             
-         }
-        
+         //ProductoData pro = new ProductoData();
+//         Producto buscar = pro.buscarProductos(4);
+//         
+//         if(buscar != null){
+//             System.out.println("codigo = "+buscar.getCodigoProducto());
+//             System.out.println("Nombre del Producto = "+buscar.getNombreProducto());
+//             System.out.println("Descripcion = "+buscar.getDescripcion());
+//             System.out.println("Precio = "+buscar.getPrecio());
+//             System.out.println("stock = "+buscar.getStock());
+//             
+//         }
+
+            
+            
+            ProductoData product = new ProductoData();
+                for (Producto lista : product.listarProductos()) {
+                    System.out.println("codigo = "+lista.getCodigoProducto());
+                    System.out.println("nombre = "+lista.getNombreProducto());
+                    System.out.println("descriocion = "+lista.getDescripcion());
+                    System.out.println("precio = "+lista.getPrecio());
+                    System.out.println("stock = "+lista.getStock());
+                    System.out.println("eatsdo = "+lista.isEstado());
+                    System.out.println("------");
+        }
 
 
 

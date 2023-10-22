@@ -199,20 +199,19 @@ public class PedidoData {
         }
     }  
 
-    public List<Pedido> obtenerPedidoCobrado(int idPedido, int mesa){
+    public List<Pedido> obtenerPedidoCobrado(int numeroMesa){
     
-        ArrayList<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND idPedido = ?";
+        List<Pedido> encargo = new ArrayList<>();
+        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND numeroMesa = ?";
 
     try{
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setInt(1, idPedido);
+        ps.setInt(1, numeroMesa);
 
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
-                //pedido.setNumeroMesa(rs.getInt("numeroMesa"));
                 pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedido.setHora(rs.getTime("Hora").toLocalTime());
                 pedido.setImporte(rs.getDouble("importe"));
@@ -221,7 +220,7 @@ public class PedidoData {
             }
         }
     } catch (SQLException ex) {
-        ex.printStackTrace(); // Log the exception for debugging
+        ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
     }
     return encargo;
