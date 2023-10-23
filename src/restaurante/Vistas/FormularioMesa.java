@@ -47,7 +47,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
         setTitle("Registros de las Mesas");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel2.setText("Numero de Mesa:");
 
         jbBuscarMesa.setText("Buscar");
@@ -57,12 +57,13 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel3.setText("Descripcion:");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel4.setText("Estado:");
 
+        jrbActivaMesa.setFont(new java.awt.Font("Eras Light ITC", 1, 12)); // NOI18N
         jrbActivaMesa.setText("Reservada");
 
         jbNuevaMesa.setText("Nueva");
@@ -123,7 +124,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
