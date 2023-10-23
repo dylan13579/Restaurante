@@ -31,7 +31,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
+        jbPrueba = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -54,14 +54,19 @@ public class Menu extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 883, Short.MAX_VALUE)
+            .addGap(0, 1162, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
+        jbPrueba.setText("Prueba");
+        jbPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPruebaActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Recepcion");
 
@@ -151,17 +156,17 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                .addComponent(jbPrueba)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jbPrueba)
+                .addContainerGap(603, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
 
         pack();
@@ -262,6 +267,18 @@ public class Menu extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jbPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPruebaActionPerformed
+        // TODO add your handling code here:
+
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListaDeProductos lisP =new ListaDeProductos();
+        lisP.setVisible(true);
+        escritorio.add(lisP);
+        escritorio.moveToFront(lisP);
+        
+    }//GEN-LAST:event_jbPruebaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,7 +317,6 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -314,5 +330,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JButton jbPrueba;
     // End of variables declaration//GEN-END:variables
 }
