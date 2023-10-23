@@ -37,14 +37,14 @@ public class Restaurante {
 //        }
             
             //metodos listar
-//        MesaData me = new MesaData();
-//        for (Mesa mesa : me.listarMesasdisponibles()) {
-//            System.out.println("Mesa disponible");
-//            System.out.println("numero: "+mesa.getNumeroMesa());
-//            System.out.println("cantidad: "+mesa.getDescripcion());
-//            System.out.println("estado: "+mesa.isEstado());
-//            System.out.println("");
-//        }
+        MesaData me = new MesaData();
+        for (Mesa mesa : me.listarMesasdisponibles()) {
+            System.out.println("Mesa disponible");
+            System.out.println("numero: "+mesa.getNumeroMesa());
+            System.out.println("cantidad: "+mesa.getDescripcion());
+            System.out.println("estado: "+mesa.isEstado());
+           
+        }
 //        MesaData me = new MesaData();
 //        for (Mesa mesa : me.listarMesasNodisponibles()) {
 //            System.out.println("Mesa no disponible");
@@ -126,16 +126,16 @@ public class Restaurante {
 
             
             
-            ProductoData product = new ProductoData();
-                for (Producto lista : product.listarProductos()) {
-                    System.out.println("codigo = "+lista.getCodigoProducto());
-                    System.out.println("nombre = "+lista.getNombreProducto());
-                    System.out.println("descriocion = "+lista.getDescripcion());
-                    System.out.println("precio = "+lista.getPrecio());
-                    System.out.println("stock = "+lista.getStock());
-                    System.out.println("eatsdo = "+lista.isEstado());
-                    System.out.println("------");
-        }
+//            ProductoData product = new ProductoData();
+//                for (Producto lista : product.listarProductos()) {
+//                    System.out.println("codigo = "+lista.getCodigoProducto());
+//                    System.out.println("nombre = "+lista.getNombreProducto());
+//                    System.out.println("descriocion = "+lista.getDescripcion());
+//                    System.out.println("precio = "+lista.getPrecio());
+//                    System.out.println("stock = "+lista.getStock());
+//                    System.out.println("eatsdo = "+lista.isEstado());
+//                    System.out.println("------");
+//        }
 
 
 

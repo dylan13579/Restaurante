@@ -59,7 +59,7 @@ public class Mesa {
 
     @Override
     public String toString() {
-        return numeroMesa+ ", " +descripcion+", "+estado;
+        return numeroMesa+ ", " +descripcion;
     }
     
     
