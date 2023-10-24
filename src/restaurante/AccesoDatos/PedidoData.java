@@ -219,8 +219,7 @@ public class PedidoData {
                 encargo.add(pedido);
             }
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
+    } catch (SQLException ex) {        
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pedido");
     }
     return encargo;
@@ -229,7 +228,7 @@ public class PedidoData {
     public List<Pedido>obtenerPedidosNoCobrados(int idPedido){
     
         List<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";
+        String sql = "SELECT idPedido, nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 0";//saque numeroMesa
         
     
         try {
@@ -238,8 +237,7 @@ public class PedidoData {
             try(ResultSet rs = ps.executeQuery()){
                 while(rs.next()){
                     Pedido pedido = new Pedido();
-                    pedido.setIdPedido(rs.getInt("idPedido"));
-                    //pedido.setNumeroMesa(rs.getInt("Nro.Mesa"));
+                    pedido.setIdPedido(rs.getInt("idPedido"));//saque numero mesa                    
                     pedido.setNombreMesero(rs.getString("nombreMesero"));
                     pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                     pedido.setHora(rs.getTime("Hora").toLocalTime());
