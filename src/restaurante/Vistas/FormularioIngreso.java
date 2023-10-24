@@ -1,10 +1,15 @@
 
 package restaurante.Vistas;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import restaurante.AccesoDatos.MesaData;
+import restaurante.AccesoDatos.PedidoData;
 import restaurante.Entidades.Mesa;
+import restaurante.Entidades.Pedido;
 
 /**
  *
@@ -16,6 +21,8 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
   
   private MesaData meData;
   
+  private PedidoData pd;
+  
    
   
   
@@ -25,9 +32,9 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
        
           meData = new MesaData();
           listarM = meData.listarMesasdisponibles();
-          cargarPedido();
+          pd = new PedidoData();
     
-    jcbMesa.setSelectedIndex(-1);
+   
     }
 
     /**
@@ -42,15 +49,15 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        nuevaFecha = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        nuevaHora = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jcbMesa = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        jtMesero = new javax.swing.JTextField();
+        jsNroMesa = new javax.swing.JSpinner();
 
         jLabel2.setText("Asignar Mesa:");
 
@@ -60,7 +67,14 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Hora:");
 
+        nuevaHora.setDateFormatString("HH:mm:ss");
+
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Modificar");
 
@@ -98,20 +112,23 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(180, 180, 180)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nuevaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(138, 138, 138)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcbMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(42, 42, 42)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(16, 16, 16)
+                .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -128,14 +145,13 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
                             .addComponent(jButton3)
                             .addComponent(jButton4)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jcbMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                        .addComponent(nuevaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,27 +168,53 @@ public class FormularioIngreso extends javax.swing.JInternalFrame {
             
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+      Pedido pe = new Pedido();
+      int numeroMesa = (int) jsNroMesa.getValue();
+      String mesero = jtMesero.getText();
+
+      if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
+        LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
+        pe.setNombreMesero(mesero);
+        pe.setFecha(fecha);
+        pe.setHora(hora);
+
+        Mesa mesa = new Mesa();
+        mesa.setNumeroMesa(numeroMesa);
+
+        pd.guardarPedido(pe, mesa);
+    
+      } else {
+        JOptionPane.showMessageDialog(this, "El campo 'Mesero' solo debe contener letras y espacios.");
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
+    }
+  
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JComboBox<Mesa> jcbMesa;
+    private javax.swing.JSpinner jsNroMesa;
+    private javax.swing.JTextField jtMesero;
+    private com.toedter.calendar.JDateChooser nuevaFecha;
+    private com.toedter.calendar.JDateChooser nuevaHora;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarPedido(){
-        for (Mesa pedido : listarM) {
-            jcbMesa.addItem(pedido);
-        }
-    }
+    
 
    
 }

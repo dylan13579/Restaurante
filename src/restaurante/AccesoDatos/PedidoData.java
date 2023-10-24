@@ -53,7 +53,7 @@ public class PedidoData {
                 if (rs.next()) {
                     int genera = rs.getInt(1);
                     pedido.setIdPedido(genera);
-                    JOptionPane.showMessageDialog(null, "Pedido agregado ");
+                    JOptionPane.showMessageDialog(null, "se he reservado esta Mesa");
                 }
             }
 
