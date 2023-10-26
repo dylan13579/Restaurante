@@ -288,6 +288,8 @@ public class PedidoData {
         }
         return pedidos;
     }
+    
+    
 
    public Pedido BuscarPedidoPorNum(int numeroMesa) {
     Pedido pedido = null;
@@ -322,5 +324,27 @@ public class PedidoData {
 
     return pedido;
     }
+   
+   public List<Pedido> listasMeseros(){
+      
+        String sql = "SELECT DISTINCT nombreMesero FROM pedido";
+    List<Pedido> listaMeseros = new ArrayList<>();
+
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+         Pedido lista = new Pedido();
+         lista.setNombreMesero(rs.getString("nombreMesero"));
+         
+         listaMeseros.add(lista);
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido: " + ex.getMessage());
+    }
+
+    return listaMeseros;
+   }
 }    
       

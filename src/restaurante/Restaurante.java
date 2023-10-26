@@ -102,7 +102,11 @@ public class Restaurante {
 //            System.out.println("Mesero"+obetener.getNombreMesero());
 //        }
         
-        
+        PedidoData listaM = new PedidoData();
+        for (Pedido p : listaM.listasMeseros()) {
+            System.out.println("Mesero "+p.getNombreMesero());
+          
+        }
         
         
         //Pruebas de Producto
@@ -152,15 +156,18 @@ public class Restaurante {
          //pp.modificarProducto(3, 2, 3);
          //pp.elimanrpedido(10);
        
-       PedidoData pedir = new PedidoData();
-       int numeroMesa = 2;
-      Pedido yo = pedir.BuscarPedidoPorNum(numeroMesa);
-  
-        System.out.println("n "+yo.getNombreMesero());
-        System.out.println("y "+yo.getFecha());
-        System.out.println("w "+yo.getHora());
-        System.out.println("r "+yo.getImporte());
-  
+         
+//         
+//         
+//       PedidoData pedir = new PedidoData();
+//       int numeroMesa = 2;
+//      Pedido yo = pedir.BuscarPedidoPorNum(numeroMesa);
+//  
+//        System.out.println("n "+yo.getNombreMesero());
+//        System.out.println("y "+yo.getFecha());
+//        System.out.println("w "+yo.getHora());
+//        System.out.println("r "+yo.getImporte());
+//  
  
         
   
