@@ -172,5 +172,31 @@ public class ProductoData {
         
       return listar;  
     }
+    
+    public List<Producto> listarPlatos(){
+        String sql = "SELECT codigoProducto, nombreProducto, precio FROM producto WHERE estado = 1";
+        
+        ArrayList<Producto> listar = new ArrayList<>();
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
             
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                Producto pn = new Producto();
+                
+                pn.setCodigoProducto(rs.getInt("codigoProducto"));
+                pn.setNombreProducto(rs.getString("nombreProducto"));
+                pn.setPrecio(rs.getDouble("precio"));
+                
+                listar.add(pn);
+                
+            }
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto");
+        }
+        
+      return listar;     
+    
+    }
 }

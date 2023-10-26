@@ -17,7 +17,7 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-        //MesaData me=new MesaData(); //creando instancia data
+//        MesaData me=new MesaData(); //creando instancia data
 //        
 //        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
 //            me.guardarMesa(m);
@@ -37,14 +37,14 @@ public class Restaurante {
 //        }
             
             //metodos listar
-        MesaData me = new MesaData();
-        for (Mesa mesa : me.listarMesasdisponibles()) {
-            System.out.println("Mesa disponible");
-            System.out.println("numero: "+mesa.getNumeroMesa());
-            System.out.println("cantidad: "+mesa.getDescripcion());
-            System.out.println("estado: "+mesa.isEstado());
-           
-        }
+//        MesaData me = new MesaData();
+//        for (Mesa mesa : me.listarMesasdisponibles()) {
+//            System.out.println("Mesa disponible");
+//            System.out.println("numero: "+mesa.getNumeroMesa());
+//            System.out.println("cantidad: "+mesa.getDescripcion());
+//            System.out.println("estado: "+mesa.isEstado());
+//           
+//        }
 //        MesaData me = new MesaData();
 //        for (Mesa mesa : me.listarMesasNodisponibles()) {
 //            System.out.println("Mesa no disponible");
@@ -59,7 +59,7 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-        //PedidoData pe = new PedidoData();
+        PedidoData pe = new PedidoData();
 //   
 //          Mesa mesa = new Mesa();
 //          mesa.setNumeroMesa(1);
@@ -74,7 +74,11 @@ public class Restaurante {
            // pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
-              
+             
+//              Mesa mesa = new Mesa();
+//              mesa.setNumeroMesa(17);
+//              
+//              pe.BuscarPedidoPorNum(18, Pedido);
              
 //               Pedido pedido = new Pedido();
 //               pedido.setNombreMesero("Dylan Jofre Villegas ");
@@ -148,8 +152,35 @@ public class Restaurante {
          //pp.modificarProducto(3, 2, 3);
          //pp.elimanrpedido(10);
        
+        // Crear una instancia de Pedido y configurar los detalles del pedido
+        Pedido pedido = new Pedido();
+        PedidoData
+        pedido.setNombreMesero("NombreMesero"); // Reemplaza con el nombre del mesero
+        pedido.setFecha(LocalDate.now()); // Fecha actual
+        pedido.setHora(LocalTime.now()); // Hora actual
+        pedido.setImporte(0.0); // Importe del pedido (reemplaza con el valor real)
         
+        int numeroMesa = 1; // Número de mesa que deseas buscar
+
+        pedido
+        // Crear una instancia de la clase que contiene el método BuscarPedidoPorNum
+       
+//        if (pedidoEncontrado != null) {
+//            // Se encontró un pedido para la mesa especificada
+//            System.out.println("Pedido encontrado para la mesa " + numeroMesa);
+//            System.out.println("ID del Pedido: " + pedidoEncontrado.getIdPedido());
+//            System.out.println("Nombre del Mesero: " + pedidoEncontrado.getNombreMesero());
+//            System.out.println("Fecha: " + pedidoEncontrado.getFecha());
+//            System.out.println("Hora: " + pedidoEncontrado.getHora());
+//            System.out.println("Importe: " + pedidoEncontrado.getImporte());
+//            System.out.println("Cobrada: " + pedidoEncontrado.isCobrada());
+//        } else {
+//            // No se encontró un pedido para la mesa especificada
+//            System.out.println("No se encontró un pedido para la mesa " + numeroMesa);
+//        }
+    }
+       
           
     }
-           
-}
+
+ 

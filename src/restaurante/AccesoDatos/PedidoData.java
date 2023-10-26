@@ -287,6 +287,42 @@ public class PedidoData {
             
         }
         return pedidos;
-    }    
+    }
+
+    public Pedido BuscarPedidoPorNum(int numeroMesa, Pedido pedido){
+    
+        String sql = "SELECT p.idPedido, p.numeroMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
+                + "FROM pedido p "
+                + "JOIN mesa m "
+                + "ON p.numeroMesa = m.numeroMesa "
+                + "WHERE p.cobrada = 0 "
+                + "AND m.numeroMesa = 1";
+        
+        Mesa mesa = null;        
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            
+            ps.setInt(1, numeroMesa);
+            ps.setString(2, pedido.getNombreMesero());
+            ps.setDate(3,Date.valueOf(pedido.getFecha()));
+            ps.setTime(4, Time.valueOf(pedido.getHora()));
+            ps.setDouble(5, pedido.getImporte());
+            ps.setBoolean(6, true);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                mesa = new Mesa();
+                
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));                            
+            
+            }else{
+                 JOptionPane.showMessageDialog(null, "Ese Numero de Mesa es invalido y no puede ingresar Caracteres ");                                    
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+        return pedido;            
+    }
 }    
       

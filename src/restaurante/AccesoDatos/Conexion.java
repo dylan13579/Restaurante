@@ -17,7 +17,7 @@ public class Conexion {
     private static Connection conectar;
     
     
-    private Conexion(){}
+    Conexion(){}
     
     public static Connection getConexion(){
     

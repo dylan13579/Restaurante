@@ -30,17 +30,17 @@ public class PedidoProductoData {
     }
    
     
-    public void guardarPedidoProducto(int numeroPedido, int pedido, int codigoProducto, int cantidad){
+    public void guardarPedidoProducto(int numeroPedido, int pedido){
         
-         String sql = "INSERT INTO pedidoproducto(numeroPedido, idPedido, codigoProducto, cantidad) VALUES (?, ?, ?, ?)";
+         String sql = "INSERT INTO pedidoproducto(numeroPedido, idPedido) VALUES (?, ?)";//se descarta int codigoProducto y cantidad
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, numeroPedido);
             ps.setInt(2, pedido);
-            ps.setInt(3, codigoProducto);
-            ps.setInt(4, cantidad);
+//            ps.setInt(3, codigoProducto);
+//            ps.setInt(4, cantidad);
 
             ps.executeUpdate();
 
