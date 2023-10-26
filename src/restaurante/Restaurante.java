@@ -59,7 +59,7 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-        PedidoData pe = new PedidoData();
+        //PedidoData pe = new PedidoData();
 //   
 //          Mesa mesa = new Mesa();
 //          mesa.setNumeroMesa(1);
@@ -90,10 +90,10 @@ public class Restaurante {
 //        pe.cancelarPedidoId(8);
 //        pe.cancelarPedidoNumeroMesa(9);
          
-        
+//        
 //        PedidoData pe=new PedidoData();
-//        for(Pedido pedido : pe.listarPedidos(7)){
-//            System.out.println("mesas pagadas= "+pedido);
+//        for(Pedido pedido : pe.listarPedidos(4)){
+//            System.out.println("mesas pagadas = "+pedido);
 //            System.out.println("pedido");
 //        }
 
@@ -152,32 +152,18 @@ public class Restaurante {
          //pp.modificarProducto(3, 2, 3);
          //pp.elimanrpedido(10);
        
-        // Crear una instancia de Pedido y configurar los detalles del pedido
-        Pedido pedido = new Pedido();
-        PedidoData
-        pedido.setNombreMesero("NombreMesero"); // Reemplaza con el nombre del mesero
-        pedido.setFecha(LocalDate.now()); // Fecha actual
-        pedido.setHora(LocalTime.now()); // Hora actual
-        pedido.setImporte(0.0); // Importe del pedido (reemplaza con el valor real)
+       PedidoData pedir = new PedidoData();
+       int numeroMesa = 2;
+      Pedido yo = pedir.BuscarPedidoPorNum(numeroMesa);
+  
+        System.out.println("n "+yo.getNombreMesero());
+        System.out.println("y "+yo.getFecha());
+        System.out.println("w "+yo.getHora());
+        System.out.println("r "+yo.getImporte());
+  
+ 
         
-        int numeroMesa = 1; // Número de mesa que deseas buscar
-
-        pedido
-        // Crear una instancia de la clase que contiene el método BuscarPedidoPorNum
-       
-//        if (pedidoEncontrado != null) {
-//            // Se encontró un pedido para la mesa especificada
-//            System.out.println("Pedido encontrado para la mesa " + numeroMesa);
-//            System.out.println("ID del Pedido: " + pedidoEncontrado.getIdPedido());
-//            System.out.println("Nombre del Mesero: " + pedidoEncontrado.getNombreMesero());
-//            System.out.println("Fecha: " + pedidoEncontrado.getFecha());
-//            System.out.println("Hora: " + pedidoEncontrado.getHora());
-//            System.out.println("Importe: " + pedidoEncontrado.getImporte());
-//            System.out.println("Cobrada: " + pedidoEncontrado.isCobrada());
-//        } else {
-//            // No se encontró un pedido para la mesa especificada
-//            System.out.println("No se encontró un pedido para la mesa " + numeroMesa);
-//        }
+  
     }
        
           
