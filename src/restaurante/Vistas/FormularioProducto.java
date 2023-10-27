@@ -161,7 +161,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                                         .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(14, 14, 14)
-                                        .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 87, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -339,7 +339,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                         limpiar();
                         desactivarCampos();
                         jbNuevo.setEnabled(true);
-                        jbGuardar.setEnabled(true);
+                        jbGuardar.setEnabled(false);
                         jbLimpiar.setEnabled(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
