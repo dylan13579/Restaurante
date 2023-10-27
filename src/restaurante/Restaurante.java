@@ -101,11 +101,24 @@ public class Restaurante {
 //        for(Pedido obetener : pedidonuevo.obtenerPedidoCobrado(1)){
 //            System.out.println("Mesero"+obetener.getNombreMesero());
 //        }
-        
-        PedidoData listaM = new PedidoData();
-        for (Pedido p : listaM.listasMeseros()) {
-            System.out.println("Mesero "+p.getNombreMesero());
-          
+//        
+//        PedidoData listaM = new PedidoData();
+//        for (Pedido p : listaM.listasMeseros()) {
+//            System.out.println("Mesero "+p.getNombreMesero());
+//          
+//        }
+
+         PedidoData cobradas = new PedidoData();
+         List<Pedido> pagados = cobradas.pedidoCobrados() ;
+         for (Pedido listo : pagados) {
+         
+              System.out.println("mesa = "+listo.getNumeroMesa());
+              System.out.println("mesero = "+listo.getNombreMesero());
+              System.out.println("fecha ="+listo.getFecha());
+              System.out.println("hora ="+listo.getHora());
+              System.out.println("tolal ="+listo.getImporte());
+              System.out.println("cobrada ="+listo.isCobrado());    
+              System.out.println("----");    
         }
         
         
