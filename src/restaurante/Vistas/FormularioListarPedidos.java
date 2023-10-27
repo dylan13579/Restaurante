@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package restaurante.Vistas;
 
 import java.time.LocalDate;
@@ -17,21 +13,16 @@ import restaurante.AccesoDatos.PedidoData;
 import restaurante.Entidades.Mesa;
 import restaurante.Entidades.Pedido;
 
-/**
- *
- * @author Gustavo
- */
+
 public class FormularioListarPedidos extends javax.swing.JInternalFrame {
 
     private List<Pedido> listaP;
+    private List<Pedido> listaM;
     private MesaData mData;
     private PedidoData pData;
     private DefaultTableModel modelo;
     
-    
-    
-    
-    
+ 
     /**
      * Creates new form FormularioListarPedidos
      */
@@ -56,9 +47,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         jbCobrar.setEnabled(false);
         jbAnular.setEnabled(false);
         jbLimpiar.setEnabled(false);
-        
-        
-        
+       
     }
 
     /**
@@ -294,7 +283,28 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         }
     }
     
-   
+    private void pedidosCobrados(){
+    
+    Pedido selec = (Pedido) jcbMesero.getSelectedItem();
+    
+    listaM = pData.pedidoCobrados();
+    
+    for(Pedido p : listaM){
+        
+        modelo.addRow(new Object[]{p.getIdPedido(), p.getNumeroMesa(), p.getNombreMesero(), p.getFecha(), p.getHora(), p.getImporte(), p.isCobrado()});
+    }
+    }
 
+    private void pedidosNoCobrados(){
+    
+    Pedido selec = (Pedido) jcbMesero.getSelectedItem();
+    
+    listaM = pData.pedidoNoCobrados();
+    
+    for(Pedido p : listaM){
+        
+        modelo.addRow(new Object[]{p.getIdPedido(), p.getNumeroMesa(), p.getNombreMesero(), p.getFecha(), p.getHora(), p.getImporte(), p.isCobrado()});
+    }    
+    }
     
 }
