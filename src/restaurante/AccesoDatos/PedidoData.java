@@ -369,6 +369,7 @@ public class PedidoData {
             p.setFecha(rs.getDate("Fecha").toLocalDate());
             p.setHora(rs.getTime("Hora").toLocalTime());
             p.setImporte(rs.getDouble("importe"));
+            p.setCobrado(true);
             
 
             cobrados.add(p);

@@ -206,7 +206,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         borrarFilasTabla();
         jrbNoCobrado.setSelected(false);
         
-        
+        pedidosYACobrados();
         jbAnular.setSelected(true);
         jbCobrar.setSelected(false);
         jbLimpiar.setSelected(true);
@@ -219,7 +219,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         borrarFilasTabla();
         jrbCobrado.setSelected(false);
         
-        
+        pedidosNoCobrados();
         jbAnular.setSelected(false);
         jbCobrar.setSelected(true);
         jbLimpiar.setSelected(true);
@@ -283,28 +283,53 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         }
     }
     
-    private void pedidosCobrados(){
-    
-    Pedido selec = (Pedido) jcbMesero.getSelectedItem();
-    
-    listaM = pData.pedidoCobrados();
-    
-    for(Pedido p : listaM){
-        
-        modelo.addRow(new Object[]{p.getIdPedido(), p.getNumeroMesa(), p.getNombreMesero(), p.getFecha(), p.getHora(), p.getImporte(), p.isCobrado()});
-    }
-    }
+   public void pedidosYACobrados(){
+       
+      Pedido meseroSeleccionado = (Pedido) jcbMesero.getSelectedItem();
 
-    private void pedidosNoCobrados(){
-    
-    Pedido selec = (Pedido) jcbMesero.getSelectedItem();
-    
-    listaM = pData.pedidoNoCobrados();
-    
-    for(Pedido p : listaM){
+    if (meseroSeleccionado != null) {
+
+        borrarFilasTabla();
+
+
+        List<Pedido> cobrados = pData.pedidoCobrados(meseroSeleccionado.getIdPedido());
+
+        for (Pedido pedido : cobrados) {
+            modelo.addRow(new Object[] {
+                pedido.getIdPedido(),
+                pedido.getNombreMesero(),
+                pedido.getFecha(),
+                pedido.getHora(),
+                pedido.getImporte(),
+                pedido.isCobrado()
+            });
+        }
+    }
+       
+   }
+
+     public void pedidosNoCobrados(){
         
-        modelo.addRow(new Object[]{p.getIdPedido(), p.getNumeroMesa(), p.getNombreMesero(), p.getFecha(), p.getHora(), p.getImporte(), p.isCobrado()});
-    }    
+         Pedido meseroSeleccionado = (Pedido) jcbMesero.getSelectedItem();
+         
+         if (meseroSeleccionado != null) {
+             
+              borrarFilasTabla();
+              
+              List<Pedido> nocobrados = pData.pedidoNoCobrados(meseroSeleccionado.getIdPedido());
+              
+               for (Pedido pedido : nocobrados) {
+            modelo.addRow(new Object[] {
+                pedido.getIdPedido(),
+                pedido.getNombreMesero(),
+                pedido.getFecha(),
+                pedido.getHora(),
+                pedido.getImporte(),
+                pedido.isCobrado()
+            });
+        }
+             
+         }
     }
     
 }
