@@ -99,7 +99,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return numeroMesa +", " +nombreMesero +", " +fecha +", " +hora +", " +importe +", "+ cobrado +", ";
+        return nombreMesero ;
     }
   
 }

@@ -341,10 +341,23 @@ public class PedidoData {
          listaMeseros.add(lista);
         }
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido: " + ex.getMessage());
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido: ");
     }
 
     return listaMeseros;
    }
+   
+    public List<Pedido> pedidoCobrados(Mesa mesa){
+        String sql = "SELECT * FROM pedido WHERE cobrada = 1";
+        
+          List<Pedido> cobrado = new ArrayList<>();
+                
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+    }
 }    
       
