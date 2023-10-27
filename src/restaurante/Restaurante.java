@@ -108,19 +108,25 @@ public class Restaurante {
 //          
 //        }
 
-         PedidoData cobradas = new PedidoData();
-         List<Pedido> pagados = cobradas.pedidoCobrados() ;
-         for (Pedido listo : pagados) {
-         
-              System.out.println("mesa = "+listo.getNumeroMesa());
-              System.out.println("mesero = "+listo.getNombreMesero());
-              System.out.println("fecha ="+listo.getFecha());
-              System.out.println("hora ="+listo.getHora());
-              System.out.println("tolal ="+listo.getImporte());
-              System.out.println("cobrada ="+listo.isCobrado());    
-              System.out.println("----");    
+//         PedidoData cobradas = new PedidoData();
+//        for (Pedido pedir : cobradas.pedidoCobrados(4)) {
+//    
+//              System.out.println("mesero = "+pedir.getNombreMesero());
+//              System.out.println("fecha = "+pedir.getFecha());
+//              System.out.println("hora = "+pedir.getHora());
+//              System.out.println("tolal = "+pedir.getImporte());
+//              System.out.println("cobrada = "+pedir.isCobrado());    
+//              System.out.println("----");    
+//        }
+             PedidoData nocobradas = new PedidoData();
+        for (Pedido pedir : nocobradas.pedidoCobrados(2)) {
+            System.out.println("mesero = "+pedir.getNombreMesero());
+              System.out.println("fecha = "+pedir.getFecha());
+              System.out.println("hora = "+pedir.getHora());
+              System.out.println("tolal = "+pedir.getImporte());
+              System.out.println("cobrada = "+pedir.isCobrado());    
+              System.out.println("----"); 
         }
-        
         
         //Pruebas de Producto
         

@@ -347,7 +347,41 @@ public class PedidoData {
     return listaMeseros;
    }
    
-    public List<Pedido> pedidoCobrados(){
+    public List<Pedido> pedidoCobrados(int mesa){
+        String sql = "SELECT p.idPedido, p.numeroMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
+                + "FROM pedido p "
+                + "JOIN mesa m "
+                + "ON p.numeroMesa = m.numeroMesa WHERE p.cobrada = 1";
+        
+          List<Pedido> cobrados = new ArrayList<>();
+                    
+      try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        
+        ps.setInt(1, mesa);
+        
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Pedido p = new Pedido();
+           
+            p.setNombreMesero(rs.getString("nombreMesero"));
+            p.setFecha(rs.getDate("Fecha").toLocalDate());
+            p.setHora(rs.getTime("Hora").toLocalTime());
+            p.setImporte(rs.getDouble("importe"));
+            
+
+            cobrados.add(p);
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido: " + ex.getMessage());
+    }
+
+    return cobrados;
+          
+    }
+    
+    public List<Pedido> pedidoNoCobrados(int mesa){
         String sql = "SELECT p.idPedido, p.numeroMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
                 + "FROM pedido p "
                 + "JOIN mesa m "
@@ -358,15 +392,13 @@ public class PedidoData {
       try {
         PreparedStatement ps = wifi.prepareStatement(sql);
         
-    
-
+        ps.setInt(1, mesa);
+        
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             Pedido p = new Pedido();
-            Mesa m = new Mesa();
-            
-            m.setNumeroMesa(rs.getInt("numeroMesa"));
+           
             p.setNombreMesero(rs.getString("nombreMesero"));
             p.setFecha(rs.getDate("Fecha").toLocalDate());
             p.setHora(rs.getTime("Hora").toLocalTime());
