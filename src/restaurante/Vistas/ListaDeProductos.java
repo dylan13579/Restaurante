@@ -1,6 +1,7 @@
 
 package restaurante.Vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante.AccesoDatos.ProductoData;
 import restaurante.Entidades.Producto;
@@ -37,6 +38,7 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
         jtfListPro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtListarPro = new javax.swing.JTable();
+        jbSalida = new javax.swing.JButton();
 
         jLabel1.setText("Ingrese el Nombre del Producto");
 
@@ -59,6 +61,13 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtListarPro);
 
+        jbSalida.setText("Salir");
+        jbSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,6 +83,10 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbSalida)
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +97,9 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
                     .addComponent(jtfListPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jbSalida)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -96,7 +111,7 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
         borrarFilas();
         for(Producto pro : prod.listarProductos()){
             
-            if(pro.getNombreProducto().startsWith(jtfListPro.getText())){
+            if(pro.getNombreProducto().toUpperCase().startsWith(jtfListPro.getText().toUpperCase())){
                 
                 modelo.addRow(new Object[]{
                     pro.getCodigoProducto(),
@@ -112,10 +127,21 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jtfListProKeyReleased
 
+    private void jbSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalidaActionPerformed
+            // TODO add your handling code here:
+        int eleccion = JOptionPane.showConfirmDialog(this, "¿Desea salir del Formulario?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+            if (eleccion== JOptionPane.YES_OPTION){
+                dispose();
+            }else if (eleccion== JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "¿Desea seguir en el Formulario?", "Confirmacion", JOptionPane.CLOSED_OPTION);
+            }
+    }//GEN-LAST:event_jbSalidaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbSalida;
     private javax.swing.JTable jtListarPro;
     private javax.swing.JTextField jtfListPro;
     // End of variables declaration//GEN-END:variables

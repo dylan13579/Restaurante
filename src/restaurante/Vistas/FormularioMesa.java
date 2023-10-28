@@ -1,19 +1,33 @@
 
 package restaurante.Vistas;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.table.DefaultTableModel;
 import restaurante.AccesoDatos.MesaData;
 import restaurante.Entidades.Mesa;
 
 public class FormularioMesa extends javax.swing.JInternalFrame {
     
     private MesaData md;
+    private DefaultTableModel modelo1 = new DefaultTableModel();
+    private DefaultTableModel modelo2 = new DefaultTableModel();
+    private List<Mesa> listaM;
     
-
     public FormularioMesa() {
         initComponents();
         
+        SpinnerNumberModel num = new SpinnerNumberModel();
+        num.setMinimum(0);
+        jsNroMesa.setModel(num);//limitar spinner
+        
+        armarCabecera1();
+        armarCabecera2();
         md=new MesaData();
+        listaM = md.listarMesasdisponibles();
+        armarTabla1();
+        armarTabla2();
         
         desactivarCampos();
         jbGuardarMesa.setEnabled(false);
@@ -44,6 +58,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jtDescripMesa = new javax.swing.JTextField();
         jbGuardarMesa = new javax.swing.JButton();
         jsNroMesa = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Registros de las Mesas");
 
@@ -87,6 +107,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        jtDescripMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtDescripMesaActionPerformed(evt);
+            }
+        });
+
         jbGuardarMesa.setText("Guardar");
         jbGuardarMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,66 +120,137 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "IdMesa", "NumeroMesa", "Descripcion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "idmesa", "numeroMesa", "descripcion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel1.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel1.setText("Disponibles para Servicio");
+
+        jLabel5.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jLabel5.setText("No Disponibles para Servicio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbNuevaMesa)
-                        .addGap(109, 109, 109)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbGuardarMesa)
-                        .addGap(103, 103, 103)
+                        .addGap(50, 50, 50)
                         .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(120, 120, 120)
-                        .addComponent(jrbActivaMesa))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(jbBuscarMesa))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                            .addComponent(jrbActivaMesa)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbBuscarMesa))
+                                .addComponent(jtDescripMesa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(134, 134, 134))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(120, 120, 120))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtDescripMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jrbActivaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbNuevaMesa)
-                    .addComponent(jbLimpiar)
-                    .addComponent(jbGuardarMesa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jsNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jbBuscarMesa))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtDescripMesa)
+                                .addGap(55, 55, 55))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jrbActivaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbNuevaMesa)
+                            .addComponent(jbGuardarMesa)
+                            .addComponent(jbLimpiar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(14, 14, 14)
                 .addComponent(jbSalir)
-                .addGap(20, 20, 20))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -246,7 +343,12 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                   }
                   jbNuevaMesa.setEnabled(false);
                   jbGuardarMesa.setEnabled(false);
-            
+                 
+                  borrarFilas1();
+                  borrarFilas2();
+                  armarTabla1();
+                  armarTabla2();
+                  
             }else{
                 JOptionPane.showMessageDialog(null, "No puede ingresar numeros");
             }
@@ -273,7 +375,11 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             limpiar();
             desactivarCampos();
             jbGuardarMesa.setEnabled(false);
-            jbLimpiar.setEnabled(false);            
+            jbLimpiar.setEnabled(false); 
+            borrarFilas1();
+            borrarFilas2();
+            armarTabla1();
+            armarTabla2();
         
         }catch(NumberFormatException m){
             JOptionPane.showMessageDialog(this, "Numero de mesa invalido");       
@@ -281,11 +387,21 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
+    private void jtDescripMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDescripMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtDescripMesaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton jbBuscarMesa;
     private javax.swing.JButton jbGuardarMesa;
     private javax.swing.JButton jbLimpiar;
@@ -314,5 +430,67 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jrbActivaMesa.setSelected(false);
     }
     
+    private void armarCabecera1(){
+
+        modelo1.addColumn("NumeroMesa ");
+        modelo1.addColumn("Descripcion");
+        
+        jTable1.setModel(modelo1);
+        
+    }
+    private void borrarFilas1(){
+        
+        int filas = jTable1.getRowCount()-1;
+        for(int f = filas; f>=0;f--){
+        
+            modelo1.removeRow(f);
+        }
+    }
+    
+    private void armarTabla1(){
+        
+        List<Mesa> listarM = md.listarMesasdisponibles();
+         
+        for(Mesa mesa : listarM){
+
+            modelo1.addRow(new Object[]{
+            mesa.getNumeroMesa(),
+            mesa.getDescripcion()
+            });
+        }
+               
+    }
+    
+    private void armarCabecera2(){
+
+        modelo2.addColumn("NumeroMesa ");
+        modelo2.addColumn("Descripcion");
+        
+        jTable2.setModel(modelo2);
+        
+    }
+    
+    private void borrarFilas2(){
+        
+        int filas = jTable2.getRowCount()-1;
+        for(int f = filas; f>=0;f--){
+        
+            modelo2.removeRow(f);
+        }
+    }
+    
+    private void armarTabla2(){
+        
+        List<Mesa> listarM = md.listarMesasNodisponibles();
+         
+        for(Mesa mesa : listarM){
+
+            modelo2.addRow(new Object[]{
+            mesa.getNumeroMesa(),
+            mesa.getDescripcion()
+            });
+        }
+               
+    }
     
 }
