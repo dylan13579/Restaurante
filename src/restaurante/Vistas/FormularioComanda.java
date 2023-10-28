@@ -80,8 +80,6 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtBuscarPlato = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         btnAddPlato = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -110,15 +108,9 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         jbEliminarRes = new javax.swing.JButton();
         jbSalirRes = new javax.swing.JButton();
         lbBuscarPed = new javax.swing.JButton();
+        txtBuscarPlato = new javax.swing.JTextField();
 
         jLabel2.setText("Seleccione Numero de Pedido:");
-
-        txtBuscarPlato.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarPlatoKeyReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(txtBuscarPlato);
 
         jLabel3.setText("Seleccione Producto del Menu:");
 
@@ -209,6 +201,11 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(nuevaHora);
 
         jbFinalizar.setText("Finalizar ");
+        jbFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFinalizarActionPerformed(evt);
+            }
+        });
 
         jbGuardarRes.setText("Guardar");
         jbGuardarRes.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +235,12 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         lbBuscarPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lbBuscarPedActionPerformed(evt);
+            }
+        });
+
+        txtBuscarPlato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarPlatoKeyReleased(evt);
             }
         });
 
@@ -280,10 +283,11 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtBuscarPlato)
+                                    .addGap(35, 35, 35))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -341,7 +345,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel6)
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -349,10 +353,10 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                             .addComponent(jbGuardarRes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -386,7 +390,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,29 +402,14 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
     
     
-    private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased
-        LimpiarTable();
-        ListarPlatos(tblTemPlatos);
-        for(Producto pro : prod.listarProductos()){        
-            if(pro.getNombreProducto().startsWith(txtBuscarPlato.getText())){            
-                modelo.addRow(new Object[]{
-                    pro.getCodigoProducto(),
-                    pro.getNombreProducto(),                    
-                    pro.getPrecio(),                  
-            });
-            }            
-        }        
-    }//GEN-LAST:event_txtBuscarPlatoKeyReleased
-
     private void btnAddPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlatoActionPerformed
 
         int mesa = (int)jsNumMesa.getValue();
         //int codi = (int)jsNroMesa.getValue();
         
-        if (tblTemPlatos.getSelectedRow() >= 0) {
-            
+        if (tblTemPlatos.getSelectedRow() >= 0) {            
             int id = Integer.parseInt(tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 0).toString());
-            String descripcion = tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 1).toString();
+            String nombreProducto = tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 1).toString();
             double precio = Double.parseDouble(tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 2).toString());
             double total = 1 * precio;
             item = item + 1;
@@ -439,7 +428,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             ArrayList lista = new ArrayList();
             lista.add(item);
             lista.add(id);
-            lista.add(descripcion);
+            lista.add(nombreProducto);
             lista.add(1);
             lista.add(precio);
             lista.add(total);
@@ -522,8 +511,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
       } else {
         JOptionPane.showMessageDialog(this, "El campo 'Mesero' solo debe contener letras y espacios.");
       }
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception ex) {      
       JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
     }
   
@@ -532,6 +520,22 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     private void lbBuscarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbBuscarPedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lbBuscarPedActionPerformed
+
+    private void jbFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFinalizarActionPerformed
+        // TODO add your handling code here:  configurar boton finalizar
+
+        LimpiarTableMenu();
+        LimpiarTable();
+        totalMenu.setText("00.00");
+// 
+    }//GEN-LAST:event_jbFinalizarActionPerformed
+
+    private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased
+        LimpiarTable();
+        ListarPlatos(tblTemPlatos);        
+
+
+    }//GEN-LAST:event_txtBuscarPlatoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -548,7 +552,6 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
@@ -565,7 +568,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableMenu;
     private javax.swing.JTable tblTemPlatos;
     private javax.swing.JLabel totalMenu;
-    private javax.swing.JTextPane txtBuscarPlato;
+    private javax.swing.JTextField txtBuscarPlato;
     private javax.swing.JTextPane txtComentario;
     // End of variables declaration//GEN-END:variables
 
@@ -578,8 +581,15 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         }
         label.setText(String.format("%.2f", Totalpagar));
     }
-    
-    public void LimpiarTable() {
+
+    private void LimpiarTableMenu() {
+        modelo = (DefaultTableModel) tableMenu.getModel();
+        int fila = tableMenu.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modelo.removeRow(0);
+        }
+    }    
+    public void LimpiarTable() {//LIMPIA KEY RELEASE
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
@@ -597,10 +607,5 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             modelo.addRow(ob);
         }
     }
-    private void RegistrarPedido() {
-
-    }
-    private void detallePedido() {
-       
-    }    
+   
 }
