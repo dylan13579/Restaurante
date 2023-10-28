@@ -146,7 +146,7 @@ public class MesaData {
 
     public List<Mesa> listarMesasdisponibles() {
 
-        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 1";
+        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
 
         ArrayList<Mesa> mesas = new ArrayList<>();
         try {
@@ -175,7 +175,7 @@ public class MesaData {
 
     public List<Mesa> listarMesasNodisponibles() {
 
-        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
+        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 1";
 
         ArrayList<Mesa> mesas = new ArrayList<>();
         try {
