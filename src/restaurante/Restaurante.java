@@ -118,15 +118,7 @@ public class Restaurante {
 //              System.out.println("cobrada = "+pedir.isCobrado());    
 //              System.out.println("----");    
 //        }
-             PedidoData nocobradas = new PedidoData();
-        for (Pedido pedir : nocobradas.pedidoCobrados(2)) {
-            System.out.println("mesero = "+pedir.getNombreMesero());
-              System.out.println("fecha = "+pedir.getFecha());
-              System.out.println("hora = "+pedir.getHora());
-              System.out.println("tolal = "+pedir.getImporte());
-              System.out.println("cobrada = "+pedir.isCobrado());    
-              System.out.println("----"); 
-        }
+
         
         //Pruebas de Producto
         

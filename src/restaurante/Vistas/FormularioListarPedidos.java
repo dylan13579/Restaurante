@@ -1,16 +1,15 @@
 
 package restaurante.Vistas;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 import restaurante.AccesoDatos.MesaData;
 import restaurante.AccesoDatos.PedidoData;
-import restaurante.Entidades.Mesa;
+
 import restaurante.Entidades.Pedido;
 
 
@@ -21,6 +20,8 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
     private MesaData mData;
     private PedidoData pData;
     private DefaultTableModel modelo;
+    
+    private Pedido elegirMesero;
     
  
     /**
@@ -41,12 +42,12 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         
         armarTabla(); 
         armarCabecera();
+         
+       
         jcbMesero.setSelectedIndex(-1);
        
         
-        jbCobrar.setEnabled(false);
-        jbAnular.setEnabled(false);
-        jbLimpiar.setEnabled(false);
+       
        
     }
 
@@ -60,25 +61,14 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         bgListarPedido = new javax.swing.ButtonGroup();
-        jbSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPedidoMesero = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jrbCobrado = new javax.swing.JRadioButton();
         jrbNoCobrado = new javax.swing.JRadioButton();
         jcbMesero = new javax.swing.JComboBox<>();
-        jbLimpiar = new javax.swing.JButton();
-        jbCobrar = new javax.swing.JButton();
-        jbAnular = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Seleccionar Nombre de Mesero:");
 
@@ -97,8 +87,10 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Listar Pedido por Mesero ");
 
+        jLabel1.setText("Listar pedidos por Meseros");
+
         bgListarPedido.add(jrbCobrado);
-        jrbCobrado.setText("Cobrado");
+        jrbCobrado.setText("pagados");
         jrbCobrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbCobradoActionPerformed(evt);
@@ -106,60 +98,42 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         });
 
         bgListarPedido.add(jrbNoCobrado);
-        jrbNoCobrado.setText("Pendiente");
+        jrbNoCobrado.setText("pendientes");
         jrbNoCobrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbNoCobradoActionPerformed(evt);
             }
         });
 
-        jbLimpiar.setText("Limpiar");
-
-        jbCobrar.setText("Cobrar");
-        jbCobrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCobrarActionPerformed(evt);
-            }
-        });
-
-        jbAnular.setText("Anular Cobro");
-
-        jLabel1.setText("Listar pedidos por Meseros");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbCobrar)
-                        .addGap(116, 116, 116)
-                        .addComponent(jbAnular)
-                        .addGap(121, 121, 121)
-                        .addComponent(jbLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addGap(214, 214, 214)
                 .addComponent(jrbCobrado)
-                .addGap(78, 78, 78)
+                .addGap(63, 63, 63)
                 .addComponent(jrbNoCobrado)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(244, 244, 244))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,61 +149,29 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbCobrado)
                     .addComponent(jrbNoCobrado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalir)
-                    .addComponent(jbLimpiar)
-                    .addComponent(jbCobrar)
-                    .addComponent(jbAnular))
-                .addGap(51, 51, 51))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-        int eleccion = JOptionPane.showConfirmDialog(this, "Realmente desea salir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
-            if (eleccion== JOptionPane.YES_OPTION){
-                dispose();
-            }else if (eleccion== JOptionPane.NO_OPTION){
-                JOptionPane.showConfirmDialog(null, "Desea seguir trabajando?", "Confirmacion", JOptionPane.CLOSED_OPTION);
-            }
-        
-    }//GEN-LAST:event_jbSalirActionPerformed
-
     private void jrbCobradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCobradoActionPerformed
         // TODO add your handling code here:
-
-        borrarFilasTabla();
         jrbNoCobrado.setSelected(false);
-        
-        pedidosYACobrados();
-        jbAnular.setSelected(true);
-        jbCobrar.setSelected(false);
-        jbLimpiar.setSelected(true);
+        borrarFilasTabla();
+        pagados();
         
     }//GEN-LAST:event_jrbCobradoActionPerformed
 
     private void jrbNoCobradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNoCobradoActionPerformed
         // TODO add your handling code here:
-
-        borrarFilasTabla();
-        jrbCobrado.setSelected(false);
         
-        pedidosNoCobrados();
-        jbAnular.setSelected(false);
-        jbCobrar.setSelected(true);
-        jbLimpiar.setSelected(true);
+        jrbCobrado.setSelected(false);
+        borrarFilasTabla();
+        noPagados();
     }//GEN-LAST:event_jrbNoCobradoActionPerformed
-
-    private void jbCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCobrarActionPerformed
-        // TODO add your handling code here:
-
-      
-    }//GEN-LAST:event_jbCobrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,10 +180,6 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbAnular;
-    private javax.swing.JButton jbCobrar;
-    private javax.swing.JButton jbLimpiar;
-    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Pedido> jcbMesero;
     private javax.swing.JRadioButton jrbCobrado;
     private javax.swing.JRadioButton jrbNoCobrado;
@@ -260,7 +198,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
     
         ArrayList<Object> fCabecera = new ArrayList<>();
         
-        fCabecera.add("Mesa");
+        fCabecera.add("idPedido");
         fCabecera.add("Mesero");
         fCabecera.add("Fecha");        
         fCabecera.add("Hora");
@@ -283,7 +221,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         }
     }
     
-   public void pedidosYACobrados(){
+   private void pagados(){
        
       Pedido meseroSeleccionado = (Pedido) jcbMesero.getSelectedItem();
 
@@ -292,7 +230,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         borrarFilasTabla();
 
 
-        List<Pedido> cobrados = pData.pedidoCobrados(meseroSeleccionado.getIdPedido());
+        List<Pedido> cobrados = pData.pedidoCobrados(meseroSeleccionado.getNombreMesero());
 
         for (Pedido pedido : cobrados) {
             modelo.addRow(new Object[] {
@@ -308,7 +246,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
        
    }
 
-     public void pedidosNoCobrados(){
+     private void noPagados(){
         
          Pedido meseroSeleccionado = (Pedido) jcbMesero.getSelectedItem();
          
@@ -316,7 +254,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
              
               borrarFilasTabla();
               
-              List<Pedido> nocobrados = pData.pedidoNoCobrados(meseroSeleccionado.getIdPedido());
+              List<Pedido> nocobrados = pData.pedidoNoCobrados(meseroSeleccionado.getNombreMesero());
               
                for (Pedido pedido : nocobrados) {
             modelo.addRow(new Object[] {
@@ -332,4 +270,5 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
          }
     }
     
+     
 }
