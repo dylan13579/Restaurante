@@ -26,6 +26,7 @@ public class PedidoData {
     private Connection wifi = null;
     
     private MesaData md = new MesaData();
+    private int numeroMesa;
 
     
     public PedidoData () {
@@ -436,6 +437,31 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
         }
         return listar;
+    }
+    
+    public void BuscarPedidoPorNumeroMesa(int numeroMesa) {
+        
+
+        String sql = "SELECT numeroMesa,nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 1 ";
+        Pedido pedido = null;
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        
+        ps.setInt(1, numeroMesa);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            pedido = new Pedido();
+
+            pedido.setNombreMesero(rs.getString("nombreMesero"));
+            pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+            pedido.setHora(rs.getTime("Hora").toLocalTime());       
+
+        }        
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+    }
     }
 }    
       

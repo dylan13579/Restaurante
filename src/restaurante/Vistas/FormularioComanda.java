@@ -1,7 +1,10 @@
 
 package restaurante.Vistas;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -26,8 +29,8 @@ import restaurante.Entidades.Producto;
 
 public class FormularioComanda extends javax.swing.JInternalFrame {
     
-    Date fechaActual = new Date();
-    String fechaFormato = new SimpleDateFormat("yyyy-MM-dd").format(fechaActual);     
+    //Date fechaActual = new Date();
+    //String fechaFormato = new SimpleDateFormat("yyyy-MM-dd").format(fechaActual);     
         
     private List<Mesa> listarM;    
     
@@ -48,8 +51,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     double Totalpagar = 0.00;
     
     private DefaultTableModel modelo = new DefaultTableModel();
-    ProductoData prod = new ProductoData();
-    private Object jsNroMesa;
+    ProductoData prod = new ProductoData();    
     
     
     public boolean isCellEditable(int f, int c){
@@ -93,8 +95,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         txtComentario = new javax.swing.JTextPane();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jsNumMesa = new javax.swing.JSpinner();
+        jbComentario = new javax.swing.JButton();
         jtMesero = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,12 +104,12 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         nuevaHora = new com.toedter.calendar.JDateChooser();
         jbFinalizar = new javax.swing.JButton();
-        jbGuardarRes = new javax.swing.JButton();
+        jbModificarRes = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jbEliminarRes = new javax.swing.JButton();
         jbSalirRes = new javax.swing.JButton();
         lbBuscarPed = new javax.swing.JButton();
         txtBuscarPlato = new javax.swing.JTextField();
+        jtNroPedido = new javax.swing.JTextField();
 
         jLabel2.setText("Seleccione Numero de Pedido:");
 
@@ -179,11 +180,17 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Comentario");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
-        jButton1.setText("Agregar Comentario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbComentario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
+        jbComentario.setText("Agregar Comentario");
+        jbComentario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbComentarioActionPerformed(evt);
+            }
+        });
+
+        jtMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtMeseroActionPerformed(evt);
             }
         });
 
@@ -199,6 +206,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         nuevaHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         nuevaHora.setDateFormatString("HH:mm:ss");
         jScrollPane2.setViewportView(nuevaHora);
+        nuevaHora.getAccessibleContext().setAccessibleParent(this);
 
         jbFinalizar.setText("Finalizar ");
         jbFinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -207,22 +215,15 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             }
         });
 
-        jbGuardarRes.setText("Guardar");
-        jbGuardarRes.addActionListener(new java.awt.event.ActionListener() {
+        jbModificarRes.setText("Modificar");
+        jbModificarRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarResActionPerformed(evt);
+                jbModificarResActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("\" Ingreso, BIENVENIDOS \"");
-
-        jbEliminarRes.setText("Eliminar");
-        jbEliminarRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminarResActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("\" Resto Grupo28 \"");
 
         jbSalirRes.setText("Salir");
         jbSalirRes.addActionListener(new java.awt.event.ActionListener() {
@@ -251,35 +252,6 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(totalMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(jbSalirRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2)
-                                .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbGuardarRes)
-                            .addGap(53, 53, 53)
-                            .addComponent(jbEliminarRes)
-                            .addGap(35, 35, 35))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(140, 140, 140)
-                            .addComponent(jLabel8))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane3))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,17 +263,16 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel2)
                                             .addGap(35, 35, 35)
-                                            .addComponent(jsNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(36, 36, 36)
-                                            .addComponent(lbBuscarPed))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(179, 179, 179)
-                                                .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jtNroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(46, 46, 46)
+                                                    .addComponent(lbBuscarPed))
+                                                .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -314,10 +285,40 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnEliminarTempPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAddPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1)))))
+                                    .addComponent(jbComentario))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(totalMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jbFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(jbSalirRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(50, 50, 50)
+                                            .addComponent(jLabel7)
+                                            .addGap(34, 34, 34)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jbModificarRes)
+                                            .addGap(61, 61, 61))))
+                                .addComponent(jScrollPane3))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -325,33 +326,26 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jsNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbBuscarPed))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jtNroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbBuscarPed, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbEliminarRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbGuardarRes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jbModificarRes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -366,7 +360,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminarTempPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -383,6 +377,10 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15))
         );
 
+        jtMesero.getAccessibleContext().setAccessibleParent(this);
+        nuevaFecha.getAccessibleContext().setAccessibleParent(this);
+        jtNroPedido.getAccessibleContext().setAccessibleParent(this);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -390,7 +388,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +402,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     
     private void btnAddPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlatoActionPerformed
 
-        int mesa = (int)jsNumMesa.getValue();
+        //int mesa = (int)jtNroPedido.get
         //int codi = (int)jsNroMesa.getValue();
         
         if (tblTemPlatos.getSelectedRow() >= 0) {            
@@ -423,7 +421,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                     modelo.setValueAt(nuevoSub, i, 4);
                     TotalPagar(tableMenu, totalMenu);
                     return;
-                }
+                }                
             }
             ArrayList lista = new ArrayList();
             lista.add(item);
@@ -444,8 +442,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             TotalPagar(tableMenu, totalMenu);
         } else {
             JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
-        }        
-
+        }
 
     }//GEN-LAST:event_btnAddPlatoActionPerformed
 
@@ -456,7 +453,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         TotalPagar(tableMenu, totalMenu);
     }//GEN-LAST:event_btnEliminarTempPlatoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComentarioActionPerformed
         // TODO add your handling code here:
         if (txtComentario.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA");
@@ -471,11 +468,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jbEliminarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarResActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbEliminarResActionPerformed
+    }//GEN-LAST:event_jbComentarioActionPerformed
 
     private void jbSalirResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirResActionPerformed
         // TODO add your handling code here:
@@ -487,61 +480,149 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_jbSalirResActionPerformed
 
-    private void jbGuardarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarResActionPerformed
+    private void jbModificarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarResActionPerformed
         // TODO add your handling code here:
 
-        try {
-      Pedido pedidoN = new Pedido();
-      int numeroMesa = (int) jsNumMesa.getValue();
-      String mesero = jtMesero.getText();
-
-      if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
-        LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-
-        pedidoN.setNombreMesero(mesero);
-        pedidoN.setFecha(fecha);
-        pedidoN.setHora(hora);
-
-        Mesa mesa = new Mesa();
-        mesa.setNumeroMesa(numeroMesa);
-
-        pd.guardarPedido(pedidoN, mesa);
-    
-      } else {
-        JOptionPane.showMessageDialog(this, "El campo 'Mesero' solo debe contener letras y espacios.");
-      }
-    } catch (Exception ex) {      
-      JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
-    }
-  
-    }//GEN-LAST:event_jbGuardarResActionPerformed
+//        try {
+//      Pedido pedidoN = new Pedido();
+//      int numeroMesa = (int) jtNroPedido.getValue();
+//      String mesero = jtMesero.getText();
+//
+//      if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
+//        LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+//
+//        pedidoN.setNombreMesero(mesero);
+//        pedidoN.setFecha(fecha);
+//        pedidoN.setHora(hora);
+//
+//        Mesa mesa = new Mesa();
+//        mesa.setNumeroMesa(numeroMesa);
+//
+//        pd.guardarPedido(pedidoN, mesa);
+//    
+//      } else {
+//        JOptionPane.showMessageDialog(this, "El campo 'Mesero' solo debe contener letras y espacios.");
+//      }
+//    } catch (Exception ex) {      
+//      JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
+//    }
+//  
+    }//GEN-LAST:event_jbModificarResActionPerformed
 
     private void lbBuscarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbBuscarPedActionPerformed
         // TODO add your handling code here:
+     
+        try{
+            
+            int numeroMesa = Integer.parseInt(jtNroPedido.getText());
+            Pedido pedi = pd.BuscarPedidoPorNum(numeroMesa);
+            //Pedido pedi = pd.BuscarPedidoPorNumeroMesa(numeroMesa);
+            if(pedi != null){
+                jtMesero.setText(pedi.getNombreMesero());
+                nuevaFecha.setDate(Date.valueOf(pedi.getFecha()));
+                nuevaHora.setDate(Time.valueOf(pedi.getHora()));
+                
+            activarCampos();
+            lbBuscarPed.setEnabled(false);
+            jbModificarRes.setEnabled(true);
+            tblTemPlatos.setEnabled(false);
+            tableMenu.setEnabled(false);
+            btnAddPlato.setEnabled(false);
+            btnEliminarTempPlato.setEnabled(false);
+            jbComentario.setEnabled(false);
+            txtComentario.setEditable(false);
+            jbFinalizar.setEnabled(false);
+            }else{
+                limpiar();
+                activarCampos();
+                desactivarCampos();            
+            }        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero de pedido");
+            jtNroPedido.requestFocus();
+            limpiar();
+            desactivarCampos();
+        }
     }//GEN-LAST:event_lbBuscarPedActionPerformed
 
     private void jbFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFinalizarActionPerformed
         // TODO add your handling code here:  configurar boton finalizar
 
+        try{
+            int numeroMesa = Integer.parseInt(jtNroPedido.getText());
+            String nombreMesero = jtMesero.getText();
+            LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+            
+            //Pedido pedido = pd.
+            
+        
+        
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Error al guardar pedido");
+        
+        }
+        
         LimpiarTableMenu();
         LimpiarTable();
+        LimpiarListarPlatos();
         totalMenu.setText("00.00");
 // 
     }//GEN-LAST:event_jbFinalizarActionPerformed
 
     private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased
         LimpiarTable();
-        ListarPlatos(tblTemPlatos);        
-
-
+        ListarPlatos(tblTemPlatos);
+        if(txtBuscarPlato != null){
+            btnAddPlato.setEnabled(true);
+            btnEliminarTempPlato.setEnabled(true);
+            tblTemPlatos.setEnabled(true);
+            tableMenu.setEnabled(true);
+            jbComentario.setEnabled(true);
+            lbBuscarPed.setEnabled(false);
+            jbModificarRes.setEnabled(false);
+            txtComentario.setEditable(true);
+            jbFinalizar.setEnabled(true);
+        }else{
+            limpiar();
+            activarCampos();
+            desactivarCampos();
+            if(btnAddPlato != null){
+                tblTemPlatos.setEnabled(true);
+                tableMenu.setEnabled(true);                
+                btnEliminarTempPlato.setEnabled(true);
+                jbComentario.setEnabled(true);
+                lbBuscarPed.setEnabled(false);
+                jbModificarRes.setEnabled(false);
+                txtComentario.setEditable(true);
+                jbFinalizar.setEnabled(true);
+            }else{
+                limpiar();
+                activarCampos();
+                desactivarCampos();
+                if(tableMenu != null){
+                    btnAddPlato.setEnabled(false);
+                    btnEliminarTempPlato.setEnabled(true);
+                    tblTemPlatos.setEnabled(false);
+                    jbComentario.setEnabled(true);
+                    txtComentario.setEditable(true);
+                    lbBuscarPed.setEnabled(false);
+                    jbModificarRes.setEnabled(false);
+                    jbFinalizar.setEnabled(true);     
+                } 
+            }
+        }
     }//GEN-LAST:event_txtBuscarPlatoKeyReleased
+
+    private void jtMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMeseroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtMeseroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPlato;
     private javax.swing.JButton btnEliminarTempPlato;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -556,12 +637,12 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JButton jbEliminarRes;
+    private javax.swing.JButton jbComentario;
     private javax.swing.JButton jbFinalizar;
-    private javax.swing.JButton jbGuardarRes;
+    private javax.swing.JButton jbModificarRes;
     private javax.swing.JButton jbSalirRes;
-    private javax.swing.JSpinner jsNumMesa;
     private javax.swing.JTextField jtMesero;
+    private javax.swing.JTextField jtNroPedido;
     private javax.swing.JButton lbBuscarPed;
     private com.toedter.calendar.JDateChooser nuevaFecha;
     private com.toedter.calendar.JDateChooser nuevaHora;
@@ -594,7 +675,17 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
             i = i - 1;
         }
-    }    
+    } 
+    
+    public void LimpiarListarPlatos() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
+    
+
+    
 
     private void ListarPlatos(JTable tabla) {
         List<Producto> Listar = prod.listarPlatos();
@@ -605,7 +696,27 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             ob[1] = Listar.get(i).getNombreProducto();
             ob[2] = Listar.get(i).getPrecio();
             modelo.addRow(ob);
-        }
+        }       
     }
-   
+    private void desactivarCampos(){
+        jtMesero.setEnabled(false);
+        nuevaFecha.setEnabled(false);
+        nuevaFecha.setEnabled(true);
+        
+    }
+    
+    private void activarCampos (){
+        jtNroPedido.setEnabled(true);
+        jtMesero.setEnabled(true);
+        nuevaFecha.setEnabled(true);
+        nuevaHora.setEnabled(true);
+        
+    }
+    
+    public void limpiar(){
+        jtNroPedido.setText("");
+        jtMesero.setText("");
+        nuevaFecha.setDate(null);
+        nuevaHora.setDate(null);
+    }      
 }
