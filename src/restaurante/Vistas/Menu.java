@@ -106,7 +106,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jbPedidosDeMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/estudio (1).png"))); // NOI18N
         jbPedidosDeMeseros.setText("Lista de Pedidos");
+        jbPedidosDeMeseros.setContentAreaFilled(false);
+        jbPedidosDeMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbPedidosDeMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPedidosDeMeserosActionPerformed(evt);
@@ -146,14 +149,14 @@ public class Menu extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
+                                .addGap(37, 37, 37)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(192, 192, 192)
                                 .addComponent(jLabel4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(227, 227, 227)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jButton1)))
+                                .addGap(236, 236, 236)
+                                .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -161,25 +164,25 @@ public class Menu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbRegistroMesa)
                     .addComponent(jbComanda))
-                .addGap(42, 42, 42)
-                .addComponent(jLabel5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(115, 115, 115)
                         .addComponent(jbListaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel5)
+                        .addGap(32, 32, 32)
                         .addComponent(jbPedidosDeMeseros)))
                 .addGap(94, 94, 94)
                 .addComponent(jButton1)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
             .addComponent(escritorio)
         );
 
