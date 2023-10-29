@@ -48,6 +48,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jsStock = new javax.swing.JSpinner();
 
+        setTitle("Registro De Los Productos");
+
         jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel2.setText("Codigo de Producto");
 

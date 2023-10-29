@@ -64,13 +64,14 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPedidoMesero = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jrbCobrado = new javax.swing.JRadioButton();
         jrbNoCobrado = new javax.swing.JRadioButton();
         jcbMesero = new javax.swing.JComboBox<>();
 
-        jLabel2.setText("Seleccionar Nombre de Mesero:");
+        setTitle("Lista de Pedidos Pedientes Por Meseros");
+
+        jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 18)); // NOI18N
+        jLabel2.setText("Seleccionar Nombre de Mesero");
 
         jtPedidoMesero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,12 +86,9 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtPedidoMesero);
 
-        jLabel3.setText("Listar Pedido por Mesero ");
-
-        jLabel1.setText("Listar pedidos por Meseros");
-
         bgListarPedido.add(jrbCobrado);
-        jrbCobrado.setText("pagados");
+        jrbCobrado.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jrbCobrado.setText("Pagados");
         jrbCobrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbCobradoActionPerformed(evt);
@@ -98,7 +96,8 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         });
 
         bgListarPedido.add(jrbNoCobrado);
-        jrbNoCobrado.setText("pendientes");
+        jrbNoCobrado.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
+        jrbNoCobrado.setText("Pendientes");
         jrbNoCobrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbNoCobradoActionPerformed(evt);
@@ -110,48 +109,36 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(jrbCobrado)
-                .addGap(63, 63, 63)
-                .addComponent(jrbNoCobrado)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(244, 244, 244))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(197, 197, 197)
+                        .addComponent(jrbCobrado)
+                        .addGap(63, 63, 63)
+                        .addComponent(jrbNoCobrado)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(57, 57, 57)
+                .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jcbMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addGap(31, 31, 31)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbCobrado)
                     .addComponent(jrbNoCobrado))
-                .addGap(38, 38, 38)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,9 +163,7 @@ public class FormularioListarPedidos extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgListarPedido;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Pedido> jcbMesero;
     private javax.swing.JRadioButton jrbCobrado;

@@ -65,7 +65,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        setTitle("Registros de las Mesas");
+        setTitle("Registro De Las Mesas");
 
         jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel2.setText("Numero de Mesa:");
