@@ -5,6 +5,7 @@ package restaurante;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.List;
 import restaurante.AccesoDatos.*;
 import restaurante.Entidades.*;
@@ -74,6 +75,27 @@ public class Restaurante {
            // pe.guardarPedido(pedido, mesa);
 //            pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
+              
+              Mesa meC = new Mesa();
+              meC.setNumeroMesa(7);
+             
+              Pedido p = new Pedido();
+              p.setNombreMesero("Gustavo Quinteros");
+              p.setFecha(LocalDate.of(2023, 10, 25));
+              p.setHora(LocalTime.of(19, 30));
+              
+              PedidoData pdcom = new PedidoData();
+              pdcom.modificarComanda(p, meC);
+              
+              System.out.println("Mesero= "+p.getNombreMesero());
+              System.out.println("fecha= "+p.getFecha());
+              System.out.println("Hora= "+p.getHora());
+              System.out.println("Mesa= "+meC.getNumeroMesa());
+              
+              
+              
+              
+              
              
 //              Mesa mesa = new Mesa();
 //              mesa.setNumeroMesa(17);

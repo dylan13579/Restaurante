@@ -478,32 +478,36 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
     private void jbModificarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarResActionPerformed
         // TODO add your handling code here:
+        
+        try {
+                  
+            int numeroMesa = Integer.parseInt(jtNroPedido.getText());
+            String mesero = jtMesero.getText();
+            LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+            
+            
+        if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
+            Pedido pedidoN = pd.BuscarPedidoPorNum(numeroMesa);
+            if(pedidoN == null){
+                    pedidoN = new Pedido(numeroMesa, mesero);
+                    pd.modificarComanda(pedidoN, mesA);
+            }
+                pedidoN.setNombreMesero(mesero);
+                pedidoN.setFecha(fecha);
+                pedidoN.setHora(hora);
+                    
+                pd.modificarComanda(pedidoN, nemeroMesa);
+                
+                JOptionPane.showMessageDialog(this, "Modificacion registrada");
 
-//        try {
-//      Pedido pedidoN = new Pedido();
-//      int numeroMesa = (int) jtNroPedido.getValue();
-//      String mesero = jtMesero.getText();
-//
-//      if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
-//        LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//        LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-//
-//        pedidoN.setNombreMesero(mesero);
-//        pedidoN.setFecha(fecha);
-//        pedidoN.setHora(hora);
-//
-//        Mesa mesa = new Mesa();
-//        mesa.setNumeroMesa(numeroMesa);
-//
-//        pd.guardarPedido(pedidoN, mesa);
-//    
-//      } else {
-//        JOptionPane.showMessageDialog(this, "El campo 'Mesero' solo debe contener letras y espacios.");
-//      }
-//    } catch (Exception ex) {      
-//      JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
-//    }
-//  
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingresar nombre no puede quedar vacio");
+            }
+    } catch (Exception ex) {      
+      JOptionPane.showMessageDialog(this, "Error al guardar el pedido.");
+    }
+  
     }//GEN-LAST:event_jbModificarResActionPerformed
 
     private void lbBuscarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbBuscarPedActionPerformed

@@ -91,6 +91,32 @@ public class PedidoData {
           
          
       }
+    
+     public void modificarComanda(Pedido pedido, Mesa m){
+      
+          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? WHERE idPedido = ?";
+        
+        
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setString(1, pedido.getNombreMesero());
+            ps.setDate(2,Date.valueOf(pedido.getFecha()));
+            ps.setTime(3, Time.valueOf(pedido.getHora()));      
+            ps.setInt(4, m.getNumeroMesa());
+            
+            int mejor = ps.executeUpdate();
+            
+            if(mejor == 1){
+                JOptionPane.showMessageDialog(null, "Pedido Modificado con exito");
+            }
+          ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido");
+        }
+          
+         
+      }   
        
     public void cancelarPedidoId(int id) {
 
