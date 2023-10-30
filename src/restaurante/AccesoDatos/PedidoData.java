@@ -64,6 +64,34 @@ public class PedidoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
         }
     }
+    
+        public void guardarReserva(Pedido pedido, Mesa mesa) {
+        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora) VALUES (?, ?, ?, ?)";
+
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setString(2, pedido.getNombreMesero());
+            ps.setDate(3, Date.valueOf(pedido.getFecha()));
+            ps.setTime(4, Time.valueOf(pedido.getHora()));
+
+            int modi = ps.executeUpdate();
+
+            if (modi > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    int genera = rs.getInt(1);
+                    pedido.setIdPedido(genera);
+                    JOptionPane.showMessageDialog(null, "se he reservado esta Mesa");
+                }
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido ");
+        }
+    }
   
     public void modificarPedido(Pedido pedido){
       

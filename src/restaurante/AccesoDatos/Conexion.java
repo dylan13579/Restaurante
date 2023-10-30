@@ -28,7 +28,7 @@ public class Conexion {
             
                   conectar = DriverManager.getConnection(URL+BD,USUARIO,PASSWORD);
             
-                  JOptionPane.showMessageDialog(null, "Se conecto a la base de datos");
+                  //JOptionPane.showMessageDialog(null, "Se conecto a la base de datos");
             
                } catch (ClassNotFoundException ex) {
                    JOptionPane.showMessageDialog(null, "Error: Al cargar Drivers");
