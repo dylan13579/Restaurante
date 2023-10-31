@@ -30,17 +30,16 @@ public class PedidoProductoData {
     }
    
     
-    public void guardarPedidoProducto(int numeroPedido, int pedido){
+    public void guardarPedidoProducto(int pedi, int pro, int cantidad){
         
-         String sql = "INSERT INTO pedidoproducto(numeroPedido, idPedido) VALUES (?, ?)";//se descarta int codigoProducto y cantidad
+         String sql = "INSERT INTO pedidoproducto(idPedido ,codigoProducto ,cantidad) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            ps.setInt(1, numeroPedido);
-            ps.setInt(2, pedido);
-//            ps.setInt(3, codigoProducto);
-//            ps.setInt(4, cantidad);
+            
+            ps.setInt(1, pedi);
+            ps.setInt(2, pro);
+            ps.setInt(3, cantidad);
 
             ps.executeUpdate();
 
@@ -57,29 +56,7 @@ public class PedidoProductoData {
           
     }
     
-   public void modificarProducto(int numeroPedido, int codigoProducto, int cantidad) {
-    
-      String sql = "UPDATE pedidoproducto SET codigoProducto = ?, cantidad = ? WHERE numeroPedido = ?";
-
-    try {
-        PreparedStatement ps = wifi.prepareStatement(sql);
-        
-        ps.setInt(1, codigoProducto);
-        ps.setInt(2, cantidad);
-        ps.setInt(3, numeroPedido); // Specify the 'numeroPedido' for the WHERE clause
-
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-            JOptionPane.showMessageDialog(null, "El pedido se ha cambiado");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se encontró un pedido con el número proporcionado.");
-        }
-
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido Producto");
-    } 
-   }
+////   
     
    
    public void elimanrpedido(int idPedido){
@@ -92,6 +69,8 @@ public class PedidoProductoData {
             ps.setInt(1, idPedido);
             
             int exito = ps.executeUpdate();
+            
+            
             if(exito == 1){
                 JOptionPane.showMessageDialog(null, "se ha cancelado el pedido");
             }
