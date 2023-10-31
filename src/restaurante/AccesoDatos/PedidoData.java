@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -535,6 +536,33 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
     }
+    }
+    
+    public List<Pedido> buscarFechas(LocalDate dia){
+  
+       List<Pedido> listaDeFechas = new ArrayList<>();
+    String sql = "SELECT nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND Fecha = ?";
+
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(dia));
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Pedido fechas = new Pedido();
+            fechas.setNombreMesero(rs.getString("nombreMesero"));
+            fechas.setFecha(rs.getDate("Fecha").toLocalDate());
+            fechas.setHora(rs.getTime("Hora").toLocalTime());
+            fechas.setImporte(rs.getDouble("importe"));
+            fechas.setCobrado(rs.getBoolean("cobrada"));
+            listaDeFechas.add(fechas);
+        }
+        ps.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+    }
+    return listaDeFechas;
     }
 }    
       

@@ -3,6 +3,7 @@ package restaurante;
 
 
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -96,7 +97,20 @@ public class Restaurante {
 //              System.out.println("Mesa= "+meC.getNumeroMesa());
               
               
-              
+                 PedidoData buscarF = new PedidoData();
+                LocalDate buscarFecha = LocalDate.of(2023, 10, 05);
+                
+             List<Pedido> todo = buscarF.buscarFechas(buscarFecha);
+             
+             for (Pedido fecha : todo) {
+            
+                 System.out.println("nombre "+fecha.getNombreMesero());
+                 System.out.println("fecha "+fecha.getFecha());
+                 System.out.println("hora "+fecha.getHora());
+                 System.out.println("importe "+fecha.getImporte());
+                 System.out.println(" cobrada "+fecha.isCobrado());
+                 System.out.println("------");
+               }
               
               
              
@@ -143,6 +157,10 @@ public class Restaurante {
 //              System.out.println("cobrada = "+pedir.isCobrado());    
 //              System.out.println("----");    
 //        }
+
+
+
+
 
         
         //Pruebas de Producto
