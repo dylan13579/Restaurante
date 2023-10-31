@@ -117,6 +117,7 @@ public class Menu extends javax.swing.JFrame {
         jbIngresosList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/lista-de-precios.png"))); // NOI18N
         jbIngresosList.setText("Lista de Ingreso");
         jbIngresosList.setContentAreaFilled(false);
+        jbIngresosList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbIngresosList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbIngresosListActionPerformed(evt);

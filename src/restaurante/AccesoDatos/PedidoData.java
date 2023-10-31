@@ -144,8 +144,27 @@ public class PedidoData {
         }
           
          
-      }   
-       
+      }     
+   
+     public void modificaFinalizar(Pedido pedido, Mesa m) {
+        String sql = "UPDATE pedido SET importe = ?, cobrada = ? WHERE numeroMesa = ?";
+    
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            ps.setDouble(1, pedido.getImporte());
+            ps.setBoolean(2, true); // Supongo que siempre quieres establecer 'cobrada' en 'true'
+            ps.setInt(3, m.getNumeroMesa());
+        
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Importe agregado con éxito");
+        }         
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido: " + ex.getMessage());
+    }
+}
+     
     public void cancelarPedidoId(int id) {
 
         String sql = "UPDATE pedido SET cobrada = 0 WHERE idPedido = ? ";

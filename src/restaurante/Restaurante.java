@@ -60,21 +60,23 @@ public class Restaurante {
 
         //Pruebas de Pedido
 //        
-        PedidoData pe = new PedidoData();
-   
-          Mesa mesa = new Mesa();
-          mesa.setNumeroMesa(19);
-            Pedido pedido = new Pedido();
+//        PedidoData pe = new PedidoData();
+//   
+//          Mesa mesa = new Mesa();
+//          mesa.setNumeroMesa(7);
+//            Pedido pedido = new Pedido();
            // pedido.setIdPedido(7);
-            pedido.setNombreMesero("Dylan Jofre Villegas");
-            pedido.setFecha(LocalDate.of(2023, 03, 03));
-            pedido.setHora(LocalTime.of(20, 30)); 
-            //pedido.setImporte(2300.99); 
-            //pedido.setCobrado(true);
+            //pedido.setNombreMesero("Gustavo");
+           // pedido.setFecha(LocalDate.of(2023, 10, 24));
+           // pedido.setHora(LocalTime.of(20, 30)); 
+//            pedido.setImporte(2300.99); 
+//            pedido.setCobrado(true);
+//            
+//            pe.modificaFinalizar(pedido, mesa);
 
-            pe.guardarReserva(pedido, mesa);
+            //pe.guardarReserva(pedido, mesa);
             //pe.guardarPedido(pedido, mesa);
-//            pe.modificarPedido(pedido);
+            //pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
               
 //              Mesa meC = new Mesa();
@@ -182,11 +184,21 @@ public class Restaurante {
 
 
           //Pruebas de PedidoProducto
-          
-       //PedidoProductoData pp = new PedidoProductoData();
-//      
+        
+          //no funciono
+//        PedidoData pd = new PedidoData();
+//        ProductoData prod = new ProductoData();
+//        PedidoProductoData pp = new PedidoProductoData();
+//          
+//        Pedido ped = pd.BuscarPedidoPorNum(2);
+//        Producto ptt = prod.buscarProductos(2);
+//        PedidoProducto pedro = new PedidoProducto(ped, ptt, 2);
+//        
+//        
+//        pp.guardarPedidoProducto(pedro);
+//        
 
-         //pp.guardarPedidoProducto(4, 4, 3, 2);
+         
          //pp.modificarProducto(3, 2, 3);
          //pp.elimanrpedido(10);
        
