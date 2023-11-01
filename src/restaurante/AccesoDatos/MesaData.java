@@ -109,7 +109,7 @@ public class MesaData {
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+            JOptionPane.showMessageDialog(null, "Error al intentar acceder a la tabla mesa");
         }
     }
 
@@ -132,7 +132,7 @@ public class MesaData {
          
             
             }else{
-                 JOptionPane.showMessageDialog(null, "Ese Numero de Mesa es invalido y no puede ingresar Caracteres ");
+                 JOptionPane.showMessageDialog(null, "Numero invalido, no puede ingresar Caracteres ");
             
             }
             

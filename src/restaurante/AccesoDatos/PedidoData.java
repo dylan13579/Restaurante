@@ -56,7 +56,7 @@ public class PedidoData {
                 if (rs.next()) {
                     int genera = rs.getInt(1);
                     pedido.setIdPedido(genera);
-                    JOptionPane.showMessageDialog(null, "se he reservado esta Mesa");
+                        JOptionPane.showMessageDialog(null, "Mesa reservado");
                 }
             }
 
@@ -84,7 +84,7 @@ public class PedidoData {
                 if (rs.next()) {
                     int genera = rs.getInt(1);
                     pedido.setIdPedido(genera);
-                    JOptionPane.showMessageDialog(null, "se he reservado esta Mesa");
+                    JOptionPane.showMessageDialog(null, "Mesa reservada");
                 }
             }
 
@@ -206,7 +206,7 @@ public class PedidoData {
 
                 JOptionPane.showMessageDialog(null, "Pedido cancelado con exito");
             } else {
-                JOptionPane.showMessageDialog(null, "El pedido no ha sido cancelado");
+                JOptionPane.showMessageDialog(null, "El pedido esta vigente");
             }
 
         } catch (SQLException ex) {

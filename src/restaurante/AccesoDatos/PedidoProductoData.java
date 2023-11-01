@@ -72,7 +72,7 @@ public class PedidoProductoData {
             
             
             if(exito == 1){
-                JOptionPane.showMessageDialog(null, "se ha cancelado el pedido");
+                JOptionPane.showMessageDialog(null, "Pedido cancelado");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Pedido Producto");

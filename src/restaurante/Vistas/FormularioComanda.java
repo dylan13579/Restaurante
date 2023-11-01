@@ -323,13 +323,14 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbBuscarPed, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfId)
-                            .addComponent(jtNroPedido)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfId, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtNroPedido, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbBuscarPed, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)))
                         .addGap(15, 15, 15)
                         .addComponent(jLabel5)
                         .addGap(11, 11, 11)
@@ -442,7 +443,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             tableMenu.setModel(modelo);
             TotalPagar(tableMenu, totalMenu);
         } else {
-            JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
 
     }//GEN-LAST:event_btnAddPlatoActionPerformed
@@ -457,7 +458,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     private void jbComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComentarioActionPerformed
         // TODO add your handling code here:
         if (txtComentario.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA");
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             int id = Integer.parseInt(tableMenu.getValueAt(tableMenu.getSelectedRow(), 0).toString());
             for (int i = 0; i < tableMenu.getRowCount(); i++) {
@@ -524,86 +525,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Número de mesa no válido");
     } catch (Exception ex) {      
         JOptionPane.showMessageDialog(this, "Error al guardar la reserva.");
-    } 
-        
-        
-//    try {
-//        int numeroMesa = Integer.parseInt(jtNroPedido.getText());
-//        String mesero = jtMesero.getText();
-//        Double importeTotal = Double.parseDouble(totalMenu.getText());
-//        
-//        if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
-//            LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-//
-//            // Obtén la lista de pedidos cobrados para esta mesa
-//            List<Pedido> pedidosCobrados = obtenerPedidoCobrado(numeroMesa);
-//
-//            // Desmarca los pedidos anteriores (marcándolos como no cobrados)
-//            for (Pedido pedido : pedidosCobrados) {
-//                pedido.setCobrada(true);
-//                // Guarda los pedidos desmarcados en la base de datos
-//                pd.modificarComanda(pedido);
-//            }
-//
-//            // Crea un nuevo pedido
-//            Pedido nuevoPedido = new Pedido();
-//            nuevoPedido.setNombreMesero(mesero);
-//            nuevoPedido.setFecha(fecha);
-//            nuevoPedido.setHora(hora);
-//            nuevoPedido.setImporte(importeTotal);
-//            nuevoPedido.setCobrada(true); // Se marca como cobrada
-//
-//            Mesa mesa = new Mesa();
-//            mesa.setNumeroMesa(numeroMesa);
-//
-//            // Guarda el nuevo pedido en la base de datos
-//            pd.guardarPedido(nuevoPedido, mesa);
-//
-//            JOptionPane.showMessageDialog(this, "Reserva registrada");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El nombre del mesero es inválido");
-//        }
-//    } catch (NumberFormatException ex) {
-//        JOptionPane.showMessageDialog(this, "Número de mesa no válido");
-//    } catch (Exception ex) {      
-//        JOptionPane.showMessageDialog(this, "Error al guardar la reserva.");
-//    }
-    
-    
-
-//        try {
-//            int numeroMesa = Integer.parseInt(jtNroPedido.getText());
-//                String mesero = jtMesero.getText();
-//                Double Importe = totalMenu.getText();
-//                Boolean Cobrada = tblTemPlatos.getText();
-//        
-//                if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
-//                    LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                    LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-//            
-//                    Pedido pedido = new Pedido();
-//                pedido.setNombreMesero(mesero);
-//                pedido.setFecha(fecha);
-//                pedido.setHora(hora);
-//                pedido.setImporte(importeTotal);
-//                pedido.setCobrada(true);
-//            
-//            Mesa mesa = new Mesa();
-//            mesa.setNumeroMesa(numeroMesa);
-//            
-//            // Ahora puedes guardar la reserva o pedido con los objetos 'pedido' y 'mesa'
-//            pd.modificarComanda(pedido);
-//    
-//            JOptionPane.showMessageDialog(this, "Reserva registrada");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El nombre del mesero es inválido");
-//        }
-//    } catch (NumberFormatException ex) {
-//        JOptionPane.showMessageDialog(this, "Número de mesa no válido");
-//    } catch (Exception ex) {      
-//        JOptionPane.showMessageDialog(this, "Error al guardar la reserva.");
-//    }
+    }         
  
     }//GEN-LAST:event_jbGuardarResActionPerformed
 
@@ -641,40 +563,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     } 
         
         
-//        try{
-//            
-//            int numeroMesa = Integer.parseInt(jtNroPedido.getText());
-//            Pedido pedi = pd.BuscarPedidoPorNum(numeroMesa);
-//            //Pedido pedi = pd.BuscarPedidoPorNumeroMesa(numeroMesa);
-//            if(pedi != null){
-//                jtMesero.setText(pedi.getNombreMesero());
-//                jtfId.setText("idPedido");
-//                nuevaFecha.setDate(Date.valueOf(pedi.getFecha()));
-//                nuevaHora.setDate(Time.valueOf(pedi.getHora()));
-//                
-//            activarCampos();
-//            
-//            tblTemPlatos.setEnabled(false);
-//            tableMenu.setEnabled(false);
-//            btnAddPlato.setEnabled(false);
-//            btnEliminarTempPlato.setEnabled(false);
-//            jbComentario.setEnabled(false);
-//            txtComentario.setEditable(false);
-//            }else{
-//                limpiar();
-//                activarCampos();
-//                desactivarCampos(); 
-//               
-//            
-//                }
-//                    
-//                    
-//        }catch(NumberFormatException e){
-//            JOptionPane.showMessageDialog(this, "Debe ingresar un numero de pedido");
-//            jtNroPedido.requestFocus();
-//            limpiar();
-//            desactivarCampos();
-//        }
+
     }//GEN-LAST:event_lbBuscarPedActionPerformed
 
     private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased

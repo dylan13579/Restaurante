@@ -100,7 +100,7 @@ public class ProductoData {
             int exito = ps.executeUpdate();
             
             if(exito == 1){
-                 JOptionPane.showMessageDialog(null, "Producto ha eliminada con exito");
+                 JOptionPane.showMessageDialog(null, "Producto se ha eliminada con exito");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Producto");
