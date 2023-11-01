@@ -439,7 +439,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 
                 activarCampos();
                 
-                md.darBajaMesaNumero(numeroMesa);  
+               // md.darBajaMesaNumero(numeroMesa);  
             }
             
             limpiar();
