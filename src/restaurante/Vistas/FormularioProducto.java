@@ -512,6 +512,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
         modelo.addColumn("Id Pedido");
         modelo.addColumn("NombreProducto");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Stock");
         
         jTableP.setModel(modelo);
         

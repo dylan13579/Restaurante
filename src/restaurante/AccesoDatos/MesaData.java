@@ -117,6 +117,35 @@ public class MesaData {
         return mesa;
     }
 
+    
+    public List<Mesa> listarMesasComanda() {
+
+        String sql = "SELECT idMesa, descripcion FROM mesa WHERE estado = 0";
+
+        ArrayList<Mesa> mesas = new ArrayList<>();
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(); // devuelve mas de una fila
+            while (rs.next()) {
+
+                Mesa mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setDescripcion(rs.getString("descripcion"));
+                mesa.setEstado(false);
+
+                mesas.add(mesa); //agrego a la lista mesas en cada vuelta
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla mesa");
+        }
+
+        return mesas;
+    }    
+    
     public List<Mesa> listarMesasdisponibles() {
 
         String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
