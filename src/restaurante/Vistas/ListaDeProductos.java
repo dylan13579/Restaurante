@@ -149,7 +149,7 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
             if(pro.getNombreProducto().toUpperCase().startsWith(jtfListPro.getText().toUpperCase())){
                 
                 modelo.addRow(new Object[]{
-                    pro.getCodigoProducto(),
+                    pro.getIdProducto(),
                     pro.getNombreProducto(),
                     pro.getDescripcion(),
                     pro.getPrecio(),
@@ -189,7 +189,7 @@ public class ListaDeProductos extends javax.swing.JInternalFrame {
 
     private void armarCabecera(){
 
-        modelo.addColumn("Codigo Producto");
+        modelo.addColumn("Id Producto");
         modelo.addColumn("Nombre Producto");
         modelo.addColumn("Descripcion");
         modelo.addColumn("Precio");

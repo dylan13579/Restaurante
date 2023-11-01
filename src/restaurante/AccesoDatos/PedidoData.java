@@ -37,12 +37,12 @@ public class PedidoData {
     }
     
     public void guardarPedido(Pedido pedido, Mesa mesa) {
-        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO idPedido(idMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setInt(1, mesa.getIdMesa());
             ps.setString(2, pedido.getNombreMesero());
             ps.setDate(3, Date.valueOf(pedido.getFecha()));
             ps.setTime(4, Time.valueOf(pedido.getHora()));
@@ -67,12 +67,12 @@ public class PedidoData {
     }
     
         public void guardarReserva(Pedido pedido, Mesa mesa) {
-        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO idPedido(idMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setInt(1, mesa.getIdMesa());
             ps.setString(2, pedido.getNombreMesero());
             ps.setDate(3, Date.valueOf(pedido.getFecha()));
             ps.setTime(4, Time.valueOf(pedido.getHora()));
@@ -96,7 +96,7 @@ public class PedidoData {
   
     public void modificarPedido(Pedido pedido){
       
-          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? ,cobrada = ? WHERE idPedido = ?";
+          String sql = "UPDATE idPedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? ,cobrada = ? WHERE idPedido = ?";
           
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
@@ -123,7 +123,7 @@ public class PedidoData {
     
      public void modificarComanda(Pedido pedido){//usada en comanda
       
-          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? , cobrada = ? WHERE idPedido = ? ";
+          String sql = "UPDATE idPedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? , cobrada = ? WHERE idPedido = ? ";
         
         
         try {
@@ -192,14 +192,14 @@ public class PedidoData {
         }
     }
        
-    public void cancelarPedidoNumeroMesa(int numeroMesa) {
+    public void cancelarPedidoNumeroMesa(int idMesa) {
 
-        String sql = "UPDATE pedido SET cobrada = 0 WHERE numeroMesa = ? ";
+        String sql = "UPDATE idPedido SET cobrada = 0 WHERE idMesa = ? ";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
 
-            ps.setInt(1, numeroMesa);
+            ps.setInt(1, idMesa);
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -216,12 +216,12 @@ public class PedidoData {
     
     public void sumarPedido(Mesa mesa){
            
-           String sql = "SELECT SUM(importe) FROM pedido WHERE numeroMesa = ?";
+           String sql = "SELECT SUM(importe) FROM pedido WHERE idMesa = ?";
            
         try {
             
             PreparedStatement ps = wifi.prepareStatement(sql);
-            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setInt(1, mesa.getIdMesa());
             
               ResultSet rs = ps.executeQuery();
             
@@ -279,14 +279,14 @@ public class PedidoData {
         }
     }  
 
-    public List<Pedido> obtenerPedidoCobrado(int numeroMesa){
+    public List<Pedido> obtenerPedidoCobrado(int idMesa){
     
         List<Pedido> encargo = new ArrayList<>();
-        String sql = "SELECT idPedido, numeroMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND numeroMesa = ?";
+        String sql = "SELECT idPedido, idMesa, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND idMesa = ?";
 
     try{
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setInt(1, numeroMesa);
+        ps.setInt(1, idMesa);
 
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -331,21 +331,21 @@ public class PedidoData {
         }
         return encargo;
     }
-    public List<Pedido> listarPedidos(int numeroMesa){
+    public List<Pedido> listarPedidos(int idMesa){
     
-        String sql = "SELECT p.idPedido, p.numeroMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
+        String sql = "SELECT p.idPedido, p.idMesa, p.nombreMesero, p.Fecha, p.Hora, p.importe, p.cobrada "
                 + "FROM pedido p "
                 + "JOIN mesa m "
-                + "ON p.numeroMesa = m.numeroMesa "
+                + "ON p.idMesa = m.idMesa "
                 + "WHERE p.cobrada = 1 "
-                + "AND m.numeroMesa = ?";
+                + "AND m.idMesa = ?";
         
         ArrayList<Pedido> pedidos = new ArrayList<>();
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
             
-            ps.setInt(1, numeroMesa);
+            ps.setInt(1, idMesa);
                         
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -371,17 +371,17 @@ public class PedidoData {
     
     
 
-   public Pedido BuscarPedidoPorNum(int numeroMesa) {
+   public Pedido BuscarPedidoPorNum(int idMesa) {
     Pedido pedido = null;
 
-    String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada "
+    String sql = "SELECT idPedido, idMesa, nombreMesero, Fecha, Hora, importe, cobrada "
                 + "FROM pedido "
                 + "WHERE cobrada = 0 "
-                + "AND numeroMesa = ? ";
+                + "AND idMesa = ? ";
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setInt(1, numeroMesa);
+        ps.setInt(1, idMesa);
 
         ResultSet rs = ps.executeQuery();
 
@@ -518,15 +518,15 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
         return listar;
     }
     
-    public void BuscarPedidoPorNumeroMesa(int numeroMesa) {
+    public void BuscarPedidoPorNumeroMesa(int idMesa) {
         
 
-        String sql = "SELECT numeroMesa,nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 1 ";
+        String sql = "SELECT idMesa,nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 1 ";
         Pedido pedido = null;
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
         
-        ps.setInt(1, numeroMesa);
+        ps.setInt(1, idMesa);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
@@ -573,12 +573,12 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     public void BuscarPedidoPorid(int idPedido) {
         
 
-        String sql = "SELECT numeroMesa, nombreMesero, Fecha, Hora FROM pedido WHERE idPedido = ? ";
+        String sql = "SELECT idMesa, nombreMesero, Fecha, Hora FROM pedido WHERE idPedido = ? ";
         Pedido pedido = null;
     try {
-        PreparedStatement ps = wifi.prepareStatement(sql);
+        PreparedStatement ps = wifi.prepareStatement(sql);        
+            ps.setInt(1, numeroMesa);
         
-        ps.setInt(1, numeroMesa);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {

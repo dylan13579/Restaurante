@@ -133,7 +133,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         });
 
         jbLimpiar.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
-        jbLimpiar.setText("Limpiar");
+        jbLimpiar.setText("Eliminar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarActionPerformed(evt);
@@ -392,8 +392,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try {
-            int codigoProducto = (int) jsProducto.getValue();
-            Producto producto = pd.buscarProductos(codigoProducto);
+            int idProducto = (int) jsProducto.getValue();
+            Producto producto = pd.buscarProductos(idProducto);
 
             String nombreP = jtNombreProducto.getText();
             String descripcion = jtDescProducto.getText();
@@ -408,7 +408,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                     if (precio > 0) {
                         if (producto == null) {
                             Producto prod = new Producto();
-                            prod.setCodigoProducto(codigoProducto);
+                            prod.setIdProducto(idProducto);
                             prod.setNombreProducto(nombreP);
                             prod.setDescripcion(descripcion);
                             prod.setPrecio(precio);
@@ -524,8 +524,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         for(Producto pro : listarPro){
 
             modelo.addRow(new Object[]{
-            pro.getCodigoProducto(),
-            pro.getNombreProducto()
+            pro.getIdProducto(),
+            pro.getIdProducto()
             });
         }
                

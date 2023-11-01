@@ -492,19 +492,16 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         if (!mesero.isEmpty() && mesero.matches("^[a-zA-Z ]+$")) {
             LocalDate fecha = nuevaFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalTime hora = nuevaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-
-            // Obtén la lista de pedidos cobrados para esta mesa
-            List<Pedido> pedidosCobrados = obtenerPedidoCobrado(numeroMesa);
-
-            // Desmarca los pedidos anteriores (marcándolos como no cobrados)
-            for (Pedido pedido : pedidosCobrados) {
+            
+            List<Pedido> pedidosCobrados = obtenerPedidoCobrado(numeroMesa);// Obtén la lista de pedidos cobrados para esta mesa
+            
+            for (Pedido pedido : pedidosCobrados) {// Desmarca los pedidos anteriores (marcándolos como no cobrados)
                 pedido.setCobrada(false);
-                // Guarda los pedidos desmarcados en la base de datos
-                pd.modificarComanda(pedido);
+                
+                pd.modificarComanda(pedido);// Guarda los pedidos desmarcados en la base de datos
             }
-
-            // Crea un nuevo pedido
-            Pedido nuevoPedido = new Pedido();
+            
+            Pedido nuevoPedido = new Pedido();// Crea un nuevo pedido
             nuevoPedido.setNombreMesero(mesero);
             nuevoPedido.setFecha(fecha);
             nuevoPedido.setHora(hora);
@@ -513,9 +510,8 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
             //Mesa mesa = new Mesa();
             //mesa.setNumeroMesa(numeroMesa);
-
-            // Guarda el nuevo pedido en la base de datos
-            pd.modificarComanda(ped);
+            
+            pd.modificarComanda(ped);// Guarda el nuevo pedido en la base de datos
 
             JOptionPane.showMessageDialog(this, "Reserva registrada");
         } else {
@@ -683,7 +679,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) tabla.getModel();
         Object[] ob = new Object[3];
         for (int i = 0; i < Listar.size(); i++) {
-            ob[0] = Listar.get(i).getCodigoProducto();
+            ob[0] = Listar.get(i).getIdProducto();
             ob[1] = Listar.get(i).getNombreProducto();
             ob[2] = Listar.get(i).getPrecio();
             modelo.addRow(ob);
@@ -711,11 +707,10 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         nuevaHora.setDate(null);
     } 
     
-    private void ActualizarTotal(int numeroMesa, JTable tabla, JLabel label) {
+    private void ActualizarTotal(int idMesa, JTable tabla, JLabel label) {
     double total = 0.0;
-
-    // Calcular el total a partir de los datos en la tabla
-    DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+    
+    DefaultTableModel model = (DefaultTableModel) tabla.getModel();// Calcular el total a partir de los datos en la tabla
     int rowCount = model.getRowCount();
     for (int i = 0; i < rowCount; i++) {
         double precio = Double.parseDouble(model.getValueAt(i, 2).toString());
@@ -724,14 +719,14 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
     label.setText(String.format("%.2f", total));
 
-    // Luego, actualiza el importe en la base de datos (suponiendo que tengas una instancia de PedidoData llamada "pd")
-    Pedido pedido = pd.BuscarPedidoPorNum(numeroMesa);
+    
+    Pedido pedido = pd.BuscarPedidoPorNum(idMesa);// Luego, actualiza el importe en la base de datos (suponiendo que tengas una instancia de PedidoData llamada "pd")
     pedido.setImporte(total);
     pd.modificaFinalizar(pedido, mesA);
     //pd.modificaFinalizar(pedido, numeroMesa, true);
 }
 
-    private List<Pedido> obtenerPedidoCobrado(int numeroMesa) {
+    private List<Pedido> obtenerPedidoCobrado(int idMesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

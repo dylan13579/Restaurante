@@ -29,18 +29,18 @@ public class ProductoData {
     
     public void guardarProducto(Producto producto){
         
-        String sql = "INSERT INTO producto(codigoProducto, nombreProducto, descripcion, precio, stock, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(nombreProducto, descripcion, precio, stock, estado) VALUES (?, ?, ?, ?, ?)";
         
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            ps.setInt(1, producto.getCodigoProducto());
-            ps.setString(2, producto.getNombreProducto());
-            ps.setString(3, producto.getDescripcion());
-            ps.setDouble(4, producto.getPrecio());
-            ps.setInt(5, producto.getStock());
-            ps.setBoolean(6, producto.isEstado());
+            
+            ps.setString(1, producto.getNombreProducto());
+            ps.setString(2, producto.getDescripcion());
+            ps.setDouble(3, producto.getPrecio());
+            ps.setInt(4, producto.getStock());
+            ps.setBoolean(5, producto.isEstado());
             
             int mercaderia = ps.executeUpdate();
             
@@ -48,9 +48,8 @@ public class ProductoData {
                ResultSet rs = ps.getGeneratedKeys();
                if(rs.next()){
                    int genera = rs.getInt(1);
-                   producto.setCodigoProducto(genera);
-                   
-                   JOptionPane.showMessageDialog(null, "Producto agreddo");
+                   producto.setIdProducto(genera); 
+                        JOptionPane.showMessageDialog(null, "Producto agreddo");
                }
             }
            
@@ -64,7 +63,7 @@ public class ProductoData {
     
     public void modificarProducto(Producto producto){
         
-        String sql = "UPDATE producto SET nombreProducto = ?,descripcion = ?,precio = ?,stock = ?,estado = ? WHERE codigoProducto = ?";
+        String sql = "UPDATE producto SET nombreProducto = ?,descripcion = ?,precio = ?,stock = ?,estado = ? WHERE idProducto = ?";
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
@@ -73,7 +72,7 @@ public class ProductoData {
             ps.setDouble(3, producto.getPrecio());
             ps.setInt(4, producto.getStock());
             ps.setBoolean(5, producto.isEstado());
-            ps.setInt(6, producto.getCodigoProducto());
+            ps.setInt(6, producto.getIdProducto());
             
             int exito = ps.executeUpdate();
             
@@ -91,7 +90,7 @@ public class ProductoData {
     public void darDebajaProducto(int producto){
         
         
-        String sql = "UPDATE producto SET estado = 0 WHERE codigoProducto = ?";
+        String sql = "UPDATE producto SET estado = 0 WHERE idProducto = ?";
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
@@ -108,21 +107,21 @@ public class ProductoData {
         
     }
     
-    public Producto buscarProductos(int codigoProducto){
+    public Producto buscarProductos(int idProducto){
      
-        String sql = "SELECT codigoProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE codigoProducto = ? AND (estado = 1 OR estado = 0)";
+        String sql = "SELECT idProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE idProducto = ? AND (estado = 1 OR estado = 0)";
         
         Producto producto = null;
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
             
-            ps.setInt(1, codigoProducto);
+            ps.setInt(1, idProducto);
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
                 producto = new Producto();
-                producto.setCodigoProducto(rs.getInt("codigoProducto"));
+                producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombreProducto(rs.getString("nombreProducto"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
@@ -145,7 +144,7 @@ public class ProductoData {
     
     public List<Producto> listarProductos(){
         
-        String sql = "SELECT codigoProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE estado = 1";
+        String sql = "SELECT idProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE estado = 1";
         
         ArrayList<Producto> listar = new ArrayList<>();
         try {
@@ -156,7 +155,7 @@ public class ProductoData {
                 
                 Producto pn = new Producto();
                 
-                pn.setCodigoProducto(rs.getInt("codigoProducto"));
+                pn.setIdProducto(rs.getInt("idProducto"));
                 pn.setNombreProducto(rs.getString("nombreProducto"));
                 pn.setDescripcion(rs.getString("descripcion"));
                 pn.setPrecio(rs.getDouble("precio"));
@@ -174,7 +173,7 @@ public class ProductoData {
     }
     
     public List<Producto> listarPlatos(){
-        String sql = "SELECT codigoProducto, nombreProducto, precio FROM producto WHERE estado = 1";
+        String sql = "SELECT idProducto, nombreProducto, precio FROM producto WHERE estado = 1";
         
         ArrayList<Producto> listar = new ArrayList<>();
         try {
@@ -185,7 +184,7 @@ public class ProductoData {
                 
                 Producto pn = new Producto();
                 
-                pn.setCodigoProducto(rs.getInt("codigoProducto"));
+                pn.setIdProducto(rs.getInt("codigoProducto"));
                 pn.setNombreProducto(rs.getString("nombreProducto"));
                 pn.setPrecio(rs.getDouble("precio"));
                 

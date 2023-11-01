@@ -25,11 +25,11 @@ public class MesaData {
     
     public void guardarMesa (Mesa mesa){
         
-        String sql = "INSERT INTO mesa(numeroMesa, descripcion, estado) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO mesa(idMesa, descripcion, estado) VALUES (?, ?, ?)";
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, mesa.getNumeroMesa());
+            ps.setInt(1, mesa.getIdMesa());
             ps.setString(2,mesa.getDescripcion());
             ps.setBoolean(3, mesa.isEstado());
             ps.executeUpdate();
@@ -55,7 +55,7 @@ public class MesaData {
             PreparedStatement ps = wifi.prepareStatement(sql);
             ps.setString(1, mesa.getDescripcion());
             ps.setBoolean(2, mesa.isEstado());
-            ps.setInt(3, mesa.getNumeroMesa());
+            ps.setInt(3, mesa.getIdMesa());
            
           
             
@@ -91,14 +91,14 @@ public class MesaData {
         }
     }
     
-    public void darBajaMesaNumero(int numeroMesa) {
+    public void darBajaMesaNumero(int idMesa) {
 
-        String sql = "UPDATE mesa SET estado = 0 WHERE numeroMesa = ? ";
+        String sql = "UPDATE mesa SET estado = 0 WHERE idMesa = ? ";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
 
-            ps.setInt(1, numeroMesa);
+            ps.setInt(1, idMesa);
             
             int exito = ps.executeUpdate();
 
@@ -113,20 +113,20 @@ public class MesaData {
         }
     }
 
-    public Mesa buscarMesaPorNum(int numeroMesa) {
+    public Mesa buscarMesaPorNum(int idMesa) {
 
-        String sql = "SELECT numeroMesa, descripcion, estado FROM mesa WHERE numeroMesa = ? AND (estado = 1 OR estado = 0)";
+        String sql = "SELECT idMesa, descripcion, estado FROM mesa WHERE idMesa = ? AND (estado = 1 OR estado = 0)";
 
         Mesa mesa = null;
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
 
-            ps.setInt(1, numeroMesa);
+            ps.setInt(1, idMesa);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 mesa = new Mesa();
                 
-                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
+                mesa.setIdMesa(rs.getInt("idMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(rs.getInt("estado") == 1);
          
@@ -146,7 +146,7 @@ public class MesaData {
 
     public List<Mesa> listarMesasdisponibles() {
 
-        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
+        String sql = "SELECT idMesa, descripcion FROM mesa WHERE estado = 0";
 
         ArrayList<Mesa> mesas = new ArrayList<>();
         try {
@@ -186,7 +186,7 @@ public class MesaData {
 
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("idMesa"));
-                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
+                mesa.setIdMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(false);
 

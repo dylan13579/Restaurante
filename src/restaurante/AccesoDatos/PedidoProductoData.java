@@ -32,7 +32,7 @@ public class PedidoProductoData {
     
     public void guardarPedidoProducto(int pedi, int pro, int cantidad){
         
-         String sql = "INSERT INTO pedidoproducto(idPedido ,codigoProducto ,cantidad) VALUES (?, ?, ?)";
+         String sql = "INSERT INTO idProducto(idPedido ,idProducto ,cantidad) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -61,7 +61,7 @@ public class PedidoProductoData {
    
    public void elimanrpedido(int idPedido){
        
-       String sql = "DELETE FROM pedidoproducto WHERE idPedido = ?";
+       String sql = "DELETE FROM idPedido_Producto WHERE idPedido = ?";
        
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);

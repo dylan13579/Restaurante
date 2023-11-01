@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class Pedido {
     
     private int idPedido;
-    private Mesa numeroMesa;
+    private Mesa idMesa;
     private String nombreMesero;
     private LocalDate fecha;
     private LocalTime hora;
@@ -22,9 +22,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
-        this.idPedido = idPedido;
-        this.numeroMesa = numeroMesa;
+    public Pedido(Mesa idMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
+        this.idMesa = idMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -32,8 +31,9 @@ public class Pedido {
         this.cobrada = cobrada;
     }
 
-    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
-        this.numeroMesa = numeroMesa;
+    public Pedido(int idPedido, Mesa idMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
+        this.idPedido = idPedido;
+        this.idMesa = idMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -49,12 +49,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Mesa getNumeroMesa() {
-        return numeroMesa;
+    public Mesa getIdMesa() {
+        return idMesa;
     }
 
-    public void setNumeroMesa(Mesa numeroMesa) {
-        this.numeroMesa = numeroMesa;
+    public void setIdMesa(Mesa idMesa) {
+        this.idMesa = idMesa;
     }
 
     public String getNombreMesero() {
@@ -99,7 +99,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return  nombreMesero;
+        return "Pedido{" + "idPedido=" + idPedido + ", idMesa=" + idMesa + ", nombreMesero=" + nombreMesero + ", fecha=" + fecha + ", hora=" + hora + ", importe=" + importe + ", cobrada=" + cobrada + '}';
     }
 
   

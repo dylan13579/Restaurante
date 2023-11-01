@@ -318,7 +318,7 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
             jbGuardarMesa.setEnabled(true);
             jbLimpiar.setEnabled(true);
 
-            JOptionPane.showMessageDialog(null, "Mesa Encontrada");
+            //JOptionPane.showMessageDialog(null, "Mesa Encontrada");
         } else {
             jbNuevaMesa.setEnabled(true);
             limpiar();
