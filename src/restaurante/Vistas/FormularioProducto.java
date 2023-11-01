@@ -110,7 +110,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jLabel6.setText("Estado");
 
         jrbEstadoProd.setFont(new java.awt.Font("Eras Light ITC", 1, 12)); // NOI18N
-        jrbEstadoProd.setText("Disponible");
         jrbEstadoProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbEstadoProdActionPerformed(evt);
@@ -223,9 +222,9 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addGap(50, 50, 50)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbEstadoProd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jrbEstadoProd)))
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +273,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                     .addComponent(jbLimpiar)
                     .addComponent(jbGuardar)
                     .addComponent(jbSalir))
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

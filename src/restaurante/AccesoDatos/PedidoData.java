@@ -47,7 +47,7 @@ public class PedidoData {
             ps.setDate(3, Date.valueOf(pedido.getFecha()));
             ps.setTime(4, Time.valueOf(pedido.getHora()));
             ps.setDouble(5, pedido.getImporte());
-            ps.setBoolean(6, pedido.isCobrado());
+            ps.setBoolean(6, pedido.isCobrada());
 
             int modi = ps.executeUpdate();
 
@@ -67,7 +67,7 @@ public class PedidoData {
     }
     
         public void guardarReserva(Pedido pedido, Mesa mesa) {
-        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO pedido(numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = wifi.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
@@ -104,7 +104,7 @@ public class PedidoData {
             ps.setDate(2,Date.valueOf(pedido.getFecha()));
             ps.setTime(3, Time.valueOf(pedido.getHora()));
             ps.setDouble(4, pedido.getImporte());
-            ps.setBoolean(5, pedido.isCobrado());
+            ps.setBoolean(5, pedido.isCobrada());
             ps.setInt(6, pedido.getIdPedido());
             
             int mejor = ps.executeUpdate();
@@ -121,17 +121,21 @@ public class PedidoData {
          
       }
     
-     public void modificarComanda(Pedido pedido, Mesa m){
+     public void modificarComanda(Pedido pedido){//usada en comanda
       
-          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? WHERE idPedido = ?";
+          String sql = "UPDATE pedido SET nombreMesero = ? ,Fecha = ? ,Hora = ? ,importe = ? , cobrada = ? WHERE idPedido = ? ";
         
         
         try {
             PreparedStatement ps = wifi.prepareStatement(sql);
+            
             ps.setString(1, pedido.getNombreMesero());
             ps.setDate(2,Date.valueOf(pedido.getFecha()));
-            ps.setTime(3, Time.valueOf(pedido.getHora()));      
-            ps.setInt(4, m.getNumeroMesa());
+            ps.setTime(3, Time.valueOf(pedido.getHora()));
+            ps.setDouble(4, pedido.getImporte());
+            ps.setBoolean(5, pedido.isCobrada());
+            ps.setInt(6, pedido.getIdPedido());            
+            
             
             int mejor = ps.executeUpdate();
             
@@ -291,7 +295,7 @@ public class PedidoData {
                 pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedido.setHora(rs.getTime("Hora").toLocalTime());
                 pedido.setImporte(rs.getDouble("importe"));
-                pedido.setCobrado(rs.getBoolean("cobrada"));
+                pedido.setCobrada(rs.getBoolean("cobrada"));
                 encargo.add(pedido);
             }
         }
@@ -318,7 +322,7 @@ public class PedidoData {
                     pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                     pedido.setHora(rs.getTime("Hora").toLocalTime());
                     pedido.setImporte(rs.getInt("importe"));
-                    pedido.setCobrado(rs.getBoolean("Cobrada"));
+                    pedido.setCobrada(rs.getBoolean("Cobrada"));
                     encargo.add(pedido);                                
                 }
             }
@@ -352,7 +356,7 @@ public class PedidoData {
                 pedido.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedido.setHora(rs.getTime("Hora").toLocalTime());
                 pedido.setImporte(rs.getDouble("importe"));
-                pedido.setCobrado(rs.getBoolean("cobrada"));
+                pedido.setCobrada(rs.getBoolean("cobrada"));
                 
                 pedidos.add(pedido);              
             }
@@ -373,7 +377,7 @@ public class PedidoData {
     String sql = "SELECT idPedido, numeroMesa, nombreMesero, Fecha, Hora, importe, cobrada "
                 + "FROM pedido "
                 + "WHERE cobrada = 0 "
-                + "AND numeroMesa = ?";
+                + "AND numeroMesa = ? ";
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
@@ -383,12 +387,13 @@ public class PedidoData {
 
         if (rs.next()) {
             pedido = new Pedido();
-
+            
+            pedido.setIdPedido(rs.getInt("idPedido"));
             pedido.setNombreMesero(rs.getString("nombreMesero"));
             pedido.setFecha(rs.getDate("Fecha").toLocalDate());
             pedido.setHora(rs.getTime("Hora").toLocalTime());
             pedido.setImporte(rs.getDouble("importe"));
-            pedido.isCobrado();
+            pedido.setCobrada(rs.getBoolean("cobrada"));
         } else {
             JOptionPane.showMessageDialog(null, "El numero de ese pedido no se encuentra");
         }
@@ -442,7 +447,7 @@ public class PedidoData {
             p.setFecha(rs.getDate("Fecha").toLocalDate());
             p.setHora(rs.getTime("Hora").toLocalTime());
             p.setImporte(rs.getDouble("importe"));
-            p.setCobrado(true);
+            p.setCobrada(true);
 
             cobrados.add(p);
         }
@@ -473,7 +478,7 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
             p.setFecha(rs.getDate("Fecha").toLocalDate());
             p.setHora(rs.getTime("Hora").toLocalTime());
             p.setImporte(rs.getDouble("importe"));
-            p.setCobrado(false);
+            p.setCobrada(false);
 
             cobrados.add(p);
         }
@@ -502,7 +507,7 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
                 pedir.setNombreMesero(rs.getString("nombreMesero"));
                 pedir.setFecha(rs.getDate("Fecha").toLocalDate());
                 pedir.setHora(rs.getTime("Hora").toLocalTime());
-                pedir.setCobrado(rs.getInt("cobrada") == 1);
+                pedir.setCobrada(rs.getInt("cobrada") == 1);
                 
                 listar.add(pedir);
                 
@@ -554,7 +559,7 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
             fechas.setFecha(rs.getDate("Fecha").toLocalDate());
             fechas.setHora(rs.getTime("Hora").toLocalTime());
             fechas.setImporte(rs.getDouble("importe"));
-            fechas.setCobrado(rs.getBoolean("cobrada"));
+            fechas.setCobrada(rs.getBoolean("cobrada"));
             listaDeFechas.add(fechas);
         }
         ps.close();
@@ -564,5 +569,30 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     }
     return listaDeFechas;
     }
+    
+    public void BuscarPedidoPorid(int idPedido) {
+        
+
+        String sql = "SELECT numeroMesa, nombreMesero, Fecha, Hora FROM pedido WHERE idPedido = ? ";
+        Pedido pedido = null;
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        
+        ps.setInt(1, numeroMesa);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            pedido = new Pedido();
+
+            pedido.setNombreMesero(rs.getString("nombreMesero"));
+            pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+            pedido.setHora(rs.getTime("Hora").toLocalTime());       
+
+        }        
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+    }
+    }    
 }    
       

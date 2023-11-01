@@ -17,28 +17,28 @@ public class Pedido {
     private LocalDate fecha;
     private LocalTime hora;
     private double importe;
-    private boolean cobrado;
+    private boolean cobrada;
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
+    public Pedido(int idPedido, Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
         this.idPedido = idPedido;
         this.numeroMesa = numeroMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
         this.importe = importe;
-        this.cobrado = cobrado;
+        this.cobrada = cobrada;
     }
 
-    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrado) {
+    public Pedido(Mesa numeroMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
         this.numeroMesa = numeroMesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
         this.importe = importe;
-        this.cobrado = cobrado;
+        this.cobrada = cobrada;
     }
 
     public int getIdPedido() {
@@ -89,17 +89,18 @@ public class Pedido {
         this.importe = importe;
     }
 
-    public boolean isCobrado() {
-        return cobrado;
+    public boolean isCobrada() {
+        return cobrada;
     }
 
-    public void setCobrado(boolean cobrado) {
-        this.cobrado = cobrado;
+    public void setCobrada(boolean cobrada) {
+        this.cobrada = cobrada;
     }
 
     @Override
     public String toString() {
-        return nombreMesero ;
+        return  nombreMesero;
     }
+
   
 }

@@ -108,9 +108,9 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jrbEstadoProd" min="-2" pref="97" max="-2" attributes="0"/>
                                       <Component id="jsStock" min="-2" pref="104" max="-2" attributes="0"/>
                                       <Component id="jtPrecio" min="-2" pref="104" max="-2" attributes="0"/>
+                                      <Component id="jrbEstadoProd" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
                       <Component id="jbGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="391" max="32767" attributes="0"/>
+                  <EmptySpace pref="399" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -264,7 +264,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Light ITC" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Disponible"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbEstadoProdActionPerformed"/>

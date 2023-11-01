@@ -40,7 +40,7 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
         jtTablaFechas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel1.setText("Consulta de Ingresos");
@@ -176,26 +176,26 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
     
     }
     
-   private void Fecha() {
-        
-       Date elegir = (Date) jdcSelectFecha.getDate();
-       LocalDate fechaSeleccionada = elegir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        List<Pedido> listaDeFechas = pd.buscarFechas(fechaSeleccionada);
-
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-
-        for (Pedido pedido : listaDeFechas) {
-            modelo.addRow(new Object[] {
-                pedido.getNombreMesero(),
-                pedido.getFecha(),
-                pedido.getHora(),
-                pedido.getImporte(),
-                pedido.isCobrado()
-            });
-        }
-    }
-
+//   private void Fecha() {
+//        
+////       Date elegir = (Date) jdcSelectFecha.getDate();
+////       LocalDate fechaSeleccionada = elegir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+////
+////        List<Pedido> listaDeFechas = pd.buscarFechas(fechaSeleccionada);
+////
+////        while (modelo.getRowCount() > 0) {
+////            modelo.removeRow(0);
+////        }
+////
+////        for (Pedido pedido : listaDeFechas) {
+////            modelo.addRow(new Object[] {
+////                pedido.getNombreMesero(),
+////                pedido.getFecha(),
+////                pedido.getHora(),
+////                pedido.getImporte(),
+////                pedido.isCobrada()
+////            });
+////        }
+////    }
+//
 }
