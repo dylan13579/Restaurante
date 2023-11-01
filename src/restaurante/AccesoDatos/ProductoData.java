@@ -49,7 +49,7 @@ public class ProductoData {
                if(rs.next()){
                    int genera = rs.getInt(1);
                    producto.setIdProducto(genera); 
-                        JOptionPane.showMessageDialog(null, "Producto agreddo");
+                        JOptionPane.showMessageDialog(null, "Producto agregado");
                }
             }
            
@@ -131,7 +131,7 @@ public class ProductoData {
                 
             }else{
             
-            JOptionPane.showMessageDialog(null, "El codigo de ese producto no existe");
+            //JOptionPane.showMessageDialog(null, "El codigo de ese producto no existe");
             }
             
         } catch (SQLException ex) {
