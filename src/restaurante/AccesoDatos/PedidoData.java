@@ -543,6 +543,34 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     }
     }
     
+    public void BuscarPedidoPorMesa(int idMesa) {
+        
+
+        String sql = "SELECT idMesa, nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 0 ";
+        Pedido pedido = null;
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        
+        ps.setInt(1, idMesa);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            pedido = new Pedido();
+            
+            
+            pedido.setNombreMesero(rs.getString("nombreMesero"));
+            pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+            pedido.setHora(rs.getTime("Hora").toLocalTime());       
+
+        }        
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
+    }
+    }    
+    
+    
+    
     public List<Pedido> buscarFechas(LocalDate dia){
   
        List<Pedido> listaDeFechas = new ArrayList<>();
