@@ -306,8 +306,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try {
-            int codigoProducto = (int) jsProducto.getValue();
-            Producto pedi = pd.buscarProductos(codigoProducto);
+            int idProducto = (int) jsProducto.getValue();
+            Producto pedi = pd.buscarProductos(idProducto);
             if (pedi != null) {
                 String nombre = pedi.getNombreProducto();
                 String descripcion = pedi.getDescripcion();
@@ -322,7 +322,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                 jsStock.setValue(stock);
 
                 activarCampos();
-                jbNuevo.setEnabled(false);
+                jbNuevo.setEnabled(true);
                 jbLimpiar.setEnabled(true);
                 jbGuardar.setEnabled(true);
 
@@ -347,8 +347,8 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
         try {
 
-            int codigoProducto = (int) jsProducto.getValue();
-            Producto producto = pd.buscarProductos(codigoProducto);
+            int idProducto = (int) jsProducto.getValue();
+            Producto producto = pd.buscarProductos(idProducto);
             if (producto != null) {
 
                 jtNombreProducto.setText(producto.getNombreProducto());
@@ -356,7 +356,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                 jtPrecio.setText(String.valueOf(producto.getPrecio()));
                 jrbEstadoProd.setText(String.valueOf(producto.isEstado()));
 
-                pd.darDebajaProducto(codigoProducto);
+                pd.darDebajaProducto(idProducto);
 
             }
             limpiar();
@@ -382,7 +382,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         jrbEstadoProd.setSelected(false);
         jsStock.setEnabled(true);
         jbLimpiar.setEnabled(false);
-        jbNuevo.setEnabled(false);
+        jbNuevo.setEnabled(true);
         jbGuardar.setEnabled(true);
 
 
@@ -401,7 +401,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             int srockP = (int) jsStock.getValue();
             boolean estado = jrbEstadoProd.isSelected();
 
-            if (!nombreP.isEmpty() && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")) {
+            if (!nombreP.isEmpty()) {  // && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")
                 try {
                     double precio = Double.parseDouble(precioP);
 
@@ -437,13 +437,13 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
                     }
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
+                    //JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Error en el nombre y descripción. Solo se permiten caracteres o no puede dejar campos vacíos.");
             }
         } catch (NumberFormatException a) {
-            JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+            //JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -510,7 +510,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     
     private void armarCabeceraP(){
 
-        modelo.addColumn("Codigo");
+        modelo.addColumn("Id Pedido");
         modelo.addColumn("NombreProducto");
         
         jTableP.setModel(modelo);
@@ -525,7 +525,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
 
             modelo.addRow(new Object[]{
             pro.getIdProducto(),
-            pro.getIdProducto()
+            pro.getNombreProducto()
             });
         }
                

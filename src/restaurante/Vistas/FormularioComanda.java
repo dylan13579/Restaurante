@@ -409,7 +409,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         
         if (tblTemPlatos.getSelectedRow() >= 0) {            
             int id = Integer.parseInt(tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 0).toString());
-            String nombreProducto = tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 1).toString();
+            String idProducto = tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 1).toString();
             double precio = Double.parseDouble(tblTemPlatos.getValueAt(tblTemPlatos.getSelectedRow(), 2).toString());
             double total = 1 * precio;
             item = item + 1;
@@ -428,7 +428,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
             ArrayList lista = new ArrayList();
             lista.add(item);
             lista.add(id);
-            lista.add(nombreProducto);
+            lista.add(idProducto);
             lista.add(1);
             lista.add(precio);
             lista.add(total);
@@ -529,8 +529,8 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
            try {
-        int numeroMesa = Integer.parseInt(jtNroPedido.getText());
-        Pedido pedido = pd.BuscarPedidoPorNum(numeroMesa);
+        int idMesa = Integer.parseInt(jtNroPedido.getText());
+        Pedido pedido = pd.BuscarPedidoPorNum(idMesa);
 
         if (pedido != null) {
             jtMesero.setText(pedido.getNombreMesero());
