@@ -23,53 +23,49 @@ public class MesaData {
         
     }
     
-    public void guardarMesa (Mesa mesa){
-        
-        String sql = "INSERT INTO mesa(idMesa, descripcion, estado) VALUES (?, ?, ?)";
-        
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, mesa.getIdMesa());
-            ps.setString(2,mesa.getDescripcion());
-            ps.setBoolean(3, mesa.isEstado());
-            ps.executeUpdate();
-            
-            ResultSet rs = ps.getGeneratedKeys();
-            if(rs.next()){
-                mesa.setNumeroMesa(1);
-                 JOptionPane.showMessageDialog(null, "Mesa agregada");
-                 ps.close();
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
+   public void guardarMesa(Mesa mesa) {
+    String sql = "INSERT INTO mesa(numeroMesa, descripcion, estado) VALUES (?, ?, ?)";
+
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, mesa.getNumeroMesa());
+        ps.setString(2, mesa.getDescripcion());
+        ps.setBoolean(3, mesa.isEstado());
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            mesa.setIdMesa(1);
+            JOptionPane.showMessageDialog(null, "Mesa agregada");
         }
-        
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
     }
+}
     
-    public void modificarMesa(Mesa mesa){
-        
-        String sql = "UPDATE mesa SET descripcion = ?, estado = ? WHERE numeroMesa = ? ";
-        
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql);
-            ps.setString(1, mesa.getDescripcion());
-            ps.setBoolean(2, mesa.isEstado());
-            ps.setInt(3, mesa.getIdMesa());
+   public void modificarMesa(Mesa mesa) {
+    String sql = "UPDATE mesa SET numeroMesa = ?, descripcion = ?, estado = ? WHERE idMesa = ?";
+
+    try {
+        PreparedStatement ps = wifi.prepareStatement(sql);
+        ps.setInt(1, mesa.getNumeroMesa());
+        ps.setString(2, mesa.getDescripcion());
+        ps.setBoolean(3, true);
+        ps.setInt(4, mesa.getIdMesa());
            
-          
+        int mejor = ps.executeUpdate();
             
-            int mejoras = ps.executeUpdate();
-            
-            if(mejoras == 1){
-                JOptionPane.showMessageDialog(null, "Mesa Reservada");
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
+        if (mejor == 1) {
+            JOptionPane.showMessageDialog(null, "Mesa modificada");
         }
         
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Mesa");
     }
+}
     
     public void darBajaMesaId(int id) {
 
@@ -91,31 +87,10 @@ public class MesaData {
         }
     }
     
-    public void darBajaMesaNumero(int idMesa) {
-
-        String sql = "UPDATE mesa SET estado = 0 WHERE idMesa = ? ";
-
-        try {
-            PreparedStatement ps = wifi.prepareStatement(sql);
-
-            ps.setInt(1, idMesa);
-            
-            int exito = ps.executeUpdate();
-
-            if (exito == 1) {
-
-                JOptionPane.showMessageDialog(null, "Mesa Libre");
-                
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al intentar acceder a la tabla mesa");
-        }
-    }
 
     public Mesa buscarMesaPorNum(int idMesa) {
 
-        String sql = "SELECT idMesa, descripcion, estado FROM mesa WHERE idMesa = ? AND (estado = 1 OR estado = 0)";
+        String sql = "SELECT idMesa, numeroMesa ,descripcion, estado FROM mesa WHERE idMesa = ? AND (estado = 1 OR estado = 0)";
 
         Mesa mesa = null;
         try {
@@ -127,6 +102,7 @@ public class MesaData {
                 mesa = new Mesa();
                 
                 mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
                 mesa.setEstado(rs.getInt("estado") == 1);
          
@@ -146,7 +122,7 @@ public class MesaData {
 
     public List<Mesa> listarMesasdisponibles() {
 
-        String sql = "SELECT idMesa, descripcion FROM mesa WHERE estado = 0";
+        String sql = "SELECT idMesa, numeroMesa, descripcion FROM mesa WHERE estado = 0";
 
         ArrayList<Mesa> mesas = new ArrayList<>();
         try {
@@ -159,7 +135,7 @@ public class MesaData {
                 mesa.setIdMesa(rs.getInt("idMesa"));
                 mesa.setNumeroMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
-                mesa.setEstado(true);
+                mesa.setEstado(false);
 
                 mesas.add(mesa); //agrego a la lista mesas en cada vuelta
             }
@@ -186,9 +162,9 @@ public class MesaData {
 
                 Mesa mesa = new Mesa();
                 mesa.setIdMesa(rs.getInt("idMesa"));
-                mesa.setIdMesa(rs.getInt("numeroMesa"));
+                mesa.setNumeroMesa(rs.getInt("numeroMesa"));
                 mesa.setDescripcion(rs.getString("descripcion"));
-                mesa.setEstado(false);
+                mesa.setEstado(true);
 
                 mesas.add(mesa); //agrego a la lista mesas en cada vuelta
             }

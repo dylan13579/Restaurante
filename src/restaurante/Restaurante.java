@@ -19,20 +19,21 @@ public class Restaurante {
        
         
         //Pruebas de Mesa
-//        MesaData me=new MesaData(); //creando instancia data
+        //MesaData me=new MesaData(); //creando instancia data
 //        
-//        Mesa m=new Mesa(6,"Mesa para 6 personas",true);
-//            me.guardarMesa(m);
+        //Mesa m=new Mesa(20,1,"Mesa Para 2 Personas",true);
+            //me.guardarMesa(m);
             //me.modificarMesa(m);
         
             //metodo dar de baja
-            //me.darBajaMesaId(4);
+            //me.darBajaMesaId(21);
             //me.darBajaMesaNumero(1);
          
             //metodo buscar
-//        Mesa meEncontrada = me.buscarMesaPorNum(2);
+//        Mesa meEncontrada = me.buscarMesaPorNum(20);
 //        if (meEncontrada != null) {
 //            System.out.println("Mesas encontrada");
+//            System.out.println("isMesa: " + meEncontrada.getIdMesa());
 //            System.out.println("numeroMesa: " + meEncontrada.getNumeroMesa());
 //            System.out.println("descripcion: " + meEncontrada.getDescripcion());
 //            System.out.println("");
@@ -42,19 +43,22 @@ public class Restaurante {
 //        MesaData me = new MesaData();
 //        for (Mesa mesa : me.listarMesasdisponibles()) {
 //            System.out.println("Mesa disponible");
+//            System.out.println("idMesa: "+mesa.getIdMesa());
 //            System.out.println("numero: "+mesa.getNumeroMesa());
-//            System.out.println("cantidad: "+mesa.getDescripcion());
+//            System.out.println("descrip: "+mesa.getDescripcion());
 //            System.out.println("estado: "+mesa.isEstado());
-//           
+//            
 //        }
-//        MesaData me = new MesaData();
-//        for (Mesa mesa : me.listarMesasNodisponibles()) {
-//            System.out.println("Mesa no disponible");
-//            System.out.println("numero: "+mesa.getNumeroMesa());
-//            System.out.println("cantidad: "+mesa.getDescripcion());
-//            System.out.println("estado: "+mesa.isEstado());
-//            System.out.println("");
-//        }
+        
+        MesaData me = new MesaData();
+        for (Mesa mesa : me.listarMesasNodisponibles()) {
+            System.out.println("Mesa no disponible");
+            System.out.println("idMesa: "+mesa.getIdMesa());
+            System.out.println("numero: "+mesa.getNumeroMesa());
+            System.out.println("descrip: "+mesa.getDescripcion());
+            System.out.println("estado: "+mesa.isEstado());
+            
+        }
          
 
 
