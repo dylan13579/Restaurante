@@ -107,9 +107,6 @@ public class MesaData {
                 mesa.setEstado(rs.getInt("estado") == 1);
          
             
-            }else{
-                 JOptionPane.showMessageDialog(null, "Numero invalido, no puede ingresar Caracteres ");
-            
             }
             
         } catch (SQLException ex) {
