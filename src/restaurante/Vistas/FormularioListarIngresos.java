@@ -1,16 +1,17 @@
 
 package restaurante.Vistas;
 
-import java.sql.Date;
-import java.sql.Time;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante.AccesoDatos.PedidoData;
 import restaurante.Entidades.Pedido;
+
 
 
 public class FormularioListarIngresos extends javax.swing.JInternalFrame {
@@ -23,9 +24,10 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
         initComponents();
         modelo = new DefaultTableModel();
        
+        pd = new PedidoData();
         
         armarCabecera();
-        armarCabecera();
+        
         
         
     }
@@ -38,10 +40,11 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jdcSelectFecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaFechas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jbBuscarFecha = new javax.swing.JToggleButton();
+        jdcFechas = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -50,12 +53,6 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jLabel2.setText("Seleccionar Fecha:");
-
-        jdcSelectFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jdcSelectFechaPropertyChange(evt);
-            }
-        });
 
         jtTablaFechas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +80,13 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBuscarFecha.setText("buscar");
+        jbBuscarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarFechaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,16 +98,18 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jdcSelectFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56)
+                        .addComponent(jdcFechas, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addComponent(jbBuscarFecha))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel1)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,14 +118,17 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jdcSelectFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdcFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbBuscarFecha))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,7 +139,10 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -147,12 +159,12 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jdcSelectFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcSelectFechaPropertyChange
-        // TODO add your handling code here:
-            
-            
+    private void jbBuscarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarFechaActionPerformed
         
-    }//GEN-LAST:event_jdcSelectFechaPropertyChange
+        LocalDate fechaSeleccionada = jdcFechas.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        List<Pedido> pedidos = pd.buscarFechas(fechaSeleccionada);
+        llenarTabla(pedidos);
+    }//GEN-LAST:event_jbBuscarFechaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,48 +173,12 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser jdcSelectFecha;
+    private javax.swing.JToggleButton jbBuscarFecha;
+    private com.toedter.calendar.JDateChooser jdcFechas;
     private javax.swing.JTable jtTablaFechas;
     // End of variables declaration//GEN-END:variables
 
 
-//    private void armarCabecera(){
-//    
-//        ArrayList<Object> fCabecera = new ArrayList<>();
-//        
-//        fCabecera.add("Mesero");
-//        fCabecera.add("Fecha");        
-//        fCabecera.add("Hora");
-//        fCabecera.add("Importe");
-//        fCabecera.add("Cobrada");
-//        
-//        for(Object it : fCabecera){
-//        
-//            modelo.addColumn(it);
-//        }
-//        jtTablaFechas.setModel(modelo);
-//    
-//    }
-//    
-//    private void Fecha() {
-//        java.util.Date fechaSeleccionada = jdcSelectFecha.getDate();
-//
-//    List<Pedido> listaDeFechas = pd.buscarFechas(fechaSeleccionada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-//
-//    while (modelo.getRowCount() > 0) {
-//        modelo.removeRow(0);
-//    }
-//
-//    for (Pedido pedido : listaDeFechas) {
-//        modelo.addRow(new Object[] {
-//            pedido.getNombreMesero(),
-//            Date.from(pedido.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant()), // Convierte LocalDate a Date
-//            Time.valueOf(pedido.getHora()), // Convertir LocalTime a Time
-//            pedido.getImporte(),
-//            pedido.isCobrada()
-//        });
-//    }
-//}
 
     
     private void armarCabecera(){
@@ -220,28 +196,18 @@ public class FormularioListarIngresos extends javax.swing.JInternalFrame {
     jtTablaFechas.setModel(modelo);
 }
 
-private void Fecha() {
-    if (pd == null) {
-        pd = new PedidoData(); // Inicializar la instancia de PedidoData si no se ha hecho
+private void llenarTabla(List<Pedido> pedidos) {
+        modelo.setRowCount(0); // Limpiar la tabla
+        for (Pedido pedido : pedidos) {
+            modelo.addRow(new Object[]{
+                pedido.getNombreMesero(),
+                pedido.getFecha(),
+                pedido.getHora(),
+                pedido.getImporte(),
+                pedido.isCobrada()
+            });
+        }
     }
-    
-    java.util.Date fechaSeleccionada = jdcSelectFecha.getDate();
 
-    List<Pedido> listaDeFechas = pd.buscarFechas(fechaSeleccionada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-
-    while (modelo.getRowCount() > 0) {
-        modelo.removeRow(0);
-    }
-
-    for (Pedido pedido : listaDeFechas) {
-        modelo.addRow(new Object[] {
-            pedido.getNombreMesero(),
-            Date.from(pedido.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant()), // Convierte LocalDate a Date
-            Time.valueOf(pedido.getHora()), // Convertir LocalTime a Time
-            pedido.getImporte(),
-            pedido.isCobrada()
-        });
-    }
-}
 
 }

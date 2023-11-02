@@ -571,24 +571,23 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     
     
     
-    public List<Pedido> buscarFechas(LocalDate dia){
-  
-       List<Pedido> listaDeFechas = new ArrayList<>();
+   public List<Pedido> buscarFechas(LocalDate fecha) {
+    List<Pedido> listaDeFechas = new ArrayList<>();
     String sql = "SELECT nombreMesero, Fecha, Hora, importe, cobrada FROM pedido WHERE cobrada = 1 AND Fecha = ?";
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setDate(1, Date.valueOf(dia));
+        ps.setDate(1, java.sql.Date.valueOf(fecha));
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Pedido fechas = new Pedido();
-            fechas.setNombreMesero(rs.getString("nombreMesero"));
-            fechas.setFecha(rs.getDate("Fecha").toLocalDate());
-            fechas.setHora(rs.getTime("Hora").toLocalTime());
-            fechas.setImporte(rs.getDouble("importe"));
-            fechas.setCobrada(rs.getBoolean("cobrada"));
-            listaDeFechas.add(fechas);
+            Pedido pedido = new Pedido();
+            pedido.setNombreMesero(rs.getString("nombreMesero"));
+            pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+            pedido.setHora(rs.getTime("Hora").toLocalTime());
+            pedido.setImporte(rs.getDouble("importe"));
+            pedido.setCobrada(rs.getBoolean("cobrada"));
+            listaDeFechas.add(pedido);
         }
         ps.close();
 
@@ -596,7 +595,34 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
         JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla pedido");
     }
     return listaDeFechas;
+}
+
+    
+    public List<Pedido> obtenerTodosLosPedidos() {
+    List<Pedido> pedidos = new ArrayList<>();
+    String sql = "SELECT nombreMesero, Fecha, Hora, importe, cobrada FROM pedido";
+
+    try (
+         PreparedStatement ps = wifi.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            Pedido pedido = new Pedido();
+            pedido.setNombreMesero(rs.getString("nombreMesero"));
+            pedido.setFecha(rs.getDate("Fecha").toLocalDate());
+            pedido.setHora(rs.getTime("Hora").toLocalTime());
+            pedido.setImporte(rs.getDouble("importe"));
+            pedido.setCobrada(rs.getBoolean("cobrada"));
+            pedidos.add(pedido);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Manejo básico de errores, puedes personalizarlo según tus necesidades.
     }
+
+    return pedidos;
+}
+
     
     public void BuscarPedidoPorid(int idPedido) {
         
