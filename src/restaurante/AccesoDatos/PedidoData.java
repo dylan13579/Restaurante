@@ -546,7 +546,7 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
     public void BuscarPedidoPorMesa(int idMesa) {
         
 
-        String sql = "SELECT idMesa, nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 0 ";
+        String sql = "SELECT nombreMesero, Fecha, Hora FROM pedido WHERE cobrada = 0 ";
         Pedido pedido = null;
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
