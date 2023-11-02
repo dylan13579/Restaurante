@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class Pedido {
     
     private int idPedido;
-    private Mesa idMesa;
+    private Mesa mesa;
     private String nombreMesero;
     private LocalDate fecha;
     private LocalTime hora;
@@ -22,8 +22,9 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Mesa idMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
-        this.idMesa = idMesa;
+    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
+        this.idPedido = idPedido;
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -31,9 +32,8 @@ public class Pedido {
         this.cobrada = cobrada;
     }
 
-    public Pedido(int idPedido, Mesa idMesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
-        this.idPedido = idPedido;
-        this.idMesa = idMesa;
+    public Pedido(Mesa mesa, String nombreMesero, LocalDate fecha, LocalTime hora, double importe, boolean cobrada) {
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
         this.fecha = fecha;
         this.hora = hora;
@@ -49,12 +49,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Mesa getIdMesa() {
-        return idMesa;
+    public Mesa getMesa() {
+        return mesa;
     }
 
-    public void setIdMesa(Mesa idMesa) {
-        this.idMesa = idMesa;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public String getNombreMesero() {
@@ -97,9 +97,11 @@ public class Pedido {
         this.cobrada = cobrada;
     }
 
+    
+
     @Override
     public String toString() {
-        return nombreMesero;
+        return idPedido +", "+nombreMesero;
     }
 
   

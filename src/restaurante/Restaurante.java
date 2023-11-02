@@ -64,22 +64,23 @@ public class Restaurante {
 
 
         //Pruebas de Pedido
-//        
-//        PedidoData pe = new PedidoData();
-//   
-//          Mesa mesa = new Mesa();
-//          mesa.setNumeroMesa(7);
-//            Pedido pedido = new Pedido();
-           // pedido.setIdPedido(7);
-            //pedido.setNombreMesero("Gustavo");
-           // pedido.setFecha(LocalDate.of(2023, 10, 24));
-           // pedido.setHora(LocalTime.of(20, 30)); 
-//            pedido.setImporte(2300.99); 
-//            pedido.setCobrado(true);
+       
+         PedidoData pe = new PedidoData();
+        
+        int idMesa = 27;
+         Pedido nuevoPedido = new Pedido();
+        nuevoPedido.setNombreMesero("Juan");
+        nuevoPedido.setFecha(LocalDate.of(2023, 11, 02));
+        nuevoPedido.setHora(LocalTime.of(21, 00));
+
+        pe.guardarPedido(nuevoPedido, idMesa);
+    
+             
+            
 //            
 //            pe.modificaFinalizar(pedido, mesa);
 
-            //pe.guardarReserva(pedido, mesa);
+           
             //pe.guardarPedido(pedido, mesa);
             //pe.modificarPedido(pedido);
               // pe.sumarPedido(mesa);
@@ -101,28 +102,28 @@ public class Restaurante {
 //              System.out.println("Mesa= "+meC.getNumeroMesa());
               
               
-                 PedidoData buscarF = new PedidoData();
-                LocalDate buscarFecha = LocalDate.of(2023, 10, 20);
-//                
-             List<Pedido> todo = buscarF.buscarFechas(buscarFecha);
-             
-             for (Pedido fecha : todo) {
-            
-                 System.out.println("nombre "+fecha.getNombreMesero());
-                 System.out.println("fecha "+fecha.getFecha());
-                 System.out.println("hora "+fecha.getHora());
-                 System.out.println("importe "+fecha.getImporte());
-                 
-                 System.out.println("------");
-               }
+//                 PedidoData buscarF = new PedidoData();
+//                LocalDate buscarFecha = LocalDate.of(2023, 10, 20);
+////                
+//             List<Pedido> todo = buscarF.buscarFechas(buscarFecha);
+//             
+//             for (Pedido fecha : todo) {
+//            
+//                 System.out.println("nombre "+fecha.getNombreMesero());
+//                 System.out.println("fecha "+fecha.getFecha());
+//                 System.out.println("hora "+fecha.getHora());
+//                 System.out.println("importe "+fecha.getImporte());
+//                 
+//                 System.out.println("------");
+//               }
              
              
               
              
 //              Mesa mesa = new Mesa();
 //              mesa.setNumeroMesa(17);
-//              
-//              pe.BuscarPedidoPorNum(18, Pedido);
+              
+             // pe.BuscarPedidoPorMesa(20);
              
 //               Pedido pedido = new Pedido();
 //               pedido.setNombreMesero("Dylan Jofre Villegas ");
