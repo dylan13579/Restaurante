@@ -578,7 +578,7 @@ public List<Pedido> pedidoNoCobrados(String nombreMesero) {
 
     try {
         PreparedStatement ps = wifi.prepareStatement(sql);
-        ps.setDate(1, Date.valueOf(dia));
+        ps.setDate(1, java.sql.Date.valueOf(dia));
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
