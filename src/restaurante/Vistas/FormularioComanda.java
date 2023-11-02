@@ -40,7 +40,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     
     private PedidoData pd;
     
-    private ProductoData prd;
+    private ProductoData prd = new ProductoData();
     
     private Pedido ped;
     
@@ -112,7 +112,6 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         txtBuscarPlato = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jcbMesa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
 
         setTitle("Registro de Ordenes Del Cliente");
 
@@ -236,13 +235,6 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Eras Light ITC", 1, 12)); // NOI18N
         jLabel8.setText("Buscar Mesa:");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -289,9 +281,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addGap(180, 180, 180)
                                         .addComponent(jLabel7)
-                                        .addGap(60, 60, 60)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                                        .addGap(60, 60, 60))))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(183, 183, 183)
@@ -307,7 +297,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                             .addGap(18, 18, 18)
                             .addComponent(txtBuscarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,12 +319,9 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
                         .addComponent(nuevaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nuevaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nuevaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -443,6 +430,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 
     private void jbComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComentarioActionPerformed
         // TODO add your handling code here:
+        
         if (txtComentario.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -497,6 +485,20 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarResActionPerformed
 
     private void txtBuscarPlatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarPlatoKeyReleased
+
+ 
+        for (Producto p: prd.listarProductos()) {
+            if(p.getNombreProducto().toUpperCase().startsWith(txtBuscarPlato.getText().toLowerCase())){
+                
+                modelo.addRow(new Object[]{
+                p.getIdProducto(),
+                p.getNombreProducto(),
+                p.getDescripcion(),
+                p.getPrecio()
+                });
+            }
+        }
+        
         LimpiarTable();
         ListarPlatos(tblTemPlatos);
         if(txtBuscarPlato != null){
@@ -541,15 +543,10 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtMeseroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPlato;
     private javax.swing.JButton btnEliminarTempPlato;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -661,9 +658,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
 //    //pd.modificaFinalizar(pedido, numeroMesa, true);
 }
 
-    private List<Pedido> obtenerPedidoCobrado(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     
     private void armarTabla(){
@@ -673,7 +668,7 @@ public class FormularioComanda extends javax.swing.JInternalFrame {
         }
     } 
     
-    
+   
     
 }
 
