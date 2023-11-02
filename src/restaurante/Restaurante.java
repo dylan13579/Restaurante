@@ -50,15 +50,15 @@ public class Restaurante {
 //            
 //        }
         
-        MesaData me = new MesaData();
-        for (Mesa mesa : me.listarMesasNodisponibles()) {
-            System.out.println("Mesa no disponible");
-            System.out.println("idMesa: "+mesa.getIdMesa());
-            System.out.println("numero: "+mesa.getNumeroMesa());
-            System.out.println("descrip: "+mesa.getDescripcion());
-            System.out.println("estado: "+mesa.isEstado());
-            
-        }
+//        MesaData me = new MesaData();
+//        for (Mesa mesa : me.listarMesasNodisponibles()) {
+//            System.out.println("Mesa no disponible");
+//            System.out.println("idMesa: "+mesa.getIdMesa());
+//            System.out.println("numero: "+mesa.getNumeroMesa());
+//            System.out.println("descrip: "+mesa.getDescripcion());
+//            System.out.println("estado: "+mesa.isEstado());
+//            
+//        }
          
 
 
@@ -101,20 +101,20 @@ public class Restaurante {
 //              System.out.println("Mesa= "+meC.getNumeroMesa());
               
               
-//                 PedidoData buscarF = new PedidoData();
-//                LocalDate buscarFecha = LocalDate.of(2023, 10, 05);
+                 PedidoData buscarF = new PedidoData();
+                LocalDate buscarFecha = LocalDate.of(2023, 10, 20);
 //                
-//             List<Pedido> todo = buscarF.buscarFechas(buscarFecha);
-//             
-//             for (Pedido fecha : todo) {
-//            
-//                 System.out.println("nombre "+fecha.getNombreMesero());
-//                 System.out.println("fecha "+fecha.getFecha());
-//                 System.out.println("hora "+fecha.getHora());
-//                 System.out.println("importe "+fecha.getImporte());
-//                 System.out.println(" cobrada "+fecha.isCobrado());
-//                 System.out.println("------");
-//               }
+             List<Pedido> todo = buscarF.buscarFechas(buscarFecha);
+             
+             for (Pedido fecha : todo) {
+            
+                 System.out.println("nombre "+fecha.getNombreMesero());
+                 System.out.println("fecha "+fecha.getFecha());
+                 System.out.println("hora "+fecha.getHora());
+                 System.out.println("importe "+fecha.getImporte());
+                 
+                 System.out.println("------");
+               }
               
               
              
