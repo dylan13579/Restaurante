@@ -104,6 +104,14 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setFocusable(false);
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int f, int c){
+                return false;
+            }
+        };
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel3.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
@@ -136,6 +144,14 @@ public class FormularioMesa extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setFocusable(false);
+        jTable2 = new javax.swing.JTable(){
+            public boolean isCellEditable (int f, int c){
+                return false;
+            }
+        };
+        jTable2.getTableHeader().setResizingAllowed(false);
+        jTable2.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel4.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
