@@ -147,7 +147,7 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         }
 
         jLabel8.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
-        jLabel8.setText("Ingrese codigo de producto:");
+        jLabel8.setText("Buscar Productdo por IdProducto");
 
         jbGuardar.setFont(new java.awt.Font("Eras Light ITC", 1, 14)); // NOI18N
         jbGuardar.setText("Guardar");
@@ -225,20 +225,6 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(60, 60, 60))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jbNuevo)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
-                        .addComponent(jbGuardar)
-                        .addGap(105, 105, 105))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel6)
@@ -248,12 +234,12 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jrbEstadoProd)
                                         .addComponent(jsStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE))
+                                    .addContainerGap(758, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(230, 230, 230)
                                     .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE))))
+                                    .addContainerGap(352, Short.MAX_VALUE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addGap(237, 237, 237)
@@ -271,16 +257,31 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(67, 67, 67)))
-                .addComponent(jbLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(72, 72, 72))
+                                    .addComponent(jtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(60, 60, 60))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jbNuevo)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbGuardar)
+                                .addGap(113, 113, 113)
+                                .addComponent(jbLimpiar)
+                                .addGap(135, 135, 135)
+                                .addComponent(jToggleButton1)))
+                        .addContainerGap(155, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,11 +338,11 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1350, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
         );
 
         pack();
@@ -440,62 +441,120 @@ public class FormularioProducto extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
 
-        try {
-            int idProducto = (int) jsProducto.getValue();
-            Producto producto = pd.buscarProductos(idProducto);
+         try {
+        int idProducto = (int) jsProducto.getValue();
+        Producto producto = pd.buscarProductos(idProducto);
 
-            String nombreP = jtNombreProducto.getText();
-            String descripcion = jtDescProducto.getText();
-            String precioP = jtPrecio.getText();
-            int srockP = (int) jsStock.getValue();
-            boolean estado = jrbEstadoProd.isSelected();
+        String nombreP = jtNombreProducto.getText();
+        String descripcion = jtDescProducto.getText();
+        String precioP = jtPrecio.getText();
+        int srockP = (int) jsStock.getValue();
+        boolean estado = jrbEstadoProd.isSelected();
 
-            if (!nombreP.isEmpty()) {  // && !descripcion.isEmpty() && nombreP.matches("^[a-zA-Z ]+$") && descripcion.matches("^[a-zA-Z ]+$")
-                try {
-                    double precio = Double.parseDouble(precioP);
+        if (!nombreP.isEmpty()) {  
+            // Use a regular expression to check if precioP contains only numeric characters
+            if (precioP.matches("\\d*\\.?\\d+")) {
+                double precio = Double.parseDouble(precioP);
 
-                    if (precio > 0) {
-                        if (producto == null) {
-                            Producto prod = new Producto();
-                            prod.setIdProducto(idProducto);
-                            prod.setNombreProducto(nombreP);
-                            prod.setDescripcion(descripcion);
-                            prod.setPrecio(precio);
-                            prod.setStock(srockP);
-                            prod.setEstado(estado);
-                            pd.guardarProducto(prod);
-                        } else {
-                            producto.setNombreProducto(nombreP);
-                            producto.setDescripcion(descripcion);
-                            producto.setPrecio(precio);
-                            producto.setStock(srockP);
-                            producto.setEstado(estado);
-                            pd.modificarProducto(producto);
-                        }
-
-                        limpiar();
-                        desactivarCampos();
-                        jbNuevo.setEnabled(true);
-                        jbGuardar.setEnabled(false);
-                        jbLimpiar.setEnabled(false);
-                        
-                        borrarFilasP1();
-                        borrarFilasP2();
-                        armarTablaP1();
-                        armarTablaP2();
-                        
+                if (precio > 0) {
+                    if (producto == null) {
+                        Producto prod = new Producto();
+                        prod.setIdProducto(idProducto);
+                        prod.setNombreProducto(nombreP);
+                        prod.setDescripcion(descripcion);
+                        prod.setPrecio(precio);
+                        prod.setStock(srockP);
+                        prod.setEstado(estado);
+                        pd.guardarProducto(prod);
                     } else {
-                        JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
+                        producto.setNombreProducto(nombreP);
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                        producto.setStock(srockP);
+                        producto.setEstado(estado);
+                        pd.modificarProducto(producto);
                     }
-                } catch (NumberFormatException e) {
-                    //JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
+
+                    limpiar();
+                    desactivarCampos();
+                    jbNuevo.setEnabled(true);
+                    jbGuardar.setEnabled(false);
+                    jbLimpiar.setEnabled(false);
+
+                    borrarFilasP1();
+                    borrarFilasP2();
+                    armarTablaP1();
+                    armarTablaP2();
+                } else {
+                    JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Error en el nombre y descripción. Solo se permiten caracteres o no puede dejar campos vacíos.");
+                JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
             }
-        } catch (NumberFormatException a) {
-            //JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error en el nombre y descripción. Solo se permiten caracteres o no puede dejar campos vacíos.");
         }
+    } catch (NumberFormatException a) {
+        JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+    }
+        
+        
+//        try {
+//            int idProducto = (int) jsProducto.getValue();
+//            Producto producto = pd.buscarProductos(idProducto);
+//
+//            String nombreP = jtNombreProducto.getText();
+//            String descripcion = jtDescProducto.getText();
+//            String precioP = jtPrecio.getText();
+//            int srockP = (int) jsStock.getValue();
+//            boolean estado = jrbEstadoProd.isSelected();
+//
+//            if (!nombreP.isEmpty()) {  
+//                try {
+//                    double precio = Double.parseDouble(precioP);
+//
+//                    if (precio > 0) {
+//                        if (producto == null) {
+//                            Producto prod = new Producto();
+//                            prod.setIdProducto(idProducto);
+//                            prod.setNombreProducto(nombreP);
+//                            prod.setDescripcion(descripcion);
+//                            prod.setPrecio(precio);
+//                            prod.setStock(srockP);
+//                            prod.setEstado(estado);
+//                            pd.guardarProducto(prod);
+//                        } else {
+//                            producto.setNombreProducto(nombreP);
+//                            producto.setDescripcion(descripcion);
+//                            producto.setPrecio(precio);
+//                            producto.setStock(srockP);
+//                            producto.setEstado(estado);
+//                            pd.modificarProducto(producto);
+//                        }
+//
+//                        limpiar();
+//                        desactivarCampos();
+//                        jbNuevo.setEnabled(true);
+//                        jbGuardar.setEnabled(false);
+//                        jbLimpiar.setEnabled(false);
+//                        
+//                        borrarFilasP1();
+//                        borrarFilasP2();
+//                        armarTablaP1();
+//                        armarTablaP2();
+//                        
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero.");
+//                    }
+//                } catch (NumberFormatException e) {
+//                    //JOptionPane.showMessageDialog(this, "Error en el precio. Debe ingresar un número válido.");
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error en el nombre y descripción. Solo se permiten caracteres o no puede dejar campos vacíos.");
+//            }
+//        } catch (NumberFormatException a) {
+//            //JOptionPane.showMessageDialog(this, "Ingresar un código de producto válido.");
+//        }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 

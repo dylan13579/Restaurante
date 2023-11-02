@@ -101,7 +101,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return idPedido +", "+nombreMesero;
+        return nombreMesero;
     }
 
   
