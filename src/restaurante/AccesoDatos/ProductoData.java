@@ -160,7 +160,7 @@ public class ProductoData {
                 pn.setDescripcion(rs.getString("descripcion"));
                 pn.setPrecio(rs.getDouble("precio"));
                 pn.setStock(rs.getInt("stock"));
-                pn.setEstado(true);
+                
                 
                 listar.add(pn);
                 
@@ -197,5 +197,36 @@ public class ProductoData {
         
       return listar;     
     
+    }
+    
+    
+    public List<Producto> listarProductosNo(){
+        
+        String sql = "SELECT idProducto, nombreProducto, descripcion, precio, stock, estado FROM producto WHERE estado = 0";
+        
+        ArrayList<Producto> listar = new ArrayList<>();
+        try {
+            PreparedStatement ps = wifi.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                Producto pn = new Producto();
+                
+                pn.setIdProducto(rs.getInt("idProducto"));
+                pn.setNombreProducto(rs.getString("nombreProducto"));
+                pn.setDescripcion(rs.getString("descripcion"));
+                pn.setPrecio(rs.getDouble("precio"));
+                pn.setStock(rs.getInt("stock"));
+                
+                
+                listar.add(pn);
+                
+            }
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error intentando acceder a la tabla Producto");
+        }
+        
+      return listar;  
     }
 }
